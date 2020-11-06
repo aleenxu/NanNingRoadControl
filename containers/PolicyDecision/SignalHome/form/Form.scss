@@ -1,0 +1,70 @@
+.formBox {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.pTop {
+  color: #60B5F1;
+  height: 40px;
+  font-weight: bolder;
+  font-size: 18px;
+  padding-left: 20px;
+  line-height: 40px;
+  // background: linear-gradient(to bottom, #02183d 0%, #06234f 100%);
+}
+.mountingManage {
+  height: 100%;
+  .mountingTable {
+    height: 100%;
+    display: flex;
+    color: #B5BFC6;
+    flex-direction: column;
+    font-size: 14px;
+    .mountingThead {
+      height: 26px;
+      color: #62bbff;
+      background-color: #2B5391;
+      display: flex;
+      font-size: 15px;
+    }
+    .mountingTr {
+      height: 28px;
+      display: flex;
+    }
+    .mountingTh,
+    .mountingTd {
+      flex: 1;
+      text-align: center;
+      line-height: 28px;
+      font-family: 'SimHei' !important;
+    }
+    .mountingTh:first-child,
+    .mountingTd:first-child {
+      flex: 0 110px;
+      padding-left: 5px;
+    }
+    .mountingTd {
+      
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: rgba(255,255,255, .8);
+    }
+    .deviceMsg {
+      margin-right: 20px;
+      color: #07a8ff;
+    }
+    .mountingTr:nth-child(odd) {
+      background-color: rgba(14, 50, 98, 0.7);
+    }
+    .mountingTr:nth-child(even) {
+      background-color: rgba(43,83,145, 0.7);
+    }
+    .mountingTbody {
+      // flex: 1;
+      height: calc(100% - 66px);
+      overflow-y: auto;
+    }
+  }
+}

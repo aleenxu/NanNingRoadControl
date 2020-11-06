@@ -1,0 +1,85 @@
+.loginWrapper {
+    width: 100%;
+    height: 100%;
+    background: url(./login_bg.png) center center no-repeat;
+    background-size: cover;
+    .loginBox {
+        position: absolute;
+        top: 50%;
+        right: 8%;
+        width: 600px;
+        margin-top: -300px;
+        .loginTitle {
+            text-align: center;
+            letter-spacing: 5px;
+            font-size: 42px;
+            font-weight: bold;
+            background: linear-gradient(to bottom, #BFE3EF, #70B0D4);
+            background-clip: text;
+            color: transparent;
+            // text-fill-color: transparent;
+        }
+        .usermsgBox {
+            width: 100%;
+            height: 400px;
+            background: url(./msg_bg.png) center center no-repeat;
+            background-size: 100% 100%;
+            .welcome {
+                height: 80px;
+                background: url(./login_title.png) center -14px no-repeat;
+                background-size: 100% 100%;
+            }
+            .userInput {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .userMsg {
+                    position: relative;
+                    width: 340px;
+                    height: 40px;
+                    margin-top: 40px;
+                    padding-left: 40px;
+                    span {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 40px;
+                        height: 100%;
+                        background: url(./user_icon.png) center center no-repeat;
+                        background-size: 100% 100%;
+                        text-align: center;
+                        line-height: 40px;
+                        color: #E4F1FA;
+                        font-size: 20px;
+                    }
+                    input {
+                        width: 300px;
+                        height: 40px;
+                        padding-left: 10px;
+                        background-color: #164499;
+                        border: 1px solid #365DA9;
+                        border-left: none;
+                        outline: none;
+                        color: #fff;
+                    }
+                    input::-webkit-input-placeholder {
+                        color: #799FD6;
+                    }
+                }
+                .loginBtn {
+                    width: 150px;
+                    height: 34px;
+                    margin-top: 50px;
+                    text-align: center;
+                    line-height: 34px;
+                    letter-spacing: 3px;
+                    color: #fff;
+                    font-size: 15px;
+                    background: url(./btn_bg.png) center center no-repeat;
+                    background-size: 100% 100%;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

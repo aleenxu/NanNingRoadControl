@@ -1,0 +1,471 @@
+.AreaeditBox {
+    color: #80c7ce;
+    height: 100%;
+    width: 100%;
+    background-color: #010b24;
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 12px;
+    .addGreenMegs {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 99;
+        .addGreenMegsBox {
+            width: 880px;
+            height: 635px;
+            background-color: #023163;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            > p {
+                font-size: 15px;
+                padding: 0 20px;
+                height: 40px;
+                line-height: 40px;
+                span {
+                    float: right;
+                    cursor: pointer;
+                    font-size: 18px;
+                }
+            }
+            .information {
+                padding-left: 20px;
+                height: 35px;
+                margin-bottom: 15px;
+                display: flex;
+                > div {
+                    width: 300px;
+                    margin-right: 30px;
+                    span {
+                        margin-right: 15px;
+                    }
+                }
+                button {
+                    cursor: pointer;
+                    margin-left: 110px;
+                    color: #ccc;
+                    background-color: #05bbec;
+                    outline: none;
+                    border: none;
+                    height: 32px;
+                    border-radius: 5px;
+                }
+            }
+            .Scheme {
+                padding-left: 20px;
+                height: 60px;
+                line-height: 60px;
+                width: 660px;
+                margin-bottom: 5px;
+                span {
+                    margin-right: 15px;
+                }
+            }
+            .addGreenMegsBoxer {
+                height: 440px;
+                border-top: 1px solid #ccc;
+                .addGreenMegsBoxer_left {
+                    float: left;
+                    width: 55px;
+                    height: 265px;
+                    margin: 35px 0 0 25px;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    background-color: #efefef;
+                    align-items: center;
+                    &:hover {
+                        background-color: #31a3ec;
+                    }
+                }
+            }
+        }
+    }
+    .addroaders {
+        width: 280px;
+        height: 370px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: #051e48;
+        padding-left: 15px;
+        > div {
+            height: 40px;
+            line-height: 40px;
+            margin-bottom: 20px;
+            > span {
+                display: inline-block;
+                width: 65px;
+                margin-right: 5px;
+                text-align: center;
+            }
+            .spansico {
+                float: left;
+            }
+            .icobs {
+                float: left;
+                width: 40px;
+                height: 40px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .Icos {
+                cursor: pointer;
+                float: right;
+                margin-right: 15px;
+                font-size: 18px;
+            }
+        }
+        .lastdiv {
+            width: 100%;
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            span {
+                float: right;
+                margin-right: 15px;
+                width: 55px;
+                text-align: center;
+                line-height: 30px;
+                border-radius: 5px;
+                cursor: pointer;
+                height: 30px;
+                &:nth-child(1) {
+                    color: #2e8ded;
+                    background-color: #f1f1f1;
+                    &:hover {
+                        background-color: #dee1e6;
+                    }
+                }
+                &:nth-child(2) {
+                    background-color: #2e8ded;
+                    &:hover {
+                        background-color: #05bbec;
+                    }
+                }
+            }
+        }
+    }
+}
+.lvBox_header {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+    background-color: #000928;
+}
+.lvBox_header b {
+    float: left;
+    width: 40px;
+    height: 40px;
+    background: url("../img/1.png") center center no-repeat;
+}
+.lvBox_header .spanLeft {
+    float: left;
+    height: 40px;
+}
+.lvBox_header .spanRight {
+    margin-right: 20px;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+    :global(path) {
+        color: #43c1d1;
+    }
+}
+.nav {
+    height: 75px;
+    padding-top: 20px;
+    span {
+        margin-right: 10px;
+    }
+}
+.nav div {
+    float: left;
+    margin-left: 15px;
+    &:nth-child(1) {
+        width: 210px;
+    }
+}
+input {
+    outline: none;
+    width: 90px;
+    height: 30px;
+    margin-left: 10px;
+    border: 1px solid #e3e3e3;
+}
+.nav div:nth-child(2) input {
+    width: 580px;
+}
+.nav div:last-child {
+    float: right;
+}
+.nav div:last-child button {
+    color: white;
+    margin-right: 15px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #1c5fa6;
+}
+.contain {
+    width: 98%;
+    height: calc(100% - 115px);
+    border: 1px solid black;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 5px 10px 10px 10px;
+}
+.contain_head {
+    height: 35px;
+    span {
+        margin-right: 10px;
+    }
+    .spans {
+        margin: 0 5px;
+    }
+    .btnPopup {
+        font-size: 16px;
+        float: right;
+        height: 100%;
+        line-height: 32px;
+        cursor: pointer;
+        color: #1c5fa6;
+    }
+}
+.contain_head div {
+    float: left;
+    margin-right: 15px;
+}
+.contain_box {
+    height: 255px;
+    width: 100%;
+    margin: 2px 0;
+    border: 1px solid black;
+    background-color: #06214c;
+}
+.conBox_top {
+    font-size: 14px;
+    color: #268333;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    padding-right: 15px;
+    background-color: #04183d;
+}
+.conBox_top_left {
+    float: left;
+}
+.conBox_top_left span:nth-child(1) {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.conBox_top_left span:nth-child(2) {
+    padding-left: 10px;
+}
+.conBox_top_right {
+    color: #a4fcff;
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+}
+.contain_bigBox {
+    height: calc(100% - 35px);
+    width: 100%;
+    padding: 0 5px;
+    overflow-y: auto;
+}
+.conBox_bom {
+    height: 215px;
+}
+.conBox_bom_left {
+    float: left;
+    height: 100%;
+}
+.conBox_bom_left {
+    width: 230px;
+}
+.conBox_bom_right {
+    margin-left: 230px;
+}
+.conBox_bom_left img {
+    width: 100%;
+    height: 100%;
+    &:nth-child(1) {
+        transform: rotate(90deg);
+    }
+}
+.conBox_bom_right_top {
+    padding-top: 4px;
+    height: 40px;
+    padding-left: 20px;
+}
+.conBox_bom_right_top > div {
+    float: left;
+    margin-right: 20px;
+    > span {
+        margin-right: 10px;
+    }
+}
+.conBox_bom_right_top > div:nth-child(2) > span,
+.conBox_bom_right_top div:nth-child(2) b {
+    float: left;
+}
+.conBox_bom_right_top > div:nth-child(2) > span {
+    margin-top: 7px;
+}
+.conBox_bom_right_top div b {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    margin-left: 10px;
+}
+.conBox_bom_right_top div b img {
+    width: 100%;
+    height: 100%;
+}
+.conBox_bom_right_mid {
+    margin: 26px 0;
+    height: 80px;
+}
+.conBox_bom_right_mid dl {
+    float: left;
+    width: 225px;
+    margin: 0 3px;
+}
+.conBox_bom_right_mid dl dt {
+    float: left;
+    height: 55px;
+    width: 55px;
+    padding-top: 8px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.conBox_bom_right_mid dl dt img {
+    width: 80%;
+}
+.conBox_bom_right_mid dl dd {
+    float: left;
+}
+.conBox_bom_right_mid dl dd li {
+    text-align: right;
+    margin-top: 5px;
+}
+.conBox_bom_right_mid dl dd li span {
+    height: 32px;
+    line-height: 32px;
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+}
+.conBox_bom_right_bom {
+    height: 40px;
+}
+.conBox_bom_right_bom input {
+    float: left;
+    margin: 10px 10px 0;
+    width: 20px;
+    height: 20px;
+}
+.conBox_bom_right_bom span {
+    float: left;
+    margin-top: 12px;
+}
+/*弹窗*/
+.Popup {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.Popup ul {
+    width: 500px;
+    height: 300px;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: #dee1e6;
+    transform: translate(-50%, -50%);
+}
+.Popup_head {
+    font-size: 22px;
+    font-weight: bold;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+}
+.Popup_liOne {
+    font-size: 20px;
+    height: 100px;
+    line-height: 80px;
+    text-align: center;
+}
+.Popup_liOne span {
+    margin-left: -15px;
+    margin-right: 15px;
+}
+.Popup_liOne select {
+    width: 175px;
+    height: 30px;
+}
+.Popup_liTwo {
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+.Popup_liTwo button {
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin: 0 20px;
+}
+.roleimg {
+    transform: rotate(90deg);
+}
+.AreaeditBox {
+    :global(.ant-input) {
+        color: white;
+        background-color: #023052;
+        border: 1px solid #1d425f;
+    }
+    :global(.ant-select .ant-select-enabled) {
+        flex: 1;
+    }
+    :global(.ant-select-selection) {
+        color: white;
+        height: 31px;
+        background-color: #023052;
+        border: 1px solid #1d425f;
+    }
+    :global(path) {
+        color: white;
+    }
+
+    :global(.ant-input-search) {
+        flex: 2;
+        height: 31px;
+    }
+}

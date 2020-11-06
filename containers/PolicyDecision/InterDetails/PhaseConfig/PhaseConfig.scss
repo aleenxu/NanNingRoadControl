@@ -1,0 +1,246 @@
+.phaseConfigBox {
+  position: relative;
+  color: white;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  .phaseEditBox {
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 40px);
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0,0,0, .4);
+    .phaseEditDetails {
+      width: 80%;
+      height: 100%;
+      border-radius: 5px;
+      background-color: rgba(14,51,85,0.9);
+      .editTitle {
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        border-bottom: 1px solid #3B5268;
+        .cloeEditIcon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all .2s;
+            &:hover {
+                transform: rotate(-180deg);
+            }
+        }
+      }
+      .detailsBox {
+        height: calc(100% - 90px);
+        padding: 10px 0;
+        overflow-y: auto;
+        .msgItems {
+          float: left;
+          width: 30%;
+          display: flex;
+          .itemText {
+            flex: 1;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            text-align: right;
+            padding-right: 10px;
+          }
+          .itemValue {
+            flex: 1;
+            width: 80px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            input {
+              width: 100%;
+              height: 30px;
+              padding-left: 5px;
+              color: #f1f1fb;
+              border: 1px solid #05204E;
+              border-radius: 3px;
+              background-color: transparent;
+            }
+            :global(.ant-select-selection) {
+              width: 132px;
+              background-color: transparent;
+              border: 1px solid #05204E;
+              outline: none;
+              color: #f1f1fb;
+              box-shadow: none;
+            }
+            :global(.ant-select-arrow) {
+              color: #f1f1fb;
+            }
+            :global(.ant-select-dropdown-menu-item) {
+              padding: 0 12px;
+            }
+          }
+        }
+      }
+      .subBtnBox {
+        height: 50px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-top: 1px solid #3B5268;
+        .subBtn {
+          width: 70px;
+          height: 28px;
+          margin-right: 20px;
+          text-align: center;
+          line-height: 28px;
+          border-radius: 4px;
+          background-color: #12A4F1;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+.messagePhase{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0,0,0,.6);
+  left: 0;
+  top: 0;
+}
+.messagePhaseBox{
+  width: 540px;
+  height: 400px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  .messagePhaseBox_center{
+    height: 55px;
+    display: flex;
+  }
+}
+.phaseConfigBox_top {
+  color: #5f9fdc;
+  height: 45px;
+  padding-left: 10px;
+  padding-right: 10px;
+  .phaseConfigBoxTop_left {
+    float: left;
+    height: 100%;
+    line-height: 45px;
+  }
+  .phaseConfigBoxTop_right {
+    float: right;
+    width: 20px;
+    height: 20px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+    transition: all 0.2s;
+    &:hover {
+      transform: rotate(-180deg);
+    }
+  }
+}
+.phaseConfigBox_center {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  div {
+    width: 70px;
+    height: 26px;
+    margin-right: 20px;
+    text-align: center;
+    line-height: 26px;
+    background-color: rgb(34, 70, 122);
+    color: #2cb3e3;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+}
+.phaseConfigBox_box {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .mountingThead {
+    font-size: 13px;
+    height: 32px;
+    background-color: #2B5391;
+    color: #2cb3e3;
+    display: flex;
+  }
+  .mountingTr {
+    height: 32px;
+    display: flex;
+  }
+  .mountingTh,
+  .mountingTd {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mountingcar {
+    flex: 3.5;
+    display: flex;
+    .roadMsg {
+      flex: 1;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .mountingTwo {
+    flex: 1.5;
+  }
+  .deviceMsg {
+    flex: 1;
+    display: flex;
+    color: #5F9FDC;
+    padding: 1px 5px;
+    span {
+      cursor: pointer;
+      border-radius: 2px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .mountingTr:nth-child(odd) {
+    background-color: rgba(14, 50, 98, 0.7);
+  }
+  .mountingTr:nth-child(even) {
+    background-color: rgba(43, 83, 145, 0.7);
+  }
+  .mountingTbody {
+    // height: calc(100% - 50px);
+    flex: 1;
+    overflow-y: auto;
+  }
+}
+.confirmBox {
+  background-color: rgba(25,59,91, .8);
+  :global(.ant-modal-confirm-title) {
+    color: #f1f1fb;
+  }
+}

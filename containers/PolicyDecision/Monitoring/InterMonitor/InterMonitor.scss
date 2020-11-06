@@ -1,0 +1,379 @@
+$fc-color: #60B5F1;
+$fontAll_color: #ccd8df;
+$bg_color: linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));
+.interMonitorBox {
+    z-index: 9;
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    width: 320px;
+    height: calc(100% - 110px);
+    font-size: 14px;
+    background-color: rgba(6, 35, 79, 0.8);
+    transition: all 0.3s;
+    .hideIcon {
+        position: absolute;
+        right: -20px;
+        top: 5px;
+        width: 20px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        font-size: 24px;
+        color: #f1f1fb;
+        cursor: pointer;
+    }
+    .title {
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        color: $fc-color;
+        font-size: 16px;
+    }
+    .interMsg {
+        display: flex;
+        color: $fc-color;
+        // height: 100px;
+        padding: 20px 0;
+        background: linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));
+        .msgShow {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            & > div {
+                width: 50px;
+                height: 50px;
+            }
+            & > p {
+                padding-top: 10px;
+            }
+            .listIcon {
+                background: url(./interlist.png) center center no-repeat;
+                background-size: 100% 100%;
+            }
+            .analysisIcon {
+                background: url(./analisys.png) center center no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+    }
+    .statusMsg {
+        height: 100%;
+        padding-top: 20px;
+        background: linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));
+        .statusBox {
+            color: $fontAll_color;
+            position: relative;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .statusTitle {
+                color: #2cb3e3;
+                position: relative;
+                width: 200px;
+                height: 30px;
+                text-align: center;
+                line-height: 28px;
+                background-color: transparent;
+                cursor: pointer;
+                transition: all 0.2s;
+                .downIcon {
+                    position: absolute;
+                    top: 0;
+                    right: 15px;
+                    font-size: 15px;
+                    transition: all 0.2s;
+                }
+            }
+            .statusList {
+                width: 200px;
+                max-height: 0;
+                margin-top: 10px;
+                overflow: hidden;
+                transition: all 0.2s;
+                .statusItems {
+                    position: relative;
+                    width: 100%;
+                    height: 30px;
+                    padding-left: 10px;
+                    line-height: 30px;
+                    .statusCheck {
+                        position: absolute;
+                        top: 0;
+                        right: 20px;
+                        transition: all 0.2s;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pointTypeBox {
+    z-index: 9;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    width: 320px;
+    height: calc(100% - 110px);
+    font-size: 14px;
+    background-color: rgba(6, 35, 79, 0.8);
+    transition: all 0.3s;
+    .hideIcon {
+        position: absolute;
+        left: -20px;
+        top: 5px;
+        width: 20px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        font-size: 24px;
+        color: #f1f1fb;
+        cursor: pointer;
+    }
+    .title {
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        color: $fc-color;
+        font-size: 16px;
+    }
+    .systemPoint {
+        color: $fontAll_color;
+        padding: 20px 0;
+        background: linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));
+        & > div {
+            position: relative;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding-left: 50px;
+            .upIconBox {
+                position: relative;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin-right: 20px;
+                & > i {
+                    position: absolute;
+                    bottom: 4px;
+                    left: -2px;
+                    width: 20px;
+                    border-top: 1px solid #02f5f7;
+                }
+                & > b {
+                    position: absolute;
+                    top: 8px;
+                    left: 1px;
+                    width: 14px;
+                    height: 14px;
+                    border-top: 1px solid #02f5f7;
+                    border-right: 1px solid #02f5f7;
+                    transform: rotate(-45deg);
+                }
+            }
+            .squareBox {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                margin-right: 20px;
+                border: 1px solid #02f5f7;
+            }
+            .circleBox {
+                width: 18px;
+                height: 18px;
+                margin-right: 20px;
+                border: 1px solid #02f5f7;
+                border-radius: 50%;
+            }
+            .checkeBox {
+                position: absolute;
+                right: 100px;
+            }
+        }
+    }
+    .statusDetails {
+        color: $fontAll_color;
+        height: calc(100% - 180px);
+        padding-top: 20px;
+        overflow-y: auto;
+        background-color: rgba(25, 55, 98, 0.9);
+        .pointList {
+            height: 30px;
+            padding-left: 50px;
+            display: flex;
+            align-items: center;
+            .circleColor {
+                width: 18px;
+                height: 18px;
+                margin: 2px 20px 0 0;
+                border-radius: 50%;
+                box-shadow: inset 0 0 5px black;
+                // background-color: #ff0000;
+                vertical-align: -3px;
+            }
+            .pointText {
+                display: inline-block;
+                width: 120px;
+            }
+        }
+    }
+}
+
+.interListPop {
+    z-index: 9;
+    position: absolute;
+    bottom: 0;
+    left: 360px;
+    width: 320px;
+    height: calc(100% - 110px);
+    font-size: 14px;
+    background: $bg_color;
+    transition: all 0.3s;
+    .title {
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 15px;
+        font-size: 16px;
+        background: linear-gradient(to bottom, #06234f 0%, #031734 100%);
+        .popCloseBox {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 15px;
+            color: #02f5f7;
+            cursor: pointer;
+            transition: all 0.2s;
+            &:hover {
+                transform: rotate(-180deg) scale(1.2);
+            }
+        }
+    }
+    .interListBox {
+        position: relative;
+        padding: 10px 0 0;
+        z-index: 9;
+        .interList {
+            position: absolute;
+            top: 45px;
+            left: 0;
+            width: 100%;
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.8);
+            transition: all 0.2s;
+            overflow-y: hidden;
+            .interItem {
+                height: 30px;
+                padding-left: 10px;
+                font-size: 14px;
+                line-height: 30px;
+                transition: all 0.2s;
+                cursor: pointer;
+                &:hover {
+                    background-color: #06234f;
+                }
+            }
+        }
+        .interSearch {
+            display: flex;
+            padding: 0 10px;
+            .searchBox {
+                position: relative;
+                .searchInput {
+                    width: 300px;
+                    height: 32px;
+                    padding-left: 5px;
+                    background-color: rgba(6, 56, 90, 0.8);
+                    border: 1px solid #063657;
+                    border-radius: 4px;
+                    outline: none;
+                    color: #f1f1fb;
+                }
+                .searchIcon {
+                    position: absolute;
+                    right: 10px;
+                    top: 8px;
+                    font-size: 18px;
+                    color: #07bdfb;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .interAreaLineBox {
+        height: calc(100% - 100px);
+        padding: 0 15px 15px;
+        .interTree {
+            height: calc(100% - 110px);
+            overflow-y: auto;
+            transition: all 0.2s;
+        }
+        .areaLineBtn {
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: rgb(34, 70, 122);
+            color: #2cb3e3;
+            letter-spacing: 5px;
+            border-radius: 4px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .activeBtn {
+            background-color: rgb(6, 115, 182);
+            color: #2cb3e3;
+        }
+    }
+}
+
+.pieWrapper {
+    z-index: 9;
+    position: absolute;
+    top: 110px;
+    left: 360px;
+    width: 400px;
+    height: 400px;
+    font-size: 14px;
+    background-color: rgba(2, 24, 61, 0.8);
+    transition: all 0.3s;
+    .title {
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 15px;
+        font-size: 16px;
+        background: linear-gradient(to bottom, #06234f 0%, #031734 100%);
+        .popCloseBox {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 15px;
+            color: #02f5f7;
+            cursor: pointer;
+            transition: all 0.2s;
+            &:hover {
+                transform: rotate(-180deg) scale(1.2);
+            }
+        }
+    }
+    .pieChartsBox {
+        height: calc(100% - 40px);
+        background: $bg_color;
+    }
+}

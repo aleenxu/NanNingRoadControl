@@ -1,0 +1,54 @@
+
+.cursorStyle {
+  cursor: pointer;
+}
+.Roadtcontent {
+  width: 100%;
+  height: 100%;
+  color: #62bbff;
+  .mapContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+:global(.ant-select-dropdown) {
+  text-align: center;
+}
+:global(.ant-select-dropdown-menu) {
+  background: url(./imgs/selectBg.png) center center no-repeat;
+  background-size: 100% 100%;
+  padding: 3px 4px;
+}
+:global(.ant-select-dropdown-menu-item-selected) {
+  background: url(./imgs/optionBg.png) center center no-repeat;
+  background-size: 100% 100%;
+  color: #07b7f2;
+}
+:global(.ant-select-dropdown li) {
+  color: #ffffff;
+}
+:global(.ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled)) {
+  background: url(./imgs/optionBg.png) center center no-repeat;
+  background-size: 100% 100%;
+  color: #07b7f2;
+}
+:global(.ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled)) {
+  background: url(./imgs/optionBg.png) center center no-repeat;
+  background-size: 100% 100%;
+  color: #07b7f2;
+}
+:global(.ant-modal-content) {
+  background: #343a52;
+}
+:global(.ant-modal-confirm-body .ant-modal-confirm-title) {
+  color: #dcdce6;
+}
+:global(.ant-dropdown-menu) {
+  background: #022869;
+}
+:global(.ant-message-notice-content) {
+  background: #343a52;
+  color: #dcdce6;
+  margin-top: 60px;
+}

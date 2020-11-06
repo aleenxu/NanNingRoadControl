@@ -1,0 +1,418 @@
+.greenWaveWrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #021035;
+    .interSysBox {
+        z-index: 9;
+        position: fixed;
+        bottom: 5px;
+        right: 20px;
+        width: 270px;
+        height: 70px;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 14px;
+        background-color: #011f53;
+        .systemPoint {
+            display: flex;
+            input {
+                height: 20px;
+                width: 20px;
+                margin-right: 3px;
+            }
+            & > div {
+                position: relative;
+                height: 30px;
+                flex: 1;
+                display: flex;
+                align-items: center;
+                .upIconBox {
+                    position: relative;
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    & > i {
+                        position: absolute;
+                        bottom: 4px;
+                        left: -2px;
+                        width: 20px;
+                        border-top: 1px solid #02f5f7;
+                    }
+                    & > b {
+                        position: absolute;
+                        top: 8px;
+                        left: 1px;
+                        width: 14px;
+                        height: 14px;
+                        border-top: 1px solid #02f5f7;
+                        border-right: 1px solid #02f5f7;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+    .treeBox {
+        z-index: 3;
+        position: absolute;
+        bottom: 0;
+        left: 5px;
+        width: 360px;
+        height: calc(100% - 110px);
+        background: linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));
+        font-size: 14px;
+        .titles {
+            height: 32px;
+            line-height: 32px;
+            padding-left: 10px;
+            background-color: #0E1C42;
+            font-size: 15px;
+            color: #62bbff;
+        }
+        .searchBox {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .innerSearch {
+                position: relative;
+                .searchInput {
+                    width: 304px;
+                    height: 26px;
+                    padding-left: 5px;
+                    background-color: transparent;
+                    border: 1px solid #244876;
+                    border-radius: 4px;
+                    outline: none;
+                    color: #f1f1fb;
+                }
+                .searchIcon {
+                    position: absolute;
+                    top: 2px;
+                    right: 5px;
+                    width: 20px;
+                    height: 24px;
+                    text-align: center;
+                    line-height: 26px;
+                    cursor: pointer;
+                    transition: all .2s;
+                    &:hover {
+                        transform: scale(1.3);
+                        color: rgb(8, 251, 237);
+                    }
+                }
+            }
+        }
+        .treeDetails {
+            height: calc(100% - 200px);
+            padding: 10px 0 0 20px;
+            overflow-y: auto;
+            .contextMenu {
+                width: 150px;
+                height: 50px;
+                position: absolute;
+                z-index: 9999;
+                margin: 0;
+                background-color: #0d1133;
+                border: 1px solid #55f9ff;
+                left: 95px;
+                li {
+                  height: 25px;
+                  margin: 0;
+                  line-height: 25px;
+                  padding-left: 15px;
+                  cursor: pointer;
+                  &:hover {
+                    background-color: rgba(103, 186, 202, 0.6);
+                  }
+                }
+              }
+        }
+        .newLinePlan {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .newLineBtn {
+                height: 30px;
+                line-height: 30px;
+                padding: 0 20px;
+                border-radius: 4px;
+                background-color: #05467C;
+                color: #62bbff;
+                cursor: pointer;
+                &:hover {
+                    color: rgb(8, 251, 237);
+                }
+            }
+        }
+    }
+    .editGreenWave {
+        z-index: 9;
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 100px);
+        left: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .editBox {
+            position: relative;
+            width: 60%;
+            height: 80%;
+            background: linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));
+            border-radius: 6px;
+            overflow: hidden;
+            .editTitle {
+                position: relative;
+                height: 35px;
+                padding-left: 15px;
+                margin-bottom: 5px;
+                line-height: 35px;
+                font-size: 15px;
+                color: #62bbff;
+                background-color: #0E1C42;
+                .closeIcon {
+                    position: absolute;
+                    top: 8px;
+                    right: 8px;
+                    width: 18px;
+                    height: 18px;
+                    text-align: center;
+                    line-height: 18px;
+                    transition: all .3s;
+                    cursor: pointer;
+                    &:hover {
+                        transform: rotate(-180deg) scale(1.2);
+                    }
+                }
+            }
+            .eidtMsg {
+                height: 40px;
+                padding-left: 15px;
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                color: #62bbff;
+                input {
+                    height: 28px;
+                    padding-left: 5px;
+                    color: #f1f1fb;
+                    background-color: transparent;
+                    border: 1px solid #244876;
+                    outline: none;
+                }
+                .lineName {
+                    width: 300px;
+                }
+                .mileage {
+                    width: 100px;
+                }
+                .lineDis {
+                    width: 505px;
+                }
+                .saveEditBtn {
+                    margin-left: 20px;
+                    padding: 4px 20px;
+                    border-radius: 3px;
+                    background-color: #05467C;
+                    cursor: pointer;
+                    &:hover {
+                        color: rgb(8, 251, 237);
+                    }
+                }
+            }
+            .lineInterMsg {
+                height: calc(100% - 120px);
+                padding: 5px 15px;
+                font-size: 14px;
+                .interMsg {
+                    position: relative;
+                    height: 50px;
+                    display: flex;
+                    align-items: center;
+                    color: #62bbff;
+                    :global(.ant-select) {
+                        width: 160px;
+                    }
+                    :global(.ant-select-selection) {
+                        background-color: transparent;
+                        border-color: #244876;
+                        box-shadow: none;
+                        color: #f1f1fb;
+                    }
+                    :global(.ant-select-arrow) {
+                        color: #f1f1fb;
+                    }
+                    .addInterBtn {
+                        position: absolute;
+                        right: 0;
+                        bottom: 8px;
+                        padding: 4px 20px;
+                        border-radius: 3px;
+                        background-color: #05467C;
+                        cursor: pointer;
+                        &:hover {
+                            color: rgb(8, 251, 237);
+                        }
+                    }
+                }
+                .interDetailsList {
+                    height: calc(100% - 50px);
+                    overflow-y: auto;
+                    .detailsTable {
+                        margin-bottom: 10px;
+                        border-left: 1px solid #05467C;
+                        .detailsTh {
+                            position: relative;
+                            height: 36px;
+                            line-height: 36px;
+                            padding-left: 10px;
+                            background-color: #05467C;
+                            .closeIcon {
+                                position: absolute;
+                                top: 9px;
+                                right: 8px;
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                text-align: center;
+                                line-height: 20px;
+                                transition: all .3s;
+                                cursor: pointer;
+                                &:hover {
+                                    transform: rotate(-180deg) scale(1.2);
+                                }
+                            }
+                        }
+                        .detailsTr {
+                            height: 36px;
+                            display: flex;
+                            align-items: center;
+                            border-bottom: 1px solid #05467C;
+                            .detailsTd {
+                                flex: 1;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border-right: 1px solid #05467C;
+                                img {
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                                .offsetTd {
+                                    width: 80px;
+                                    background-color: transparent;
+                                    border: 1px solid #244876;
+                                    outline: none;
+                                }
+                                :global(.ant-select) {
+                                    width: 60%;
+                                }
+                                :global(.ant-select-selection) {
+                                    height: 26px;
+                                    background-color: transparent;
+                                    border-color: #244876;
+                                    box-shadow: none;
+                                    color: #f1f1fb;
+                                }
+                                :global(.ant-select-selection__rendered) {
+                                    line-height: 26px;
+                                }
+                                :global(.ant-select-arrow) {
+                                    color: #f1f1fb;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .addInterWrapper {
+                position: absolute;
+                width: 100%;
+                height: calc(100% - 36px);
+                padding-top: 120px;
+                bottom: 0;
+                display: flex;
+                justify-content: center;
+                background-color: rgba(0,0,0,.3);
+                .checkedInter {
+                    width: 400px;
+                    height: 200px;
+                    background-color: rgba(29, 64, 113, 0.9);
+                    border-radius: 4px;
+                    overflow: hidden;
+                    .title {
+                        position: relative;
+                        height: 36px;
+                        line-height: 36px;
+                        padding-left: 10px;
+                        background-color: #0E1C42;
+                        font-size: 15px;
+                        color: #62bbff;
+                        .closeIcon {
+                            position: absolute;
+                            top: 9px;
+                            right: 8px;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
+                            text-align: center;
+                            line-height: 20px;
+                            transition: all .3s;
+                            cursor: pointer;
+                            &:hover {
+                                transform: rotate(-180deg) scale(1.2);
+                            }
+                        }
+                    }
+                    .addInter {
+                        height: 100px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        :global(.ant-select-selection--single) {
+                            // width: 90px;
+                            height: 28px;
+                            background-color: transparent;
+                            border: 1px solid #5DBAF7;
+                            // margin-right: 10px;
+                            box-shadow: none;
+                        }
+                        :global(.ant-select-selection__rendered) {
+                            line-height: 26px;
+                            color: #5DBAF7;
+                        }
+                        :global(.ant-select-arrow) {
+                            color: #5DBAF7;
+                        }
+                        :global(.ant-select-selection__placeholder) {
+                            color: #5DBAF7;
+                        }
+                    }
+                    .addBtnBox {
+                        height: 40px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        span {
+                            padding: 4px 20px;
+                            margin: 0 20px;
+                            border-radius: 3px;
+                            background-color: #05467C;
+                            cursor: pointer;
+                            &:hover {
+                                color: rgb(8, 251, 237);
+                            }
+                        } 
+                    }
+                }
+            }
+        }
+    }
+}

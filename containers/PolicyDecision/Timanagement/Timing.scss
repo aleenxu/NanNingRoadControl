@@ -1,0 +1,417 @@
+$ft_color: #62bbff;
+.timingWrapper {
+  height: 100%;
+  width: 100%;
+  background-color: #021035;
+  display: flex;
+  flex-direction: column;
+}
+.timingcontainer {
+  height: calc(100% - 100px);
+  position: absolute;
+  width: 100%;
+  top: 100px;
+  padding: 25px;
+  h3 {
+    color: $ft_color;
+    height: 40px;
+    line-height: 40px;
+  }
+  .searchBox {
+    background: #1a3054;
+    height: 40px;
+    display: flex;
+    > div {
+      flex: 1;
+      display: flex;
+      margin-right: 20px;
+      align-items: center;
+      > span {
+        padding-right: 20px;
+        color: $ft_color;
+      }
+      input {
+        flex: 1;
+      }
+      &:last-child {
+        display: flex;
+        justify-content: flex-end;
+        span {
+          width: 70px;
+          height: 32px;
+          display: flex;
+          justify-content: center;
+          border-radius: 3px;
+          align-items: center;
+          cursor: pointer;
+          padding-right: 0;
+          color: #62bbff;
+          background-color: rgba(79, 104, 237, 0.4);
+        }
+      }
+    }
+  }
+  .goExcal {
+    height: 45px;
+    background: #1a3054;
+    display: flex;
+    align-items: center;
+    > span {
+      padding-right: 6px;
+      color: #62bbff;
+    }
+    .spans {
+      width: 70px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      border-radius: 3px;
+      align-items: center;
+      cursor: pointer;
+      padding-right: 0;
+      color: #62bbff;
+      background-color: rgba(79, 104, 237, 0.4);
+    }
+  }
+  .mountingManage {
+    .mountingTable {
+      .mountingThead {
+        font-size: 14px;
+        height: 40px;
+        color: $ft_color;
+        background-color: #2b5391;
+        display: flex;
+      }
+      .mountingTr {
+        height: 35px;
+        position: relative;
+        display: flex;
+      }
+      .mountingTbody {
+        height: 550px;
+        overflow-y: auto;
+        > div {
+          &:nth-child(odd) {
+            background-color: #1b3864;
+          }
+          &:nth-child(even) {
+            background: #1a3054;
+          }
+        }
+      }
+      .mountingTh,
+      .mountingTd {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          cursor: pointer;
+        }
+      }
+      .deviceMsg {
+        margin: 0 10px;
+        color: #2ad2f0;
+      }
+    }
+  }
+  .paginationBox {
+    color: $ft_color;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    left: 20px;
+    bottom: 50px;
+    span {
+      margin-left: 15px;
+    }
+  }
+}
+.phaseConfigBox {
+  display: flex;
+  flex-direction: column;
+  .editBox {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 0;
+    color: white;
+    width: 690px;
+    height: 330px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    .editDetails {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(25, 59, 91, 0.8);
+      .stageSelectMark {
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 40px);
+        top: 40px;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        .stageSelectBox {
+          width: 70%;
+          height: 200px;
+          border-radius: 4px;
+          background-color: rgba(25, 59, 91, 0.8);
+          .stageTilte {
+            height: 32px;
+            line-height: 32px;
+            padding-left: 10px;
+            border-bottom: 1px solid #3b5268;
+          }
+          .stageContent {
+            padding: 10px;
+            height: 128px;
+            overflow-y: auto;
+            display: flex;
+            flex-wrap: wrap;
+            .stageBox {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              margin-right: 5px;
+              input {
+                width: 60px;
+                margin-top: 3px;
+                text-align: center;
+                outline: none;
+                background-color: transparent;
+                border: 1px solid #3b5268;
+                color: #f1f1fb;
+              }
+              .editStageBtn {
+                padding: 0 10px;
+                margin-top: 5px;
+                border-radius: 3px;
+                background-color: #12a4f1;
+                cursor: pointer;
+              }
+              .radioBtn {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                margin-right: 5px;
+                border: 1px solid #12a4f1;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 12px;
+                cursor: pointer;
+                .radioCheck {
+                  display: inline-block;
+                  width: 8px;
+                  height: 8px;
+                  background-color: #12a4f1;
+                  border-radius: 50%;
+                  transition: all 0.2s;
+                }
+              }
+            }
+          }
+          .stageAction {
+            height: 40px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            .stageActionBtn {
+              width: 70px;
+              height: 26px;
+              margin-right: 10px;
+              text-align: center;
+              line-height: 26px;
+              border-radius: 3px;
+              background-color: #12a4f1;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .editTitle {
+        position: relative;
+        height: 48px;
+        line-height: 48px;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #3b5268;
+        .cloeEditIcon {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          width: 20px;
+          height: 20px;
+          text-align: center;
+          line-height: 20px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: all 0.2s;
+          &:hover {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+      .editContent {
+        display: flex;
+        margin-bottom: 12px;
+        .editItemsName {
+          display: flex;
+          width: 120px;
+          padding-right: 10px;
+          justify-content: flex-end;
+          align-items: center;
+        }
+        .editItems {
+          flex: 1;
+          display: flex;
+          // justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          .phaseNo {
+            width: 100%;
+            text-align: center;
+          }
+          :global(.ant-checkbox) {
+            color: #f1f1fb;
+          }
+          :global(.ant-checkbox-wrapper) {
+            color: #f1f1fb;
+          }
+          .phaseSelBox {
+            width: 100px;
+          }
+          input {
+            width: 120px;
+            background-color: transparent;
+            border: 1px solid #3b5268;
+            color: #f1f1fb;
+          }
+          .stageBox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 5px;
+            input {
+              width: 60px;
+              margin-top: 3px;
+              text-align: center;
+              outline: none;
+            }
+            .editStageBtn {
+              padding: 0 10px;
+              margin-top: 5px;
+              border-radius: 3px;
+              background-color: #12a4f1;
+              cursor: pointer;
+            }
+          }
+          :global(.ant-select-selection) {
+            width: 120px;
+            border: 1px solid #62bbff;
+            background: #1a3054;
+            color: $ft_color;
+          }
+          :global(path) {
+            color: #62bbff;
+          }
+        }
+      }
+      .editBtnBox {
+        height: 30px;
+        margin-top: 10px;
+        padding-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .editBtn {
+          width: 70px;
+          height: 28px;
+          margin-right: 20px;
+          text-align: center;
+          line-height: 28px;
+          background-color: #12a4f1;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+.timingcontainer {
+  :global(.ant-btn) {
+    width: 90px;
+    // border-radius: 4px;
+    padding: 0;
+    text-align: center;
+  }
+}
+.searchBox {
+  :global(.ant-input) {
+    border: 1px solid #62bbff;
+    background: #1a3054;
+    color: $ft_color;
+  }
+}
+.timingWrapper {
+  :global(.ant-modal-body) {
+    background-color: white;
+  }
+  :global(.ant-modal-footer) {
+    background-color: white;
+  }
+}
+.searchBox {
+  :global(.ant-select) {
+    flex: 1;
+  }
+  :global(.ant-select-selection) {
+    height: 32px;
+    color: #62bbff;
+    border: 1px solid #62bbff;
+    background: #1a3054;
+    color: $ft_color;
+  }
+  :global(path) {
+    color: #62bbff;
+  }
+}
+.paginationBox {
+  :global(.ant-pagination-item a) {
+    color: #62bbff;
+  }
+  :global(.ant-pagination-options) {
+    color: #62bbff;
+  }
+  :global(.ant-pagination-item-active) {
+    background-color: rgba(79, 104, 237, 0.4);
+  }
+  :global(.ant-select-selection--single) {
+    color: #62bbff;
+    background-color: #021035;
+    border: 1px solid  #62bbff;
+  }
+  :global(.ant-pagination-options-quick-jumper input){
+    color: #62bbff;
+    background-color: #021035;
+    border: 1px solid  #62bbff;
+  }
+  :global(path) {
+    color: #62bbff;
+  }
+  // :global(.ant-pagination.mini) {
+  //   height: 32px;
+  //   line-height: 32px;
+  // }
+  // :global(.ant-select-selection-selected-value) {
+  //   height: 32px;
+  //   line-height: 32px;
+  // }
+}

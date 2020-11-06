@@ -1,0 +1,255 @@
+.phaseConfigBox {
+    color: white;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    .editBox {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 40px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0,0,0,.4);
+      .editDetails {
+        width: 60%;
+        height: 115%;
+        background-color: rgba(25,59,91, .8);
+        .editTitle {
+          position: relative;
+          height: 40px;
+          line-height: 40px;
+          padding-left: 10px;
+          margin-bottom: 20px;
+          border-bottom: 1px solid #3B5268;
+          .cloeEditIcon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all .2s;
+            &:hover {
+                transform: rotate(-180deg);
+            }
+          }
+        }
+        .editContent {
+          display: flex;
+          margin-bottom: 15px;
+          .editItemsName {
+            display: flex;
+            width: 120px;
+            padding-right: 10px;
+            justify-content: flex-end;
+            align-items: center;
+          }
+          .editItems {
+            flex: 1;
+            display: flex;
+            // justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            .phaseNo {
+              width: 35px;
+              text-align: center;
+            }
+            :global(.ant-checkbox) {
+              color: #f1f1fb;
+            }
+            :global(.ant-checkbox-wrapper) {
+              color: #f1f1fb;
+            }
+            .phaseSelBox {
+              width: 100px;
+            }
+            :global(.ant-select-selection) {
+                // width: 128px;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                color: #F1F1FB;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+            :global(.ant-time-picker-input) {
+                background-color: transparent;
+                border: 1px solid #3B5268;
+                color: #f1f1fb;
+            }
+            :global(.ant-time-picker-clock-icon) {
+                color: #f1f1fb;
+            }
+            :global(.ant-select-arrow) {
+                color: #f1f1fb;
+            }
+            input {
+              width: 128px;
+              background-color: transparent;
+              border: 1px solid #3B5268;
+              color: #f1f1fb;
+            }
+          }
+        }
+        .editBtnBox {
+          height: 40px;
+          margin-top: 10px;
+          padding-right: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          .editBtn {
+            width: 70px;
+            height: 30px;
+            margin-right: 20px;
+            text-align: center;
+            line-height: 30px;
+            background-color: #12A4F1;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .messagePhase{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0,0,0,.6);
+    left: 0;
+    top: 0;
+  }
+  .messagePhaseBox{
+    width: 540px;
+    height: 400px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    .messagePhaseBox_center{
+      height: 55px;
+      display: flex;
+    }
+  }
+  .phaseConfigBox_top {
+    height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(14, 51, 85, 0.8);
+    .phaseConfigBoxTop_left {
+      float: left;
+      height: 100%;
+      line-height: 45px;
+    }
+    .phaseConfigBoxTop_right {
+      float: right;
+      width: 20px;
+      height: 20px;
+      margin-top: 12px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      &:hover {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+  .phaseConfigBox_center {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    div {
+      width: 70px;
+      height: 26px;
+      margin-right: 20px;
+      text-align: center;
+      line-height: 26px;
+      background-color: #12a4f1;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  }
+  .phaseConfigBox_box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .mountingThead {
+      font-size: 13px;
+      height: 32px;
+      color: #95edf4;
+      display: flex;
+    }
+    .mountingTr {
+      height: 40px;
+      display: flex;
+    }
+    .mountingThead {
+      background-color: rgba(14, 28, 63, 0.7);
+    }
+    .mountingTh,
+    .mountingTd {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mountingcar {
+      flex: 3;
+    }
+    .deviceMsg {
+      flex: 1;
+      display: flex;
+      color: white;
+      padding: 1px 5px;
+      span {
+        cursor: pointer;
+        border-radius: 2px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &:nth-child(1) {
+        span {
+          background-color: #7cc710;
+        }
+      }
+      &:nth-child(2) {
+        span {
+          background-color: #f3690d;
+        }
+      }
+    }
+    .mountingTr:nth-child(odd) {
+      background-color: rgba(14, 50, 98, 0.7);
+    }
+    .mountingTr:nth-child(even) {
+      background-color: rgba(14, 28, 63, 0.7);
+    }
+    .mountingTbody {
+      // height: calc(100% - 50px);
+      flex: 1;
+      overflow-y: auto;
+    }
+  }
+  .confirmBox {
+    background-color: rgba(25,59,91, .8);
+    :global(.ant-modal-confirm-title) {
+      color: #f1f1fb;
+    }
+  }
+  

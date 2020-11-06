@@ -1,0 +1,147 @@
+.controlWrapper {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 101;
+}
+.controlTitle {
+    position: relative;
+    height: 40px;
+    padding-left: 20px;
+    line-height: 40px;
+    border-bottom: 1px solid #454858;
+}
+.controlTitle .closeIcon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 23px;
+    color: #fff;
+    border-radius: 50%;
+    transition: all ease .2s;
+    cursor: pointer;
+}
+.controlTitle .closeIcon:hover {
+    transform: rotate(-180deg);
+    background-color: #ff0000;
+}
+.controlWrapper .controlBox {
+    width: 85%;
+    height: 560px;
+    background-color: rgba(39,41,60, .9);
+}
+.searchItem .ant-calendar-picker input {
+    width: 125px;
+    height: 24px;
+    background-color: transparent;
+    font-size: 13px;
+}
+.controlSearch {
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+.controlSearch .searchItem {
+    margin-left: 20px;
+}
+.controlSearch .searchItem .ant-select-selection--single {
+    width: 100px;
+    height: 24px;
+    background-color: transparent;
+}
+.controlSearch .searchItem .ant-select-selection__rendered {
+    line-height: 24px;
+}
+.controlSearchBox {
+    position: relative;
+    width: 100px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    background-color: #4fcee7;
+    border-radius: 4px;
+    text-indent: 10px;
+    cursor: pointer;
+}
+.controlSearchBox .conSearchIcon {
+    position: absolute;
+    left: 2px;
+    top: 5px;
+}
+.controlTable {
+    padding: 0 20px;
+}
+.controlThead {
+    display: flex;
+    height: 40px;
+    border-bottom: 1px solid #aaabab;
+}
+.controlThead .controlTheadTh {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.controlThead .controlTheadTh:first-child {
+    width: 90px;
+    flex: none;
+}
+.controlBody {
+    height: 390px;
+    overflow-y: auto;
+}
+.controlBody .controlTr {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    border-bottom: 1px solid #454858;
+}
+.controlTr .controlTd {
+    flex: 1;
+    height: 100%;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word; 
+    word-break: break-all; 
+}
+.controlTr .controlTd:first-child {
+    width: 90px;
+    flex: none;
+}
+
+.controlBox .ant-pagination-item{
+    min-width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background-color: transparent;
+}
+.controlBox .ant-pagination-item a {
+    color: #fff;
+}
+.controlBox .ant-pagination-prev, .ant-pagination-next {
+    min-width: 25px !important;
+    height: 25px !important;
+    line-height: 25px !important;
+}
+.controlBox .ant-pagination-item-link {
+    background-color: transparent !important;
+}
+.pageNationBox {
+    position: relative;
+}
+.pageNationBox .pageNation {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}

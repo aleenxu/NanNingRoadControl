@@ -1,0 +1,359 @@
+@font-face {
+  font-family: num;
+  src: url(../../../utils/290.7218c42.woff) format("woff");
+  font-weight: 400;
+  color: #ffee00;
+  font-style: normal;
+  text-align: center;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+$bg-color: rgba(24, 46, 83, 0.9);
+$fc-color: #60B5F1;
+
+.signalHomeBox {
+  z-index: 9;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .interListBox {
+    z-index: 9;
+    position: fixed;
+    top: 215px;
+    left: 460px;
+    .interList {
+      position: absolute;
+      top: 35px;
+      left: 0;
+      width: 100%;
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, 0.4);
+      transition: all 0.2s;
+      overflow-y: hidden;
+      .interItem {
+        height: 30px;
+        padding-left: 10px;
+        font-size: 14px;
+        line-height: 30px;
+        transition: all 0.2s;
+        cursor: pointer;
+        &:hover {
+          background-color: #06234f;
+        }
+      }
+    }
+    .interSearch {
+      display: flex;
+      .searchBox {
+        position: relative;
+        .searchInput {
+          width: 224px;
+          height: 32px;
+          padding-left: 5px;
+          background-color: rgba(13, 27, 66, 0.8);
+          border: 1px solid #063657;
+          border-radius: 4px;
+          outline: none;
+          color: #f1f1fb;
+        }
+        .searchIcon {
+          position: absolute;
+          right: 10px;
+          top: 8px;
+          font-size: 18px;
+          color: #07bdfb;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .interSysBox {
+    z-index: 9;
+    position: fixed;
+    bottom: 5px;
+    right: 460px;
+    width: 270px;
+    height: 70px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
+    background-color: #011f53;
+    .systemPoint {
+      display: flex;
+      input {
+        height: 20px;
+        width: 20px;
+        margin-right: 3px;
+      }
+      & > div {
+        position: relative;
+        height: 30px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        .upIconBox {
+          position: relative;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          & > i {
+            position: absolute;
+            bottom: 4px;
+            left: -2px;
+            width: 20px;
+            border-top: 1px solid #02f5f7;
+          }
+          & > b {
+            position: absolute;
+            top: 8px;
+            left: 1px;
+            width: 14px;
+            height: 14px;
+            border-top: 1px solid #02f5f7;
+            border-right: 1px solid #02f5f7;
+            transform: rotate(-45deg);
+          }
+        }
+        .squareBox {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          margin-right: 5px;
+          border: 1px solid #02f5f7;
+        }
+        .circleBox {
+          width: 18px;
+          height: 18px;
+          margin-right: 5px;
+          border: 1px solid #02f5f7;
+          border-radius: 50%;
+        }
+        .checkeBox {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .title {
+    height: 40px;
+    padding-left: 20px;
+    font-weight: bolder;
+    line-height: 40px;
+    font-size: 17px;
+    color: $fc-color;
+  }
+  .signaContainer_left {
+    z-index: 9;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: calc(100% - 100px);
+    width: 448px;
+    background-color: rgba(13, 27, 66, 0.8);
+    overflow: hidden;
+    .signaContainer_left_box {
+      // flex: 1;
+      // background: linear-gradient(to top, #031837, #06234f);
+    }
+    .controlRoadBox {
+      height: calc(100% - 600px);
+    }
+    .signaContainer_left_boxer {
+      background-color: rgba(24, 46, 83, 0.9);
+      display: flex;
+      .signaContainerLB_left {
+        flex: 1;
+      }
+      .signaContainerLB_right {
+        flex: 1;
+        padding: 30px 20px 10px 10px;
+        overflow-y: auto;
+        height: 260px;
+        .signaContainerLB_rightBox {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          dl {
+            height: 56px;
+            display: flex;
+            flex-direction: column;
+            padding: 5px 5px 5px;
+            dt,
+            dd {
+              flex: 1;
+              display: flex;
+              b {
+                height: 45%;
+                width: 20px;
+                margin: 10px;
+              }
+              .bone {
+                background-color: #00cf4d;
+                border-radius: 5px;
+              }
+              .btwo {
+                background-color: #d3692f;
+                border-radius: 5px;
+              }
+              .bthr {
+                background-color: #0f85ff;
+                border-radius: 5px;
+              }
+              li {
+                flex: 1;
+                font-size: 18px;
+                font-weight: bolder;
+              }
+              .nums {
+                color: #2ec8ea;
+              }
+              .lione,
+              .litwo,
+              .lithr {
+                flex: 1.3;
+                font-size: 14px;
+              }
+              .lione {
+                color: #0abc52;
+              }
+              .litwo {
+                color: #b55a33;
+              }
+              .lithr {
+                color: #196cca;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .signaContainer_center {
+    z-index: 9;
+    position: absolute;
+    top: 100px;
+    left: 450px;
+    width: calc(100% - 900px);
+    height: 95px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    justify-content: space-between;
+    padding: 0 10px;
+    .road_show_item {
+      width: 235px;
+      background: url(./img/showbg.png) center center no-repeat;
+      background-size: 100% 100%;
+      border-radius: 4px;
+      display: flex;
+      position: relative;
+      box-sizing: border-box;
+      padding: 10px;
+      //外层1
+      > div:nth-child(1) {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        span {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          font-size: 20px;
+          font-weight: bold;
+          color: #62bdfc;
+          text-align: left;
+        }
+        //   > span:nth-child(1) {
+        //     line-height: 70px;
+        //   }
+        //   > span:nth-child(2) {
+        //     line-height: 30px;
+        //   }
+      }
+      //外层2
+      > div:nth-child(2) {
+        flex: 1.5;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        > span {
+          display: inline-block;
+          font: 60px num;
+          color: #fefdf7;
+          text-align: center;
+          line-height: 70px;
+          background: url(./img/22.png) center center no-repeat;
+          background-size: 100% 90%;
+          padding-right: 10px;
+          position: relative;
+          // transform: skew(8deg);
+          &:nth-child(2) {
+            left: -8px;
+          }
+          &:nth-child(3) {
+            left: -15px;
+          }
+          &:nth-child(4) {
+            left: -23px;
+          }
+        }
+      }
+      //外层3
+      > div:nth-child(3) {
+        color: $fc-color;
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+      }
+      // &:nth-child(2) {
+      //   > div:nth-child(1) {
+      //     display: inline-block;
+      //   }
+      // }
+    }
+  }
+  .signaContainer_right {
+    z-index: 9;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: calc(100% - 100px);
+    width: 448px;
+    display: flex;
+    flex-direction: column;
+    .rightListPop {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(13, 27, 66, 0.8);
+      .listBox {
+        flex: 1;
+        max-height: 300px;
+      }
+    }
+    .malfunctionBox {
+      background: rgba(24, 46, 83, 0.9);
+    }
+  }
+}
+.custom-popup-class {
+  background-color: #ff0000;
+}
+.pTop {
+  height: 40px;
+  font-size: 16px;
+  padding-left: 20px;
+  line-height: 40px;
+  background: linear-gradient(to bottom, #02183d 0%, #06234f 100%);
+}

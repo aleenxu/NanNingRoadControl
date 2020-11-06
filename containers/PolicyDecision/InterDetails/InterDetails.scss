@@ -1,0 +1,429 @@
+$Light_Bg: rgba(6, 35, 79, 0.8);
+$bg_color: linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));
+$ft_color: #5f9fdc;
+$ft_colorTwo: #148c2c;
+.interDetailsBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+  background: url(./evaBg.png) center center no-repeat;
+  background-size: cover;
+  .fontColor {
+    color: $ft_color;
+  }
+  .fontColorTwo {
+    color: $ft_colorTwo;
+  }
+  .imgBox {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    margin-left: -500px;
+    width: 1000px;
+    height: 800px;
+    .deviceRoadName {
+      position: absolute;
+      font-size: 20px;
+      color: blue;
+      font-weight: bold;
+    }
+    .presentTimeBox {
+      z-index: 1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      margin: -50px 0 0 -50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #bad5ac;
+      .presentTime {
+        width: 70px;
+        height: 70px;
+        text-align: center;
+        line-height: 70px;
+        font-size: 30px;
+        font-weight: bold;
+        color: #000;
+      }
+    }
+  }
+  .interMonitorBox {
+    position: absolute;
+    top: 100px;
+    left: 15px;
+    width: 300px;
+    height: calc(100% - 300px);
+    z-index: 9;
+    transition: all 0.3s;
+    .hideIcon {
+      position: absolute;
+      right: -20px;
+      top: 5px;
+      width: 20px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
+      font-size: 24px;
+      color: #f1f1fb;
+      cursor: pointer;
+    }
+    .title {
+      color: $ft_color;
+      height: 40px;
+      padding-left: 10px;
+      line-height: 40px;
+      font-size: 16px;
+    }
+    .titleName {
+      height: 40px;
+      padding-left: 10px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 17px;
+      color: #61bbff;
+      font-weight: bold;
+    }
+    .regionList {
+      padding: 25px 0 25px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background: $bg_color;
+      li {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+          color: #148c2c;
+        }
+      }
+    }
+    .functionList {
+      padding: 25px 0 25px 0;
+      background: $bg_color;
+      li {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover {
+          color: #01d8e8;
+        }
+      }
+    }
+  }
+  .AnimationTime {
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+    width: 1000px;
+    height: 80px;
+    // margin-left: -500px;
+    padding: 0 20px;
+    background-color: #0e3355;
+    display: flex;
+    align-items: center;
+    .palnRunBox {
+      position: relative;
+      height: 60px;
+      display: flex;
+      .runStage {
+        z-index: 5;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        border-right: 2px solid black;
+        .stageInner {
+          position: absolute;
+          right: -4px;
+          top: -10px;
+          width: 6px;
+          height: 10px;
+          background-color: black;
+        }
+      }
+      .planRunStage {
+        position: relative;
+        height: 100%;
+        display: flex;
+        .stageMsg {
+          position: absolute;
+          left: 10px;
+          top: 10px;
+          font-size: 13px;
+          font-weight: bold;
+          color: black;
+        }
+        .greenStage {
+          width: 100px;
+          background-color: #008001;
+        }
+        .redStage {
+          width: 80px;
+          background-color: #ff0000;
+        }
+        .yellowStage {
+          width: 20px;
+          background-color: #ffff01;
+        }
+      }
+    }
+  }
+  .DeviceStatus {
+    height: 310px;
+    width: 430px;
+    background: $bg_color;
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    padding: 5px 5px 5px 0;
+    display: flex;
+    .DeviceStatus_left {
+      display: flex;
+      width: 230px;
+      padding: 55px 40px 45px 25px;
+      flex-direction: column;
+      li {
+        flex: 1;
+        display: flex;
+        align-items: center;
+      }
+      .icons {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        background-color: red;
+        margin: 0 15px;
+      }
+    }
+    .DeviceStatus_right {
+      flex: 1;
+      display: flex;
+      color: $ft_color;
+      flex-wrap: wrap;
+      padding: 30px 15px 15px;
+      background-color: rgba(6, 35, 79, 0.2);
+      overflow-y: auto;
+      font-size: 13px;
+      .deviceControlBtn {
+        cursor: pointer;
+        &:hover dd {
+          color: #01d8e8;
+        }
+      }
+      dl {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        dt {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .stageImgBox {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 8px #029fb7;
+            border-radius: 4px;
+            .runningStage {
+              position: absolute;
+              top: 0;
+              right: -15px;
+              width: 15px;
+              height: 15px;
+              text-align: center;
+              line-height: 14px;
+              color: #fff;
+              font-weight: bold;
+              background-color: #ffcb01;
+            }
+          }
+        }
+        dd {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+  .messageBox {
+    z-index: 2;
+    width: 420px;
+    height: 165px;
+    padding-top: 40px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 450px;
+    top: 200px;
+    background: $bg_color;
+    .messageBox_top {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
+      font-size: 16px;
+      color: #44c1d1;
+      cursor: pointer;
+      transition: all 0.2s;
+      &:hover {
+        transform: rotate(-180deg);
+      }
+    }
+    .messageBox_bottom {
+      flex: 1;
+      display: flex;
+      padding-bottom: 10px;
+      ul {
+        flex: 1;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        li {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          .unitName {
+            display: inline-block;
+            width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  .intersectionHeader_left,
+  .intersectionHeader_right {
+    font-size: 16px;
+    color: $ft_color;
+    position: absolute;
+    height: 45px;
+    width: 210px;
+    top: 20px;
+  }
+  .intersectionHeader_left {
+    left: 50%;
+    transform: translateX(-135%);
+  }
+  .intersectionHeader_right {
+    right: 50%;
+    transform: translateX(135%);
+  }
+  .singalConfigBox {
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    .singlConfig {
+      width: 520px;
+      height: 50%;
+      margin-top: -5%;
+      padding: 10px;
+      background: rgba(25, 55, 98, 0.9);
+      border-radius: 4px;
+      overflow: hidden;
+      .title {
+        color: $ft_color;
+        position: relative;
+        height: 40px;
+        padding-left: 10px;
+        line-height: 40px;
+        .colseSingalConfig {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          width: 20px;
+          height: 20px;
+          text-align: center;
+          line-height: 20px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: all 0.2s;
+          &:hover {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+      .controlStagePic {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px 0 0 2px;
+        border: 1px solid #123656;
+        .stagePic {
+          width: 45px;
+          height: 45px;
+          margin: 0 0 10px 15px;
+          border-radius: 3px;
+          // box-shadow: inset 0 0 8px #029fb7;
+          background-color: rgba(38,75,135, 0.8);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 12px;
+          color: $ft_color;
+        }
+      }
+      .controlStage {
+        padding: 10px 20px;
+        margin-bottom: 3px;
+        background-color: rgba(38,75,135, 0.3);
+        .controlStageList {
+          margin-top: 10px;
+          input::-webkit-input-placeholder {
+            color: #5f9fdc;
+          }
+          :global(.ant-select-selection) {
+            width: 140px;
+            background-color: rgba(25,62,108, 0.8);
+            border: 1px solid #285183;
+            color: #5f9fdc;
+            box-shadow: none;
+          }
+          :global(path) {
+            color: #5f9fdc;
+          }
+          :global(.ant-select-arrow) {
+            color: #f1f1fb;
+          }
+          :global(.ant-select-dropdown-menu-item) {
+            padding: 0 12px;
+          }
+          .controlExcute {
+            padding: 5px 15px 6px;
+            margin-left: 20px;
+            background-color: #22467a;
+            color: #2cb3e3;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+.wrapbox {
+  :global(.ant-modal-body) {
+    background-color: "";
+  }
+}

@@ -1,0 +1,91 @@
+.IntersectionItem {
+  width: 100%;
+  height: 145px;
+  display: flex;
+  padding: 0 15px;
+  flex-direction: column;
+  background: linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));
+  margin: 0;
+  overflow: hidden;
+}
+.IntersectionItem_top {
+  flex: 1;
+  margin: 0;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  dt {
+    width: 55px;
+    height: 100%;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    span {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+    }
+  }
+  dd {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    color: #0EE4FD;
+    font-size: 16px;
+    margin: 0;
+    align-items: center;
+  }
+}
+.IntersectionItem_bom {
+  flex: 1.2;
+  display: flex;
+  flex-wrap: wrap;
+  .IntersectionItem_bomLeft {
+    flex: 4.5;
+    display: flex;
+    padding-bottom: 15px;
+    dl {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      dt,
+      dd {
+        flex: 1;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        >span{
+          width: 98%;
+          height: 32px;
+          line-height: 32px;
+          text-align: center;
+          background-color: #041C40;
+          border: 1px solid #063657;
+        }
+      }
+    }
+  }
+  .IntersectionItem_bomRight {
+    flex: 1;
+  }
+}
+.IntersectionItem {
+  display: flex;
+  :global(.ant-select-selection) {
+    background-color: #041C40;
+    border: 1px solid #063657;
+    outline: none;
+    color: #f1f1fb;
+    box-shadow: none;
+  }
+  :global(.ant-select-arrow) {
+    color: #f1f1fb;
+  }
+  :global(.ant-switch-checked){
+      background-color: #3DAA3D;
+  }
+}
