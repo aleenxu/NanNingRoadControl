@@ -99,7 +99,7 @@ $ft_color: #62bbff;
 }
 .syetem_buttom {
   width: 100%;
-  height: calc(100% - 90px);
+  height: calc(100% - 50px);
   .title {
     width: 100%;
     height: 40px;
@@ -123,7 +123,7 @@ $ft_color: #62bbff;
       font-size: 14px;
       display: flex;
       padding: 0 25px;
-      height: calc((100% - 75px) / 11);
+      height: calc((100% - 40px) / 11);
       margin-bottom: 4px;
       &:nth-child(odd) {
         background-color: #1b3864;
