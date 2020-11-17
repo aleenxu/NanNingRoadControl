@@ -21,6 +21,7 @@ $ft_color: #62bbff;
     background: #1a3054;
     height: 40px;
     display: flex;
+    padding-left: 10px;
     > div {
       flex: 1;
       display: flex;
@@ -56,6 +57,7 @@ $ft_color: #62bbff;
     background: #1a3054;
     display: flex;
     align-items: center;
+    padding-left: 10px;
     > span {
       padding-right: 6px;
       color: #62bbff;

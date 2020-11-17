@@ -4,11 +4,9 @@ import moment from 'moment'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Icon, Select, message, Pagination, Modal, DatePicker } from 'antd'
-import Nav from '../Nav/Nav'
 import roadStyles from '../Roadtraffic.scss'
 import styles from '../TrafficSystem.scss'
 import userStyles from './SystemFaultLog.scss'
-import SystemNav from '../SystemNav/SystenNav'
 import { getalaloadDistrict, getalaloadUnit, getalaloadAlarmLogList, getaladelete, getalaexportExcelThing } from '../../../actions/logManagement'
 
 const { Option } = Select
@@ -286,7 +284,7 @@ class TrafficMenu extends React.Component {
           </div>
         </div>
         {/* <Nav /> */}
-        <SystemNav />
+        {/* <SystemNav /> */}
       </div>
     )
   }

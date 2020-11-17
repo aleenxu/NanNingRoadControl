@@ -12,20 +12,21 @@ class EvaNav extends React.PureComponent {
       { name: '首页', path: '/home' },
       { name: '全局监控', path: '/monitoring' },
       { name: '步进管理', path: '' },
-      { name: '协调监控', path: '',
-      children: [
-        { name: '特勤任务', path: '/secretTask' },
-        { name: '干线协调', path: '' },
-        { name: '区域协调', path: '' },
-      ],
-    },
+      {
+        name: '协调监控', path: '',
+        children: [
+          { name: '特勤任务', path: '/secretTask' },
+          { name: '干线协调', path: '' },
+          { name: '区域协调', path: '' },
+        ],
+      },
     ]
     this.navItemsRight = [
       {
         name: '统计分析',
         path: '',
         children: [
-          { name: '路口流量', path: '' },
+          { name: '路口流量', path: '/roadTraffic' },
           { name: '路段流量', path: '' },
           { name: '路线流量', path: '' },
           { name: '流量对比', path: '' },
@@ -51,12 +52,12 @@ class EvaNav extends React.PureComponent {
         name: '系统维护',
         path: '',
         children: [
-          { name: '用户操作日志', path: '' },
-          { name: '系统故障日志', path: '' },
-          { name: '信号控制记录', path: '' },
-          { name: '用户管理', path: '' },
-          { name: '用户组管理', path: '' },
-          { name: '角色管理', path: '' },
+          { name: '用户操作日志', path: '/useractionlog' },
+          { name: '系统故障日志', path: '/systemfaultlog' },
+          { name: '信号控制记录', path: '/signalcontrolrecord' },
+          { name: '用户管理', path: '/TrafficSystem' },
+          { name: '用户组管理', path: '/Usergroup' },
+          { name: '角色管理', path: '/Jurisdiction' },
         ],
       },
     ]

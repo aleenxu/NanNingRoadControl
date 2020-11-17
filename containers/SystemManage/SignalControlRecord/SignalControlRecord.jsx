@@ -14,7 +14,7 @@ import { getsigdelete, getsigexportExcelThing, getsigloadDistrict, getsigloadSig
 const { Option } = Select
 const { confirm } = Modal
 // 日志管理
-class TrafficMenu extends React.Component {
+class signalcontrolrecord extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -396,7 +396,7 @@ class TrafficMenu extends React.Component {
           </div>
         </div>
         {/* <Nav /> */}
-        <SystemNav />
+        {/* <SystemNav /> */}
       </div>
     )
   }
@@ -417,4 +417,4 @@ const mapDisPatchToProps = (dispatch) => {
     getsigloadUser: bindActionCreators(getsigloadUser, dispatch),
   }
 }
-export default connect(mapStateToProps, mapDisPatchToProps)(TrafficMenu) 
+export default connect(mapStateToProps, mapDisPatchToProps)(signalcontrolrecord) 

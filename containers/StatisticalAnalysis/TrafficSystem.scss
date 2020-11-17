@@ -1,7 +1,21 @@
-
 $ft_color: #62bbff;
+.syetem_item {
+  :global(.ant-select) {
+    width: 200px;
+  }
+}
+.Roadtcontent {
+  width: 100%;
+  height: 100%;
+  color: #62bbff;
+  .mapContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
 .mapContainer {
-  background: url(./imgs/flowBg.png) center center no-repeat;
+  background: url(../SystemManage/imgs/flowBg.png) center center no-repeat;
   background-size: 100% 100%;
 }
 .syetem_bg {
@@ -16,14 +30,14 @@ $ft_color: #62bbff;
   width: 100%;
   height: 50px;
   padding: 0 1px;
-  border-bottom: 4px solid #0C1B42;
+  border-bottom: 4px solid #0c1b42;
   position: relative;
   .searchBtn {
     width: 120px;
     height: 34px;
     display: inline-block;
     color: $ft_color;
-    background-color: rgba(79,104,237,.4);
+    background-color: rgba(79, 104, 237, 0.4);
     position: absolute;
     border-radius: 3px;
     right: 30px;
@@ -66,12 +80,12 @@ $ft_color: #62bbff;
       color: $ft_color;
     }
     :global(.ant-select-selection) {
-      background: url(./imgs/flowBorder.png) center center no-repeat;
+      background: url(../SystemManage/imgs/flowBorder.png) center center no-repeat;
       background-size: 100% 100%;
       color: #fff;
       border: 1px solid #62bbff;
-    background: #1a3054;
-    color: #62bbff;
+      background: #1a3054;
+      color: #62bbff;
     }
   }
 }
@@ -79,7 +93,7 @@ $ft_color: #62bbff;
   width: 120px;
   height: 34px;
   display: inline-block;
-  background: url(./imgs/smallBtnBg.png) center center no-repeat;
+  background: url(../SystemManage/imgs/smallBtnBg.png) center center no-repeat;
   background-size: 100% 100%;
   color: #ff7e00;
   position: absolute;
@@ -90,7 +104,7 @@ $ft_color: #62bbff;
   font-size: 16px;
   cursor: pointer;
   &:hover {
-    background: url(./imgs/headerClick.png) center center no-repeat;
+    background: url(../SystemManage/imgs/headerClick.png) center center no-repeat;
     background-size: 100% 100%;
   }
   &:last-child {
@@ -99,50 +113,57 @@ $ft_color: #62bbff;
 }
 .syetem_buttom {
   width: 100%;
-  height: calc(100% - 90px);
-  .title {
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    > span {
-      width: 120px;
-      height: 34px;
-      display: inline-block;
-      color: $ft_color;
-      float: right;
-      font-size: 16px;
-      text-align: center;
-      margin-right: 30px;
-      cursor: pointer;
-    }
-  }
+  height: calc(100% - 100px);
+
   .listBox {
-    height: calc(100% - 40px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .listHeader {
+      flex: 2;
+      display: flex;
+      padding: 0 25px;
+      .listHeaderTd {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        &:nth-child(1) {
+          max-width: 150px;
+        }
+        .HeaderTd,
+        .listTd {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    .listMain {
+      flex: 10;
+      display: flex;
+      flex-direction: column;
+    }
     .listItems {
+      flex: 1;
       color: #ffffff;
       font-size: 14px;
       display: flex;
       padding: 0 25px;
-      height: calc((100% - 75px) / 11);
       margin-bottom: 4px;
       &:nth-child(odd) {
         background-color: #1b3864;
       }
-      &:nth-child(1) {
-        font-size: 15px;
-        color: $ft_color;
-        background-color: #2b5391;
-      }
       .listTd {
+        &:nth-child(1) {
+          max-width: 150px; 
+        }
         flex: 1;
         display: flex;
         height: 100%;
         justify-content: center;
         align-items: center;
         overflow: hidden;
-        &:last-child {
-          flex: 1.4;
-        }
         .roadName {
           max-width: 100%;
           display: inline-block;
@@ -256,7 +277,7 @@ $ft_color: #62bbff;
   .addListBox {
     width: 580px;
     // height: 400px;
-    background: url(./imgs/pop_analysis_bg.png) center center no-repeat;
+    background: url(../SystemManage/imgs/pop_analysis_bg.png) center center no-repeat;
     background-size: 100% 100%;
     .titleBox {
       width: 100%;
@@ -319,7 +340,7 @@ $ft_color: #62bbff;
     line-height: 30px;
   }
   :global(.ant-input) {
-    background: url(./imgs/small.png) center center no-repeat;
+    background: url(../SystemManage/imgs/small.png) center center no-repeat;
     background-size: 100% 100%;
     border: none;
     color: #fff;
@@ -328,7 +349,7 @@ $ft_color: #62bbff;
     border-radius: 0 15px 0 0;
   }
   :global(.ant-select-selection) {
-    background: url(./imgs/small.png) center center no-repeat;
+    background: url(../SystemManage/imgs/small.png) center center no-repeat;
     background-size: 100% 100%;
     color: #fff;
     border-radius: 0 14px 0 0;
@@ -344,14 +365,14 @@ $ft_color: #62bbff;
   color: #fff !important;
 }
 :global(.ant-select-dropdown) {
-  background: url(./imgs/selectBg.png) center center no-repeat;
+  background: url(../SystemManage/imgs/selectBg.png) center center no-repeat;
   background-size: 100% 100%;
 }
 :global(.ant-select-tree li .ant-select-tree-node-content-wrapper) {
   color: #019bac !important;
 }
 :global(.ant-pagination-item-active a) {
-  color:#62bbff !important;
+  color: #62bbff !important;
 }
 :global(.ant-pagination-item-active) {
   border-color: #62bbff !important;

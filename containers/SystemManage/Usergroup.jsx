@@ -202,17 +202,19 @@ class Usergroup extends React.Component {
                   </Select>
                 </div>
               </div> */}
-              {
+              {/* {
                 userLimit && userLimit.indexOf(31) !== -1 ?
                   <span className={styles.searchBtn} onClick={() => { this.handlePagination('1') }}>查询</span> : null
-              }
+              } */}
+              <span className={styles.searchBtn} onClick={() => { this.handlePagination('1') }}>查询</span>
               <i className={styles.line} />
             </div>
             <div className={styles.syetem_buttom}>
-              {
+              {/*   {
                 userLimit && userLimit.indexOf(28) !== -1 ?
                   <div className={styles.title}><span onClick={this.handleAddGroup}>+添加部门</span></div> : null
-              }
+              } */}
+              <div className={styles.title}><span onClick={this.handleAddGroup}>+添加部门</span></div>
               <div className={styles.listBox}>
                 <div className={styles.listItems}>
                   <div className={styles.listTd} >序号</div>
@@ -334,7 +336,7 @@ class Usergroup extends React.Component {
             ))
           }
         </div> */}
-        <SystemNav />
+        {/* <SystemNav /> */}
       </div>
     )
   }

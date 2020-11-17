@@ -105,14 +105,11 @@ const Trafficsystem = Loadable({
 //   delay: 0,
 // })
 
-
-
-
-// const Usergroup = Loadable({
-//   loader: () => import('./containers/SystemManage/Usergroup'),
-//   loading: Loading,
-//   delay: 0,
-// })
+const Usergroup = Loadable({
+  loader: () => import('./containers/SystemManage/Usergroup'),
+  loading: Loading,
+  delay: 0,
+})
 // const Journal = Loadable({
 //   loader: () => import('./containers/SystemManage/Journal'),
 //   loading: Loading,
@@ -123,26 +120,26 @@ const Trafficsystem = Loadable({
 //   loading: Loading,
 //   delay: 0,
 // })
-// const Jurisdiction = Loadable({
-//   loader: () => import('./containers/SystemManage/Jurisdiction'),
-//   loading: Loading,
-//   delay: 0,
-// })
-// const UserActionLog = Loadable({
-//   loader: () => import('./containers/SystemManage/UserActionLog/UserActionLog'),
-//   loading: Loading,
-//   delay: 0,
-// })
-// const SystemFaultLog = Loadable({
-//   loader: () => import('./containers/SystemManage/SystemFaultLog/SystemFaultLog'),
-//   loading: Loading,
-//   delay: 0,
-// })
-// const SignalControlRecord = Loadable({
-//   loader: () => import('./containers/SystemManage/SignalControlRecord/SignalControlRecord'),
-//   loading: Loading,
-//   delay: 0,
-// })
+const Jurisdiction = Loadable({
+  loader: () => import('./containers/SystemManage/Jurisdiction'),
+  loading: Loading,
+  delay: 0,
+})
+const UserActionLog = Loadable({
+  loader: () => import('./containers/SystemManage/UserActionLog/UserActionLog'),
+  loading: Loading,
+  delay: 0,
+})
+const SystemFaultLog = Loadable({
+  loader: () => import('./containers/SystemManage/SystemFaultLog/SystemFaultLog'),
+  loading: Loading,
+  delay: 0,
+})
+const SignalControlRecord = Loadable({
+  loader: () => import('./containers/SystemManage/SignalControlRecord/SignalControlRecord'),
+  loading: Loading,
+  delay: 0,
+})
 
 // const GreenWaveMonitor = Loadable({
 //   loader: () => import('./containers/PolicyDecision/GreenWave/GreenWave'),
@@ -169,7 +166,11 @@ const Header = Loadable({
 //   loading: Loading,
 //   delay: 0,
 // })
-
+const RoadTraffic = Loadable({
+  loader: () => import('./containers/StatisticalAnalysis/RoadTraffic'),
+  loading: Loading,
+  delay: 0,
+})
 const Parent = () => (
   <div style={{ height: '100%' }}>
     <Route path="*" component={Header} />
@@ -181,7 +182,16 @@ const Parent = () => (
     <Route exact path="/RegiolManagement" component={RegiolManagement} />
     <Route exact path="/RegiolManagementChild" component={RegiolManagementChild} />
     <Route exact path="/timanagement" component={Timanagement} />
+
     <Route exact path="/trafficsystem" component={Trafficsystem} />
+
+    <Route exact path="/usergroup" component={Usergroup} />
+    <Route exact path="/jurisdiction" component={Jurisdiction} />
+    <Route exact path="/useractionlog" component={UserActionLog} />
+    <Route exact path="/systemfaultlog" component={SystemFaultLog} />
+    <Route exact path="/signalcontrolrecord" component={SignalControlRecord} />
+
+    <Route exact path="/roadTraffic" component={RoadTraffic} />
     {/* <Route exact path="/signalhome" component={SignalHome} />
     <Route exact path="/evahome" component={EvaHome} />
     <Route exact path="/inter" component={Inter} />
@@ -189,13 +199,10 @@ const Parent = () => (
     <Route exact path="/artery" component={Artery} />
     <Route exact path="/optimize" component={Optimize} />
     <Route exact path="/areaOptimize" component={AreaOptimize} />
-    <Route exact path="/usergroup" component={Usergroup} />
-    <Route exact path="/journal" component={Journal} />
     <Route exact path="/trafficMenu" component={TrafficMenu} />
-    <Route exact path="/jurisdiction" component={Jurisdiction} />
-    <Route exact path="/useractionlog" component={UserActionLog} />
-    <Route exact path="/systemfaultlog" component={SystemFaultLog} />
-    <Route exact path="/signalcontrolrecord" component={SignalControlRecord} />
+    <Route exact path="/journal" component={Journal} />
+    
+    
     <Route exact path="/greenwavemonitor" component={GreenWaveMonitor} />
     <Route exact path="/optInter" component={OptInter} />
     <Route path="/realtime" component={RealTime} />
