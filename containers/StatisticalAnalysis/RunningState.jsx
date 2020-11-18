@@ -6,8 +6,8 @@ import TrafficCharts from './TrafficCharts'
 import getResponseDatas from '../../utils/getResponseData'
 
 const { Option } = Select
-// 路口流量
-class RoadTraffic extends React.Component {
+// 运行状态
+class RunningState extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -100,7 +100,7 @@ class RoadTraffic extends React.Component {
         <div id="mapContainer" className={styles.mapContainer} >
           <div className={styles.syetem_bg}>
             <div className={styles.syetem_top}>
-              <div className={`${styles.syetem_item} `}><span className={styles.item}>统计路口</span>
+              <div className={`${styles.syetem_item} `}><span className={styles.item}>状态类型</span>
                 <div className={styles.inSle}>
                   <Select
                     defaultValue="全部"
@@ -110,21 +110,13 @@ class RoadTraffic extends React.Component {
                   </Select>
                 </div>
               </div>
-              <div className={`${styles.syetem_item} `}><span className={styles.item}>报表类型</span>
-                <div className={styles.inSle}>
-                  <Radio.Group defaultValue="1">
-                    <Radio value="1">日报表</Radio>
-                    <Radio value="2">月报表</Radio>
-                  </Radio.Group>
-                </div>
-              </div>
-              <div className={`${styles.syetem_item} `}><span className={styles.item}>数据间隔</span>
+              <div className={`${styles.syetem_item} `}><span className={styles.item}>统计路口</span>
                 <div className={styles.inSle}>
                   <Select
                     defaultValue="全部"
-                    onChange={this.handleInputChangeUserGroups}
+                    onChange={this.handleInputChangeUser}
                   >
-                    <Option value={0} key="124ssswwwas">全部</Option>
+                    <Option value={0} key="124ssswwwa">全部</Option>
                   </Select>
                 </div>
               </div>
@@ -181,7 +173,7 @@ class RoadTraffic extends React.Component {
                 {RadioValue === '1' &&
                   <div className={styles.listMain}>
                     {
-                      [ 1, 2, 3, 4, 7, 8, 9].map((item) => {
+                      [1, 2, 3, 4, 7, 8, 9, 5, 6].map((item) => {
                         return (
                           <div className={styles.listItems} key={item}>
                             <div className={styles.listTd} ><span className={styles.roadName}>2020-0{item}-01</span></div>
@@ -212,4 +204,4 @@ class RoadTraffic extends React.Component {
   }
 }
 
-export default RoadTraffic
+export default RunningState

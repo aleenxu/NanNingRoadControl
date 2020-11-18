@@ -6,8 +6,8 @@ import TrafficCharts from './TrafficCharts'
 import getResponseDatas from '../../utils/getResponseData'
 
 const { Option } = Select
-// 路口流量
-class RoadTraffic extends React.Component {
+// 路段流量
+class LinkFlow extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -23,7 +23,7 @@ class RoadTraffic extends React.Component {
       keyword: '',
       pageNo: 1,
     }
-    this.ListTitle = ['东进口', '西进口', '南进口', '北进口']
+    this.ListTitle = ['五一路-富德路路口（电信）-五一路-宏德路路口（电信）', '五一路-宏德路路口（电信）-五一路-富德路路口（电信）', '合计']
     this.ListTitleChildren = ['流量', '占有率']
     this.dateFormat = 'YYYY-MM-DD'
   }
@@ -100,7 +100,7 @@ class RoadTraffic extends React.Component {
         <div id="mapContainer" className={styles.mapContainer} >
           <div className={styles.syetem_bg}>
             <div className={styles.syetem_top}>
-              <div className={`${styles.syetem_item} `}><span className={styles.item}>统计路口</span>
+              <div className={`${styles.syetem_item} `}><span className={styles.item}>开始路口</span>
                 <div className={styles.inSle}>
                   <Select
                     defaultValue="全部"
@@ -110,14 +110,17 @@ class RoadTraffic extends React.Component {
                   </Select>
                 </div>
               </div>
-              <div className={`${styles.syetem_item} `}><span className={styles.item}>报表类型</span>
+              <div className={`${styles.syetem_item} `}><span className={styles.item}>结束路口</span>
                 <div className={styles.inSle}>
-                  <Radio.Group defaultValue="1">
-                    <Radio value="1">日报表</Radio>
-                    <Radio value="2">月报表</Radio>
-                  </Radio.Group>
+                  <Select
+                    defaultValue="全部"
+                    onChange={this.handleInputChangeUser}
+                  >
+                    <Option value={0} key="124ssswwwa">全部</Option>
+                  </Select>
                 </div>
               </div>
+
               <div className={`${styles.syetem_item} `}><span className={styles.item}>数据间隔</span>
                 <div className={styles.inSle}>
                   <Select
@@ -145,6 +148,23 @@ class RoadTraffic extends React.Component {
                   </Radio.Group>
                 </div>
               </div>
+              <div className={`${styles.syetem_item} `}><span className={styles.item}>是否反向</span>
+                <div className={styles.inSle}>
+                  <Radio.Group defaultValue="1">
+                    <Radio value="1">是</Radio>
+                    <Radio value="2">否</Radio>
+                  </Radio.Group>
+                </div>
+              </div>
+              <div className={`${styles.syetem_item} `}><span className={styles.item}>报表类型</span>
+                <div className={styles.inSle}>
+                  <Radio.Group defaultValue="1">
+                    <Radio value="1">日报表</Radio>
+                    <Radio value="2">月报表</Radio>
+                  </Radio.Group>
+                </div>
+              </div>
+
               <i className={styles.line} />
             </div>
             <div className={styles.syetem_top}>
@@ -181,7 +201,7 @@ class RoadTraffic extends React.Component {
                 {RadioValue === '1' &&
                   <div className={styles.listMain}>
                     {
-                      [ 1, 2, 3, 4, 7, 8, 9].map((item) => {
+                      [1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => {
                         return (
                           <div className={styles.listItems} key={item}>
                             <div className={styles.listTd} ><span className={styles.roadName}>2020-0{item}-01</span></div>
@@ -189,8 +209,6 @@ class RoadTraffic extends React.Component {
                             <div className={styles.listTd} ><span className={styles.roadName}>20%</span></div>
                             <div className={styles.listTd} ><span className={styles.roadName}>80</span></div>
                             <div className={styles.listTd} ><span className={styles.roadName}>30%</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>65</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>25%</span></div>
                             <div className={styles.listTd} ><span className={styles.roadName}>65</span></div>
                             <div className={styles.listTd} ><span className={styles.roadName}>25%</span></div>
                           </div>)
@@ -212,4 +230,4 @@ class RoadTraffic extends React.Component {
   }
 }
 
-export default RoadTraffic
+export default LinkFlow

@@ -192,6 +192,31 @@ const RoadTraffic = Loadable({
   loading: Loading,
   delay: 0,
 })
+const LinkFlow = Loadable({
+  loader: () => import('./containers/StatisticalAnalysis/LinkFlow'),
+  loading: Loading,
+  delay: 0,
+})
+const RouteTraffic = Loadable({
+  loader: () => import('./containers/StatisticalAnalysis/RouteTraffic'),
+  loading: Loading,
+  delay: 0,
+})
+const ContrastFlow = Loadable({
+  loader: () => import('./containers/StatisticalAnalysis/ContrastFlow'),
+  loading: Loading,
+  delay: 0,
+})
+const RunningState = Loadable({
+  loader: () => import('./containers/StatisticalAnalysis/RunningState'),
+  loading: Loading,
+  delay: 0,
+})
+const DeviceStatistics = Loadable({
+  loader: () => import('./containers/StatisticalAnalysis/DeviceStatistics'),
+  loading: Loading,
+  delay: 0,
+})
 const Parent = () => (
   <div style={{ height: '100%' }}>
     <Route path="*" component={Header} />
@@ -207,15 +232,18 @@ const Parent = () => (
     <Route exact path="/RegiolManagement" component={RegiolManagement} />
     <Route exact path="/RegiolManagementChild" component={RegiolManagementChild} />
     <Route exact path="/timanagement" component={Timanagement} />
-
     <Route exact path="/trafficsystem" component={Trafficsystem} />
     <Route exact path="/usergroup" component={Usergroup} />
     <Route exact path="/jurisdiction" component={Jurisdiction} />
     <Route exact path="/useractionlog" component={UserActionLog} />
     <Route exact path="/systemfaultlog" component={SystemFaultLog} />
     <Route exact path="/signalcontrolrecord" component={SignalControlRecord} />
-
     <Route exact path="/roadTraffic" component={RoadTraffic} />
+    <Route exact path="/linkFlow" component={LinkFlow} />
+    <Route exact path="/routeTraffic" component={RouteTraffic} />
+    <Route exact path="/contrastFlow" component={ContrastFlow} />
+    <Route exact path="/runningState" component={RunningState} />
+    <Route exact path="/deviceStatistics" component={DeviceStatistics} />
     {/* <Route exact path="/signalhome" component={SignalHome} />
     <Route exact path="/evahome" component={EvaHome} />
     <Route exact path="/inter" component={Inter} />

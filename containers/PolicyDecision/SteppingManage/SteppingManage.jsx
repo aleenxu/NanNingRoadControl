@@ -11,7 +11,7 @@ class SteppingManage extends PureComponent {
   render() {
     return (
       <div className={styles.monitorWrapper} style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-        <div style={{position:'absolute',zIndex:'1000'}}>开发中。。。</div>
+        <div style={{position:'absolute',zIndex:'1000'}}>开发中。。。。</div>
       </div>
     )
   }

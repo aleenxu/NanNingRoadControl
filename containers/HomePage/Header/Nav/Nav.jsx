@@ -28,11 +28,11 @@ class EvaNav extends React.PureComponent {
         path: '',
         children: [
           { name: '路口流量', path: '/roadTraffic' },
-          { name: '路段流量', path: '' },
-          { name: '路线流量', path: '' },
-          { name: '流量对比', path: '' },
-          { name: '运行状态', path: '' },
-          { name: '设备统计', path: '' },
+          { name: '路段流量', path: '/linkFlow' },
+          { name: '路线流量', path: '/routeTraffic' },
+          { name: '流量对比', path: '/contrastFlow' },
+          { name: '运行状态', path: '/runningState' },
+          { name: '设备统计', path: '/deviceStatistics' },
         ],
       },
       {
@@ -56,9 +56,9 @@ class EvaNav extends React.PureComponent {
           { name: '用户操作日志', path: '/useractionlog' },
           { name: '系统故障日志', path: '/systemfaultlog' },
           { name: '信号控制记录', path: '/signalcontrolrecord' },
-          { name: '用户管理', path: '/TrafficSystem' },
-          { name: '用户组管理', path: '/Usergroup' },
-          { name: '角色管理', path: '/Jurisdiction' },
+          { name: '用户管理', path: '/trafficsystem' },
+          { name: '用户组管理', path: '/usergroup' },
+          { name: '角色管理', path: '/jurisdiction' },
         ],
       },
     ]
@@ -66,6 +66,7 @@ class EvaNav extends React.PureComponent {
   componentDidMount = () => { }
   handGosystem = (e) => {
     const paths = e.target.getAttribute('path')
+    console.log(paths);
     this.props.history.push(paths)
   }
   handleShowDefaultNav = (item) => {
