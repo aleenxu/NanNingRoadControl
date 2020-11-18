@@ -27,8 +27,10 @@
         font-size: 14px;
         color: #f1f1fb;
         cursor: pointer;
-        &:hover {
-            color: #62bbff;
+        > div{
+            &:hover {
+                color: #62bbff;
+            }
         }
     }
     .headerName{

@@ -20,6 +20,11 @@ const Login = Loadable({
   loading: Loading,
   delay: 0,
 })
+const Header = Loadable({
+  loader: () => import('./containers/HomePage/Header/Header'),
+  loading: Loading,
+  delay: 0,
+})
 const InterDetails = Loadable({
   loader: () => import('./containers/PolicyDecision/InterDetails/InterDetails'),
   loading: Loading,
@@ -35,8 +40,28 @@ const Monitoring = Loadable({
   loading: Loading,
   delay: 0,
 })
+const SteppingManage = Loadable({
+  loader: () => import('./containers/PolicyDecision/SteppingManage/SteppingManage'),
+  loading: Loading,
+  delay: 0,
+})
 const SecretTask = Loadable({
   loader: () => import('./containers/PolicyDecision/SecretTask/SecretTask'),
+  loading: Loading,
+  delay: 0,
+})
+const TrunkLineCoordinate = Loadable({
+  loader: () => import('./containers/PolicyDecision/TrunkLineCoordinate/TrunkLineCoordinate'),
+  loading: Loading,
+  delay: 0,
+})
+const TrunkLineMonitoring = Loadable({
+  loader: () => import('./containers/PolicyDecision/TrunkLineMonitoring/TrunkLineMonitoring'),
+  loading: Loading,
+  delay: 0,
+})
+const AreaCoordinate = Loadable({
+  loader: () => import('./containers/PolicyDecision/AreaCoordinate/AreaCoordinate'),
   loading: Loading,
   delay: 0,
 })
@@ -105,6 +130,12 @@ const Trafficsystem = Loadable({
 //   delay: 0,
 // })
 
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> 389845834098411cc705c2e600e0a2c090daef3b
 const Usergroup = Loadable({
   loader: () => import('./containers/SystemManage/Usergroup'),
   loading: Loading,
@@ -156,11 +187,7 @@ const SignalControlRecord = Loadable({
 //   loading: Loading,
 //   delay: 0,
 // })
-const Header = Loadable({
-  loader: () => import('./containers/HomePage/Header/Header'),
-  loading: Loading,
-  delay: 0,
-})
+
 // const OptInter = Loadable({
 //   loader: () => import('./containers/PolicyDecision/OptInter/optInter'),
 //   loading: Loading,
@@ -176,7 +203,11 @@ const Parent = () => (
     <Route path="*" component={Header} />
     <Route exact path="/home" component={HomePage} />
     <Route exact path="/monitoring" component={Monitoring} />
+    <Route exact path="/steppingManage" component={SteppingManage} />
     <Route exact path="/secretTask" component={SecretTask} />
+    <Route exact path="/trunkLineCoordinate" component={TrunkLineCoordinate} />
+    <Route exact path="/trunkLineMonitoring" component={TrunkLineMonitoring} />
+    <Route exact path="/areaCoordinate" component={AreaCoordinate} />
     <Route exact path="/surveillance" component={Surveillance} />
     <Route exact path="/InterManagement" component={InterManagement} />
     <Route exact path="/RegiolManagement" component={RegiolManagement} />
@@ -184,14 +215,20 @@ const Parent = () => (
     <Route exact path="/timanagement" component={Timanagement} />
 
     <Route exact path="/trafficsystem" component={Trafficsystem} />
+<<<<<<< HEAD
+=======
 
+>>>>>>> 389845834098411cc705c2e600e0a2c090daef3b
     <Route exact path="/usergroup" component={Usergroup} />
     <Route exact path="/jurisdiction" component={Jurisdiction} />
     <Route exact path="/useractionlog" component={UserActionLog} />
     <Route exact path="/systemfaultlog" component={SystemFaultLog} />
     <Route exact path="/signalcontrolrecord" component={SignalControlRecord} />
+<<<<<<< HEAD
+=======
 
     <Route exact path="/roadTraffic" component={RoadTraffic} />
+>>>>>>> 389845834098411cc705c2e600e0a2c090daef3b
     {/* <Route exact path="/signalhome" component={SignalHome} />
     <Route exact path="/evahome" component={EvaHome} />
     <Route exact path="/inter" component={Inter} />
@@ -199,10 +236,15 @@ const Parent = () => (
     <Route exact path="/artery" component={Artery} />
     <Route exact path="/optimize" component={Optimize} />
     <Route exact path="/areaOptimize" component={AreaOptimize} />
+<<<<<<< HEAD
+    <Route exact path="/journal" component={Journal} />
+    <Route exact path="/trafficMenu" component={TrafficMenu} />
+=======
     <Route exact path="/trafficMenu" component={TrafficMenu} />
     <Route exact path="/journal" component={Journal} />
     
     
+>>>>>>> 389845834098411cc705c2e600e0a2c090daef3b
     <Route exact path="/greenwavemonitor" component={GreenWaveMonitor} />
     <Route exact path="/optInter" component={OptInter} />
     <Route path="/realtime" component={RealTime} />
@@ -216,7 +258,7 @@ reactDom.render(
         <PersistGate loading="null" persistor={persistore}>
           <BrowserRouter basename="" history={BrowserHistory}>
             <Switch>
-              {/* <Redirect exact from="/" to="/redirect" /> */}
+              <Redirect exact from="/" to="/home" />
               <Route exact path="/login" component={Login} />
               <Route exact path="/interdetails" component={InterDetails} />
               <Route exact path="/redirect" component={RedirectCom} />

@@ -14,10 +14,10 @@ if (singleToken) { // http:// 192.168.1.123:8089
   })
   $(document).ajaxSuccess((e, xhr) => {
     if (xhr.responseText === '-10') {
-      window.location.href = 'http://10.11.56.10:62000/gytocc'
+      window.location.href = 'http://localhost:11181/login'
     }
   })
 } else {
-  window.location.href = 'http://10.11.56.10:62000/gytocc'
+  window.location.href = 'http://localhost:11181/login'
 }
 

@@ -1,10 +1,8 @@
 import React from 'react'
 import classNames from 'classnames'
 import { Icon, Select, Input, message, Pagination } from 'antd'
-import Nav from './Nav/Nav'
 import roadStyles from './Roadtraffic.scss'
 import styles from './TrafficSystem.scss'
-import SystemNav from './SystemNav/SystenNav'
 import getResponseDatas from '../../utils/getResponseData'
 
 const { Option } = Select
@@ -120,9 +118,7 @@ class Journal extends React.Component {
             <div className={styles.page}><span className={styles.count}>当前共{totalCount}条，每页显示10条</span><Pagination showQuickJumper current={current} total={totalCount} onChange={this.handlePagination} /></div>
           </div>
         </div>
-        <Nav />
-        <SystemNav />
-      </div >
+      </div>
     )
   }
 }

@@ -4,7 +4,7 @@ import { Icon, Select, Input, message, Pagination, Modal } from 'antd'
 import roadStyles from './Roadtraffic.scss'
 import styles from './TrafficSystem.scss'
 import Nav from './Nav/Nav'
-import SystemNav from './SystemNav/SystenNav'
+// import SystemNav from './SystemNav/SystenNav'
 import getResponseDatas from '../../utils/getResponseData'
 
 const { Option } = Select
