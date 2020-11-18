@@ -101,7 +101,6 @@ class InterMonitor extends React.Component {
   }
   // 路口列表
   getInterLists = (interList) => {
-    console.log(interList, '哈哈...')
     this.searchInterList = interList
     this.setState({ searchInterList: interList })
   }
