@@ -135,6 +135,7 @@ class AreaOptimize extends React.Component {
     if (code === '1') {
       this.interParams.evlregion_id = firstCtlregionId
       this.interParams.rdchl_id = firstRdchlId
+      console.log(data, '树形图')
       this.setState({
         interTree: data,
         expendskey,
