@@ -130,12 +130,9 @@ const Trafficsystem = Loadable({
 //   delay: 0,
 // })
 
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> 389845834098411cc705c2e600e0a2c090daef3b
 const Usergroup = Loadable({
   loader: () => import('./containers/SystemManage/Usergroup'),
   loading: Loading,
@@ -213,22 +210,13 @@ const Parent = () => (
     <Route exact path="/RegiolManagement" component={RegiolManagement} />
     <Route exact path="/RegiolManagementChild" component={RegiolManagementChild} />
     <Route exact path="/timanagement" component={Timanagement} />
-
     <Route exact path="/trafficsystem" component={Trafficsystem} />
-<<<<<<< HEAD
-=======
-
->>>>>>> 389845834098411cc705c2e600e0a2c090daef3b
     <Route exact path="/usergroup" component={Usergroup} />
     <Route exact path="/jurisdiction" component={Jurisdiction} />
     <Route exact path="/useractionlog" component={UserActionLog} />
     <Route exact path="/systemfaultlog" component={SystemFaultLog} />
     <Route exact path="/signalcontrolrecord" component={SignalControlRecord} />
-<<<<<<< HEAD
-=======
-
     <Route exact path="/roadTraffic" component={RoadTraffic} />
->>>>>>> 389845834098411cc705c2e600e0a2c090daef3b
     {/* <Route exact path="/signalhome" component={SignalHome} />
     <Route exact path="/evahome" component={EvaHome} />
     <Route exact path="/inter" component={Inter} />
@@ -236,15 +224,8 @@ const Parent = () => (
     <Route exact path="/artery" component={Artery} />
     <Route exact path="/optimize" component={Optimize} />
     <Route exact path="/areaOptimize" component={AreaOptimize} />
-<<<<<<< HEAD
     <Route exact path="/journal" component={Journal} />
     <Route exact path="/trafficMenu" component={TrafficMenu} />
-=======
-    <Route exact path="/trafficMenu" component={TrafficMenu} />
-    <Route exact path="/journal" component={Journal} />
-    
-    
->>>>>>> 389845834098411cc705c2e600e0a2c090daef3b
     <Route exact path="/greenwavemonitor" component={GreenWaveMonitor} />
     <Route exact path="/optInter" component={OptInter} />
     <Route path="/realtime" component={RealTime} />
