@@ -1,0 +1,384 @@
+import React, { Component } from 'react'
+import { Icon, message } from 'antd'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import CustomInterTree from '_C/CustomInterTree/CustomInterTree'
+import styles from './CourseManagement.scss'
+
+// import Nav from '../Header/Nav/Nav'
+import ModalPage from './ModalPage/ModalPage'
+import mineMapConf from '../../../utils/minemapConf'
+import requestUrl from '../../../utils/getRequestBaseUrl'
+import { getInterList, getBasicInterInfo, getLoadPlanTree, getLoadChildTree, getAreaList } from '../../../actions/data'
+import {
+  getUnitInterInfo, getInterControlSys, getUnitInterType, getUnitDeviceType,
+  getManagementUnit, getUnitDirection, getSaveInterManage, getDefaultUnitInfo,
+} from '../../../actions/InterManage'
+
+class CourseManagement extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchInterList: null,
+      interListHeight: 0,
+      interMonitorLeft: 15,
+      isIntersection: true,
+      isModalPage: false,
+    }
+    this.markers = []
+    this.searchInterList = []
+  }
+  componentDidMount() {
+    this.renderMineMap()
+    this.props.getInterList()
+    this.props.getLoadPlanTree()
+    this.props.getUnitDirection(6)
+    this.props.getInterControlSys(13)
+    this.props.getUnitInterType(7)
+    this.props.getUnitDeviceType(22)
+    this.props.getManagementUnit()
+    this.props.getAreaList()
+    document.addEventListener('click', (e) => {
+      if (e.target !== this.searchInputBox) {
+        this.setState({ interListHeight: 0 })
+      }
+    })
+  }
+  componentDidUpdate = (prevState) => {
+    const { interList } = this.props.data
+    if (prevState.data.interList !== interList) {
+      this.getInterLists(interList)
+    }
+  }
+  // 路口列表
+  getInterLists = (interList) => {
+    this.searchInterList = interList
+    this.setState({
+      searchInterList: interList,
+    }, () => {
+      this.addMarker(interList)
+    })
+  }
+  // 从子集获取区域id和index 请求路口
+  getSelectTreeId = (id) => {
+    this.props.getLoadChildTree(id)
+  }
+  // 获取子id, 路口id
+  getSelectChildId = (chidlId, lng, lat) => {
+    const marker = document.getElementById('marker' + chidlId)
+    if (marker) {
+      this.map.setCenter([lng, lat])
+      marker.click()
+    }
+  }
+  handleSearchInterFocus = () => {
+    this.setState({ interListHeight: 300 })
+  }
+  hanleSelectInter = (e) => {
+    const interId = e.target.getAttribute('interid')
+    const marker = document.getElementById('marker' + interId)
+    const lng = e.target.getAttribute('lng')
+    const lat = e.target.getAttribute('lat')
+    const interName = e.target.innerText
+    if (marker && this.map) {
+      this.map.setCenter([lng, lat])
+      marker.click()
+      this.searchInputBox.value = interName
+      this.setState({ interListHeight: 0 })
+    } else {
+      message.info('该路口尚未接入')
+    }
+  }
+  handleSearchInputChange = (e) => {
+    const { value } = e.target
+    const searchInters = []
+    if (this.searchTimer) {
+      clearTimeout(this.searchTimer)
+      this.searchTimer = null
+    }
+    this.searchTimer = setTimeout(() => {
+      this.searchInterList.forEach((item) => {
+        if (item.UNIT_NAME.indexOf(value) >= 0) {
+          searchInters.push(item)
+        }
+      })
+      this.setState({ searchInterList: searchInters })
+    }, 200)
+  }
+  handleShowInterMonitor = () => {
+    if (this.state.interMonitorLeft > 0) {
+      this.setState({ interMonitorLeft: -345 })
+    } else {
+      this.setState({ interMonitorLeft: 15 })
+    }
+  }
+  handleUpdateUnitInterInfo = (params) => {
+    this.props.getSaveInterManage(params).then((res) => {
+      if (res.data.code === 200) {
+        this.isShowModalPage()
+        this.handleRefreshPage()
+      }
+      message.info(res.data.message)
+    })
+  }
+  handleRefreshPage = () => {
+    this.props.getInterList()
+    this.props.getLoadPlanTree()
+    if (this.popup) {
+      this.removeInterInfo()
+    }
+    this.removeIntersection()
+  }
+  noShow = (e) => { // 禁止默认右键菜单
+    e.stopPropagation()
+    e.preventDefault()
+  }
+
+  addIntersection = () => { // 添加路口
+    this.map.on('click', this.mapEventOn)
+    this.setState({ isIntersection: false })
+  }
+  removeIntersection = () => { // 取消添加路口
+    this.map.off('click', this.mapEventOn)
+    this.setState({ isIntersection: true })
+  }
+  isShowModalPage = () => { // 取消弹窗页面
+    this.setState({ isModalPage: false })
+  }
+  // 添加坐标点
+  addMarker = (interList) => {
+    this.delMarker()
+    if (this.map) {
+      this.infowindow += 1
+      interList.forEach((item) => {
+        const el = document.createElement('div')
+        el.id = `marker${item.ID}`
+        el.style.width = '20px'
+        el.style.height = '20px'
+        el.style.borderRadius = '50%'
+        el.style.backgroundColor = '#00E500'
+        el.style.boxShadow = `0 0 20px #00E500`
+        el.addEventListener('click', (e) => {
+          e.stopPropagation()
+          this.props.getBasicInterInfo(item.ID).then((res) => {
+            const { code, data } = res.data
+            if (code === 200) {
+              this.showCustomInfoWin(data, item.LONGITUDE, item.LATITUDE)
+            }
+          })
+        })
+        const marker = new window.minemap.Marker(el, { offset: [-10, -10] }).setLngLat({ lng: item.LONGITUDE, lat: item.LATITUDE }).addTo(this.map)
+        this.markers.push(marker)
+      })
+    }
+  }
+  // 删除坐标点
+  delMarker = () => {
+    if (this.map && this.markers.length) {
+      this.markers.forEach((item) => {
+        item.remove()
+      })
+      this.markers = []
+    }
+  }
+  // 更新坐标点
+  updateMarkerPosition = () => {
+    if (this.map && this.marker) {
+      const lnglat = this.map.getCenter()
+      this.marker.setLngLat([lnglat.lng + 0.01, lnglat.lat + 0.01])
+    }
+  }
+  // 关闭自定义信息窗体
+  removeInterInfo = () => {
+    if (this.popup) {
+      this.popup.remove()
+      this.popup = null
+    }
+  }
+  // 自定义信息窗体
+  showCustomInfoWin = (interInfo, lng, lat) => {
+    this.removeInterInfo()
+    const runStatePic = `${requestUrl}/atms/imgs/stage/${interInfo.STAGE_IMAGE}`
+    const id = `monitor${interInfo.UNIT_ID}`
+    const el = document.createElement('div')
+    el.className = 'custom-popup-class' // custom-popup-class为自定义的css类名
+    const d1 = document.createElement('div')
+    d1.innerHTML = `
+      <div style="width:480px;height:260px;background:linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));">
+        <div style="color:#60B5F1;position:relative;height:50px;padding-top:13px;padding-left:20px;line-height:50px;font-size:16px;">
+          路口名称 ：${interInfo.UNIT_NAME}
+        </div>
+        <div style="height:130px;display:flex;padding-top:20px;font-size:14px;">
+          <div style="flex:1;color:#CED8E1;">
+            <p style="height:32px;line-height:32px;padding-left:40px"><span style="color:#599FE0">所属城区 ：</span>${interInfo.DISTRICT_NAME}</p>
+            <p style="height:32px;line-height:32px;padding-left:40px"><span style="color:#599FE0">信号系统 ：</span>${interInfo.SIGNALSYSTEM}</p>
+            <p style="height:32px;line-height:32px;padding-left:40px"><span style="color:#599FE0">运行阶段 ：</span><img width="36px" height="36px" src="${runStatePic}" />${interInfo.STAGE_CODE}</p>
+          </div>
+          <div style="flex:1;color:#CED8E1;">
+            <p style="height:32px;line-height:32px;padding-left:20px"><span style="color:#599FE0">控制状态 ：</span>${interInfo.CONTROLSTATE}</p>
+            <p style="height:32px;line-height:32px;padding-left:20px"><span style="color:#599FE0">信号机IP ：</span>${interInfo.SIGNAL_IP}</p>
+            <p style="height:32px;line-height:32px;padding-left:20px"><span style="color:#599FE0">设备状态 ：</span><span style="color:#168830;"></span>${interInfo.ALARMSTATE}</p>
+          </div>
+        </div>
+        <div style="height:40px;display:flex;justify-content:center;align-items:center;">
+          <div id="${id}" style="width:80px;color:#fff;height:30px;margin:20px auto 0;background-color:#0673B6;text-align:center;line-height:30px;border-radius:4px;cursor:pointer;">路口信息</div>
+        </div>
+      </div>
+    `
+    el.appendChild(d1)
+    this.popup = new window.minemap.Popup({ closeOnClick: false, closeButton: false, offset: [-1, -12] })
+      .setLngLat([lng, lat])
+      .setDOMContent(el)
+      .addTo(this.map)
+    if (document.getElementById(id)) {
+      document.getElementById(id).addEventListener('click', () => {
+        this.setState({ isModalPage: true })
+        this.props.getUnitInterInfo(interInfo.UNIT_ID) // 获取路口信息
+      })
+    }
+  }
+  mapEventOn = (e) => {
+    console.log(e)
+    const { lng, lat } = e.lngLat
+    const defaultMsg = {
+      unitConnector: [],
+      unitInfo: {
+        BACKGROUND_IMG: '',
+        DISTRICT_ID: this.props.data.areaList[0].ID,
+        ID: '',
+        LATITUDE: lat.toFixed(6),
+        LONGITUDE: lng.toFixed(6),
+        MANAGEMENT_UNIT_ID: 9592,
+        MINOR_UNIT_NUMBER: 1,
+        ROTATE_ANGLE: 0,
+        SIGNAL_CODE: 1,
+        SIGNAL_GATEWAY: '45.6.247.254',
+        SIGNAL_IP: '45.6.247.152',
+        SIGNAL_MASK: '255.255.255.0',
+        SIGNAL_MODEL: 2,
+        SIGNAL_PORT: 3000,
+        SIGNAL_SUPPLIER: '1',
+        SIGNAL_SYSTEM_CODE: 1,
+        SIGNAL_UNIT_ID: 1,
+        UNIT_ID: 1,
+        UNIT_NAME: '新路口',
+        UNIT_TYPE_CODE: 1,
+        SUREID: 'addPage',
+      },
+    }
+    this.props.getDefaultUnitInfo(defaultMsg)
+    this.setState({ isModalPage: true })
+  }
+  mapEventOff = (e) => {
+    console.log(e)
+  }
+  // 初始化地图
+  renderMineMap = () => {
+    const map = new window.minemap.Map(mineMapConf)
+    this.map = map
+    this.map.on('click', () => {
+      if (this.popup) {
+        this.removeInterInfo()
+      }
+    })
+  }
+
+  render() {
+    const {
+      interMonitorLeft, isModalPage, isIntersection, searchInterList, interListHeight,
+    } = this.state
+    return (
+      <div id="mapContainer" className={styles.InterManagementWrapper}>
+        {/* <Nav {...this.props} /> */}
+        <div className={styles.interMonitorBox} style={{ left: `${interMonitorLeft}px` }}>
+          <span className={styles.hideIcon} onClick={this.handleShowInterMonitor}>
+            {interMonitorLeft > 0 ? <Icon type="backward" /> : <Icon type="forward" />}
+          </span>
+          <div className={styles.title}>路线查询</div>
+          <div className={styles.interListBox}>
+            <div className={styles.interSearch}>
+              <span className={styles.searchBox}>
+                <input
+                  className={styles.searchInput}
+                  onClick={this.handleSearchInterFocus}
+                  onChange={this.handleSearchInputChange}
+                  type="text"
+                  placeholder="请输入你要搜索的路口"
+                  ref={(input) => { this.searchInputBox = input }}
+                />
+                <Icon className={styles.searchIcon} type="search" />
+              </span>
+            </div>
+            <div className={styles.interList} style={{ maxHeight: `${interListHeight}px`, overflowY: 'auto' }}>
+              <div>
+                {
+                  searchInterList &&
+                  searchInterList.map(item => (
+                    <div
+                      className={styles.interItem}
+                      key={item.ID}
+                      interid={item.ID}
+                      lng={item.LONGITUDE}
+                      lat={item.LATITUDE}
+                      onClick={this.hanleSelectInter}
+                    >{item.UNIT_NAME}
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+          <div className={styles.OptimizingBtns}><span>路线管理</span></div>
+          <div className={styles.addtask}>
+            {
+              isIntersection ?
+                <span onClick={this.addIntersection}>添加路线</span> :
+                <span style={{ borderColor: '#184783' }} onClick={this.removeIntersection}>取消添加</span>
+            }
+          </div>
+          <div className={styles.treeBox}>
+            <CustomInterTree
+              {...this.props}
+              rightDownNone="true"
+              getSelectTreeId={this.getSelectTreeId}
+              getSelectChildId={this.getSelectChildId}
+            />
+          </div>
+        </div>
+        {
+          isModalPage &&
+          <ModalPage
+            {...this.props}
+            isShowModalPage={this.isShowModalPage}
+            updateUnitInterInfo={this.handleUpdateUnitInterInfo}
+            getRefreshPage={this.handleRefreshPage}
+          />
+        }
+      </div >
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    data: { ...state.data, ...state.interManage },
+  }
+}
+const mapDisPatchToProps = (dispatch) => {
+  return {
+    getInterList: bindActionCreators(getInterList, dispatch),
+    getBasicInterInfo: bindActionCreators(getBasicInterInfo, dispatch),
+    getLoadPlanTree: bindActionCreators(getLoadPlanTree, dispatch),
+    getLoadChildTree: bindActionCreators(getLoadChildTree, dispatch),
+    getUnitInterInfo: bindActionCreators(getUnitInterInfo, dispatch),
+    getInterControlSys: bindActionCreators(getInterControlSys, dispatch),
+    getUnitInterType: bindActionCreators(getUnitInterType, dispatch),
+    getUnitDeviceType: bindActionCreators(getUnitDeviceType, dispatch),
+    getManagementUnit: bindActionCreators(getManagementUnit, dispatch),
+    getAreaList: bindActionCreators(getAreaList, dispatch),
+    getUnitDirection: bindActionCreators(getUnitDirection, dispatch),
+    getSaveInterManage: bindActionCreators(getSaveInterManage, dispatch),
+    getDefaultUnitInfo: bindActionCreators(getDefaultUnitInfo, dispatch),
+  }
+}
+export default connect(mapStateToProps, mapDisPatchToProps)(CourseManagement)

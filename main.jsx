@@ -95,6 +95,11 @@ const Trafficsystem = Loadable({
   loading: Loading,
   delay: 0,
 })
+const DeviceManagement = Loadable({
+  loader: () => import('./containers/PolicyDecision/DeviceManagement/DeviceManagement'),
+  loading: Loading,
+  delay: 0,
+})
 // const Entrance = Loadable({
 //   loader: () => import('./containers/EntrancePlus/EntrancePlus'),
 //   loading: Loading,
@@ -217,6 +222,21 @@ const DeviceStatistics = Loadable({
   loading: Loading,
   delay: 0,
 })
+const CourseManagement = Loadable({
+  loader: () => import('./containers/PolicyDecision/CourseManagement/CourseManagement'),
+  loading: Loading,
+  delay: 0,
+})
+const ClockManagement = Loadable({
+  loader: () => import('./containers/PolicyDecision/ClockManagement/ClockManagement'),
+  loading: Loading,
+  delay: 0,
+})
+const AlarmMonitoring = Loadable({
+  loader: () => import('./containers/PolicyDecision/AlarmMonitoring/AlarmMonitoring'),
+  loading: Loading,
+  delay: 0,
+})
 const Parent = () => (
   <div style={{ height: '100%' }}>
     <Route path="*" component={Header} />
@@ -244,6 +264,10 @@ const Parent = () => (
     <Route exact path="/contrastFlow" component={ContrastFlow} />
     <Route exact path="/runningState" component={RunningState} />
     <Route exact path="/deviceStatistics" component={DeviceStatistics} />
+    <Route exact path="/courseManagement" component={CourseManagement} />
+    <Route exact path="/deviceManagement" component={DeviceManagement} />
+    <Route exact path="/clockManagement" component={ClockManagement} />
+    <Route exact path="/alarmMonitoring" component={AlarmMonitoring} />
     {/* <Route exact path="/signalhome" component={SignalHome} />
     <Route exact path="/evahome" component={EvaHome} />
     <Route exact path="/inter" component={Inter} />
