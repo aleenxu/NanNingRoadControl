@@ -6,8 +6,8 @@ import TrafficCharts from './TrafficCharts'
 import getResponseDatas from '../../utils/getResponseData'
 
 const { Option } = Select
-// 路口流量
-class RoadTraffic extends React.Component {
+// 流量对比
+class ContrastFlow extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -23,8 +23,8 @@ class RoadTraffic extends React.Component {
       keyword: '',
       pageNo: 1,
     }
-    this.ListTitle = ['东进口', '西进口', '南进口', '北进口']
-    this.ListTitleChildren = ['流量', '占有率']
+    this.ListTitle = ['流量（辆/小时）', '占有率（%）']
+    this.ListTitleChildren = ['2020-11-03', '2020-11-04', '2020-11-04同比', '2020-10-27', '2020-10-27同比']
     this.dateFormat = 'YYYY-MM-DD'
   }
   componentDidMount = () => {
@@ -100,6 +100,16 @@ class RoadTraffic extends React.Component {
         <div id="mapContainer" className={styles.mapContainer} >
           <div className={styles.syetem_bg}>
             <div className={styles.syetem_top}>
+              <div className={`${styles.syetem_item} `}><span className={styles.item}>统计类型</span>
+                <div className={styles.inSle}>
+                  <Select
+                    defaultValue="全部"
+                    onChange={this.handleInputChangeUser}
+                  >
+                    <Option value={0} key="124ssswwwa">全部</Option>
+                  </Select>
+                </div>
+              </div>
               <div className={`${styles.syetem_item} `}><span className={styles.item}>统计路口</span>
                 <div className={styles.inSle}>
                   <Select
@@ -128,13 +138,9 @@ class RoadTraffic extends React.Component {
                   </Select>
                 </div>
               </div>
-              <div className={`${styles.syetem_item} ${styles.syetem_item}`}><span className={styles.item}>日志记录起始时间</span>
+              <div className={`${styles.syetem_item}`}><span className={styles.item}>统计日期</span>
                 <div style={{ marginRight: '20px' }} className={styles.inSle}>
                   <DatePicker style={{ width: '200px' }} value={moment(ManagementStart, this.dateFormat)} format={this.dateFormat} onChange={this.sInstallationLocationsStart} />
-                </div>
-                至
-                <div style={{ marginLeft: '20px' }} className={styles.inSle}>
-                  <DatePicker style={{ width: '200px' }} value={moment(ManagementUnit, this.dateFormat)} format={this.dateFormat} onChange={this.sInstallationLocationsEnd} />
                 </div>
               </div>
               <div className={`${styles.syetem_item} `}><span className={styles.item}>统计方式</span>
@@ -145,9 +151,16 @@ class RoadTraffic extends React.Component {
                   </Radio.Group>
                 </div>
               </div>
+
               <i className={styles.line} />
             </div>
             <div className={styles.syetem_top}>
+              <div className={`${styles.syetem_item}`}><span className={styles.item}>对比日期</span>
+                <div style={{ marginRight: '20px' }} className={styles.inSle}>
+                  <DatePicker style={{ width: '200px' }} value={moment(ManagementUnit, this.dateFormat)} format={this.dateFormat} onChange={this.sInstallationLocationsEnd} />
+                </div>
+                <Icon type="plus-circle" className={styles.plusCircle} />
+              </div>
               <span style={{ right: '160px' }} className={styles.searchBtn} onClick={this.searchPage} limitid="24">查询</span>
               <span className={styles.searchBtn} onClick={this.exportTable} limitid="24">导出EXCEL</span>
               <i className={styles.line} />
@@ -157,13 +170,13 @@ class RoadTraffic extends React.Component {
                 {RadioValue === '2' && <TrafficCharts />}
                 {RadioValue === '1' &&
                   <div className={styles.listHeader}>
-                    <div className={styles.listHeaderTd} >
-                      <div className={styles.HeaderTd} > 日期</div>
-                    </div>
+                    {/* <div className={styles.listHeaderTd} >
+                      <div className={styles.HeaderTd} > 时段</div>
+                    </div> */}
                     {
                       this.ListTitle.map((item) => {
                         return (
-                          <div className={styles.listHeaderTd} key={item}>
+                          <div className={styles.listHeaderTd} key={item} style={{ flex: 1 }}>
                             <div className={styles.HeaderTd} > {item}</div>
                             <div className={styles.HeaderTd} >
                               {
@@ -181,18 +194,19 @@ class RoadTraffic extends React.Component {
                 {RadioValue === '1' &&
                   <div className={styles.listMain}>
                     {
-                      [ 1, 2, 3, 4, 7, 8, 9].map((item) => {
+                      [1, 6, 7, 8, 9].map((item) => {
                         return (
                           <div className={styles.listItems} key={item}>
-                            <div className={styles.listTd} ><span className={styles.roadName}>2020-0{item}-01</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>10</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>20%</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>80</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>30%</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>65</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>25%</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>65</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>25%</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>0.1{item}</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>0.3{item}</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>0.1{item}</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>0.6{item}</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>0.1{item}</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>{item}.12</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>{item}.82</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>{item}.45</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>{item}.92</span></div>
+                            <div className={styles.listTd} ><span className={styles.roadName}>{item}.12</span></div>
                           </div>)
                       })
                     }
@@ -212,4 +226,4 @@ class RoadTraffic extends React.Component {
   }
 }
 
-export default RoadTraffic
+export default ContrastFlow

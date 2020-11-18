@@ -89,6 +89,13 @@ $ft_color: #62bbff;
     }
   }
 }
+.plusCircle {
+  font-size: 25px;
+  cursor: pointer;
+  svg:hover {
+    color: #1a3054;
+  }
+}
 .botton {
   width: 120px;
   height: 34px;
@@ -123,12 +130,14 @@ $ft_color: #62bbff;
       flex: 2;
       display: flex;
       padding: 0 25px;
+      background-color: #2b5391;
       .listHeaderTd {
         flex: 1;
         display: flex;
         flex-direction: column;
         &:nth-child(1) {
-          max-width: 150px;
+          // max-width: 150px;
+          flex: 0.5;
         }
         .HeaderTd,
         .listTd {
@@ -136,6 +145,7 @@ $ft_color: #62bbff;
           display: flex;
           justify-content: center;
           align-items: center;
+          height: 100%;
         }
       }
     }
@@ -145,7 +155,7 @@ $ft_color: #62bbff;
       flex-direction: column;
     }
     .listItems {
-      flex: 1;
+      height: calc(100% / 11);
       color: #ffffff;
       font-size: 14px;
       display: flex;
@@ -155,9 +165,9 @@ $ft_color: #62bbff;
         background-color: #1b3864;
       }
       .listTd {
-        &:nth-child(1) {
-          max-width: 150px; 
-        }
+        /*         &:nth-child(1) {
+          max-width: 150px;
+        } */
         flex: 1;
         display: flex;
         height: 100%;

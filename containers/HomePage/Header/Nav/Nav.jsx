@@ -12,14 +12,15 @@ class EvaNav extends React.PureComponent {
       { name: '首页', path: '/home' },
       { name: '全局监控', path: '/monitoring' },
       { name: '步进管理', path: '/steppingManage' },
-      { name: '协调监控', path: '',
-      children: [
-        { name: '特勤任务', path: '/secretTask' },
-        { name: '干线协调', path: '/trunkLineCoordinate' },
-        { name: '干线监控', path: '/trunkLineMonitoring' },
-        { name: '区域协调', path: '/areaCoordinate' },
-      ],
-    },
+      {
+        name: '协调监控', path: '',
+        children: [
+          { name: '特勤任务', path: '/secretTask' },
+          { name: '干线协调', path: '/trunkLineCoordinate' },
+          { name: '干线监控', path: '/trunkLineMonitoring' },
+          { name: '区域协调', path: '/areaCoordinate' },
+        ],
+      },
     ]
     this.navItemsRight = [
       {
@@ -27,11 +28,11 @@ class EvaNav extends React.PureComponent {
         path: '',
         children: [
           { name: '路口流量', path: '/roadTraffic' },
-          { name: '路段流量', path: '' },
-          { name: '路线流量', path: '' },
-          { name: '流量对比', path: '' },
-          { name: '运行状态', path: '' },
-          { name: '设备统计', path: '' },
+          { name: '路段流量', path: '/linkFlow' },
+          { name: '路线流量', path: '/routeTraffic' },
+          { name: '流量对比', path: '/contrastFlow' },
+          { name: '运行状态', path: '/runningState' },
+          { name: '设备统计', path: '/deviceStatistics' },
         ],
       },
       {
@@ -65,6 +66,7 @@ class EvaNav extends React.PureComponent {
   componentDidMount = () => { }
   handGosystem = (e) => {
     const paths = e.target.getAttribute('path')
+    console.log(paths);
     this.props.history.push(paths)
   }
   handleShowDefaultNav = (item) => {

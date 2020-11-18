@@ -6,8 +6,8 @@ import TrafficCharts from './TrafficCharts'
 import getResponseDatas from '../../utils/getResponseData'
 
 const { Option } = Select
-// 路口流量
-class RoadTraffic extends React.Component {
+// 路线流量
+class RouteTraffic extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -23,7 +23,7 @@ class RoadTraffic extends React.Component {
       keyword: '',
       pageNo: 1,
     }
-    this.ListTitle = ['东进口', '西进口', '南进口', '北进口']
+    this.ListTitle = ['民族大道-古城路路口（电信）-星湖路-古城路路口（电信）', '民族大道-古城路路口（电信）-星湖路-古城路路口（电信）', '合计']
     this.ListTitleChildren = ['流量', '占有率']
     this.dateFormat = 'YYYY-MM-DD'
   }
@@ -157,7 +157,7 @@ class RoadTraffic extends React.Component {
                 {RadioValue === '2' && <TrafficCharts />}
                 {RadioValue === '1' &&
                   <div className={styles.listHeader}>
-                    <div className={styles.listHeaderTd} >
+                    <div className={styles.listHeaderTd} s>
                       <div className={styles.HeaderTd} > 日期</div>
                     </div>
                     {
@@ -181,7 +181,7 @@ class RoadTraffic extends React.Component {
                 {RadioValue === '1' &&
                   <div className={styles.listMain}>
                     {
-                      [ 1, 2, 3, 4, 7, 8, 9].map((item) => {
+                      [ 1, 2, 3, 4, 5, 6, 7, 8].map((item) => {
                         return (
                           <div className={styles.listItems} key={item}>
                             <div className={styles.listTd} ><span className={styles.roadName}>2020-0{item}-01</span></div>
@@ -189,8 +189,6 @@ class RoadTraffic extends React.Component {
                             <div className={styles.listTd} ><span className={styles.roadName}>20%</span></div>
                             <div className={styles.listTd} ><span className={styles.roadName}>80</span></div>
                             <div className={styles.listTd} ><span className={styles.roadName}>30%</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>65</span></div>
-                            <div className={styles.listTd} ><span className={styles.roadName}>25%</span></div>
                             <div className={styles.listTd} ><span className={styles.roadName}>65</span></div>
                             <div className={styles.listTd} ><span className={styles.roadName}>25%</span></div>
                           </div>)
@@ -212,4 +210,4 @@ class RoadTraffic extends React.Component {
   }
 }
 
-export default RoadTraffic
+export default RouteTraffic
