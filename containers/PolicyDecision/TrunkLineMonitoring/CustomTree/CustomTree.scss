@@ -1,0 +1,126 @@
+.treeWrapper {
+    .treeList {
+        li {
+            margin: 0;
+            padding: 5px 0;
+            list-style: none;
+            outline: 0;
+        }
+        .treeLi {
+            position: relative;
+            white-space: nowrap;
+            &:last-child::before {
+                height: 0;
+            }
+            .treeIcon {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin: 0;
+                line-height: 20px;
+                text-align: center;
+                vertical-align: top;
+                border: 0 none;
+                outline: none;
+                font-size: 20px;
+                color: #15AEE5;
+                cursor: pointer;
+                &::before {
+                    position: absolute;
+                    left: 25px;
+                    width: 10px;
+                    height: 1px;
+                    margin: 12px 0 0;
+                    border-top: 1px dashed #15AEE5;
+                    content: ' ';
+                }
+            }
+            .childTree {
+                margin: 0;
+                padding: 0 0 0 25px;
+                transition: height ease .2s;
+                // overflow: hidden;
+                &::after {
+                    position: absolute;
+                    top: 25px;
+                    left: 37px;
+                    width: 1px;
+                    height: 10px;
+                    // margin: -22px 0 0;
+                    border-left: 1px dashed #15AEE5;
+                    content: ' ';
+                }
+                .childLi {
+                    position: relative;
+                    white-space: nowrap;
+                    &::before {
+                        position: absolute;
+                        left: 12px;
+                        width: 1px;
+                        height: 100%;
+                        height: calc(100% - 20px);
+                        margin: 22px 0 0;
+                        border-left: 1px dashed #15AEE5;
+                        content: ' ';
+                    }
+                    &:last-child::before {
+                        height: 0;
+                    }
+                }
+                .childIcon {
+                    display: inline-block;
+                    width: 24px;
+                    height: 24px;
+                    margin: 0;
+                    line-height: 24px;
+                    text-align: center;
+                    vertical-align: top;
+                    border: 0 none;
+                    outline: none;
+                    font-size: 20px;
+                    color: #15AEE5;
+                    cursor: pointer;
+                    &::before {
+                        position: absolute;
+                        left: 25px;
+                        width: 10px;
+                        height: 1px;
+                        margin: 12px 0 0;
+                        border-top: 1px dashed #15AEE5;
+                        content: ' ';
+                    }
+                }
+            }
+            .childNode {
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 80%;
+                height: 24px;
+                margin: 0;
+                padding: 0 5px 0 15px;
+                color: #f1f1fb;
+                line-height: 24px;
+                text-decoration: none;
+                vertical-align: top;
+                border-radius: 2px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+        }
+    }
+}
+:global(.ant-tree-switcher_open .ant-tree-switcher-icon) {
+    font-size: 24px !important;
+}
+:global(.ant-tree-switcher_close .ant-tree-switcher-icon) {
+    font-size: 24px !important;
+}
+:global(.ant-tree.ant-tree-show-line li span.ant-tree-switcher) {
+    background-color: transparent;
+    color: #15AEE5;
+}
+:global(.ant-tree.ant-tree-show-line li:not(:last-child)::before) {
+    border: 1px dashed #15AEE5;
+}

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Icon, Input, message, DatePicker, Select, Modal } from 'antd'
+import { Icon, Input, message, DatePicker, Select, Modal, Checkbox } from 'antd'
 import moment from 'moment'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -14,7 +14,7 @@ import InfoBg from './img/Infobg.png'
 
 import mineMapConf from '../../../utils/minemapConf'
 
-import { getInterList, getBasicInterInfo, getVipRoute, getVipRouteChild } from '../../../actions/data'
+import { getInterList, getBasicInterInfo, getVipRoute, getVipRouteChild, getLoadPlanTree, getLoadChildTree } from '../../../actions/data'
 import { getAddUnitsIfram, getDeleteUnitFram, getDeleteVipRoad, getFindRoadByVipId, getFindList, getInitRoad, getLoadUnitStage, getSaveVipRoad, getSaveUnitRunStage  } from '../../../actions/SecretTask'
 import OnlineH from '../SignalHome/img/online_h.png'
 import OutlineH from '../SignalHome/img/outline_h.png'
@@ -55,11 +55,14 @@ class SecretTask extends PureComponent {
     this.imgBgUrl = `${requestUrl}/atms/comm/dzimg/10/`
     this.imgDirUrl = `${requestUrl}/atms/comm/dzimg/2/`
     this.imgInfoUrl = `${requestUrl}/atms/comm/images/anniu/`
+    this.zhongkong = true
+    this.haixin = true
   }
   componentDidMount() {
     this.renderMineMap()
     this.props.getInterList()
-    this.props.getVipRoute()
+    this.props.getLoadPlanTree()
+    // this.props.getVipRoute()
     document.addEventListener('click', (e) => {
       if (e.target !== this.searchInputBox) {
         this.setState({ interListHeight: 0, interListHeights: 0 })
@@ -68,9 +71,12 @@ class SecretTask extends PureComponent {
     })
   }
   componentDidUpdate = (prevState) => {
-    const { interList, basicInterInfo, loadPlanTree, vip_delRoadSucess, vip_initRoad, vip_findRoadByVipId, vip_findList, vip_saveSucess, vip_addSucess, vip_delSucess, vip_unitRunStage } = this.props.data
+    const { interList, basicInterInfo, loadPlanTree, vip_delRoadSucess, vip_initRoad, vip_findRoadByVipId, vip_findList, vip_saveSucess, vip_addSucess, vip_delSucess, vip_unitRunStage, loadPlanloadchildsr } = this.props.data
     if (prevState.data !== this.props.data) {
       console.log(this.props.data)
+    }
+    if (prevState.data.loadPlanloadchildsr !== loadPlanloadchildsr) {
+      this.getloadPlanLoads(loadPlanloadchildsr)
     }
     if (prevState.data.interList !== interList) {
       this.getInterList(interList)
@@ -170,6 +176,12 @@ class SecretTask extends PureComponent {
     }
 
   }
+  getloadPlanLoads = (loadPlanLoadChild) => {
+    this.searchInterList = loadPlanLoadChild
+    this.setState({
+      searchInterList: loadPlanLoadChild,
+    })
+  }
   handleShowInterMonitor = () => {
     if (this.state.interMonitorLeft > 0) {
       this.setState({
@@ -182,13 +194,11 @@ class SecretTask extends PureComponent {
     }
   }
   visibleShowLeft = (top, id, show) => { // 框的跳转与位置
+    this.roadId = id
     if (top || id) {
       this.setState({
         visible: show,
         visibleTop: top,
-        vipId: id,
-      }, () => {
-        console.log(id, '显示右键信息')
       })
     } else {
       this.setState({
@@ -212,19 +222,11 @@ class SecretTask extends PureComponent {
   }
   // 从子集获取区域id和index 请求路口
   getSelectTreeId = (id) => {
-    this.props.getVipRouteChild(id)
+    this.props.getLoadChildTree(id)
   }
   // 获取子id, 路口id
-  getSelectChildId = (childId) => {
-    const childrenArr = this.props.data.loadChildTree
-    const marker = document.getElementById('marker' + childId)
-    let lng, lat;
-    childrenArr.map((item) => {
-      if (childId === item.ID) {
-        lng = item.LONGITUDE
-        lat = item.LATITUDE
-      }
-    })
+  getSelectChildId = (chidlId, lng, lat) => {
+    const marker = document.getElementById('marker' + chidlId)
     if (marker && this.map) {
       this.map.setCenter([lng, lat])
       marker.click()
@@ -236,35 +238,113 @@ class SecretTask extends PureComponent {
   addMarker = (interList) => {
     if (this.map) {
       this.infowindow += 1
-      interList.forEach((item) => {
+      interList && interList.forEach((item) => {
         const el = document.createElement('div')
         el.id = `marker${item.ID}`
         if (item.SIGNAL_SYSTEM_CODE === 4 || item.SIGNAL_SYSTEM_CODE === 3) {
-          const sysIcon = item.CONTROL_STATE === 10 && item.SIGNAL_SYSTEM_CODE === 4 ? OutlineH :
-            item.CONTROL_STATE !== 10 && item.SIGNAL_SYSTEM_CODE === 4 ? OnlineH :
-              item.CONTROL_STATE === 10 && item.SIGNAL_SYSTEM_CODE === 3 ? OutlineS :
-                item.CONTROL_STATE !== 10 && item.SIGNAL_SYSTEM_CODE === 3 ? OnlineS : null
-          el.style.background = `url(${sysIcon}) center center no-repeat`
-          el.style['background-size'] = '100% 100%'
-          el.style.width = '22px'
-          el.style.height = '22px'
-          new Promise((resolve) => {
-            resolve(this.props.getBasicInterInfo(item.ID))
-          }).then(() => {
-            const marker = new window.minemap.Marker(el, { offset: [-25, -25] }).setLngLat({ lng: item.LONGITUDE, lat: item.LATITUDE })
-              .setPopup(this.showInterInfo(item.LONGITUDE, item.LATITUDE, item.UNIT_NAME, item.SIGNAL_SYSTEM_CODE === 4 ? '海信' : '西门子', item.ID))
-              .addTo(this.map)
-            this.markers.push(marker)
+          const sysIcon = item.CONTROL_STATE === 10 && item.SIGNAL_SYSTEM_CODE === 4 ? '#ff0000' :
+            item.CONTROL_STATE !== 10 && item.SIGNAL_SYSTEM_CODE === 4 ? '#00E500' :
+              item.CONTROL_STATE === 10 && item.SIGNAL_SYSTEM_CODE === 3 ? '#ff0000' :
+                item.CONTROL_STATE !== 10 && item.SIGNAL_SYSTEM_CODE === 3 ? '#00E500' : null
+          el.style.backgroundColor = sysIcon
+          // el.style['background-size'] = '100% 100%'
+          el.style.width = '20px'
+          el.style.height = '20px'
+          el.style.borderRadius = '50%'
+          el.style.boxShadow = `0 0 20px ${sysIcon}`
+          el.addEventListener('click', (e) => {
+            e.stopPropagation()
+            this.props.getBasicInterInfo(item.ID).then((res) => {
+              const { code, data } = res.data
+              if (code === 200) {
+                this.showCustomInfoWin(data, item.LONGITUDE, item.LATITUDE)
+              }
+            })
           })
+          const marker = new window.minemap.Marker(el, { offset: [-10, -10] }).setLngLat({ lng: item.LONGITUDE, lat: item.LATITUDE }).addTo(this.map)
+          this.markers.push(marker)
         }
       })
     }
   }
+  showHisense = (e) => { // 筛选符合条件的海信点位
+    const { interList } = this.state
+    if (e.target.checked) {
+      this.haixin = true
+      this.delMarker()
+      if (this.zhongkong) {
+        this.addMarker(interList)
+      } else {
+        this.searchInterList = interList.filter(item => item.SIGNAL_SYSTEM_CODE === 4)
+        this.addMarker(this.searchInterList)
+      }
+    } else {
+      this.haixin = false
+      this.delMarker()
+      if (this.zhongkong) {
+        this.searchInterList = interList.filter(item => item.SIGNAL_SYSTEM_CODE === 3)
+        this.addMarker(this.searchInterList)
+      } else {
+        this.delMarker()
+      }
+    }
+  }
+  CentralControl = (e) => { // 筛选符合条件的中控点位
+    const { interList } = this.state
+    if (e.target.checked) {
+      this.zhongkong = true
+      this.delMarker()
+      if (this.haixin) {
+        this.addMarker(interList)
+      } else {
+        this.searchInterList = interList.filter(item => item.SIGNAL_SYSTEM_CODE === 3)
+        this.addMarker(this.searchInterList)
+      }
+    } else {
+      this.zhongkong = false
+      this.delMarker()
+      if (this.haixin) {
+        this.searchInterList = interList.filter(item => item.SIGNAL_SYSTEM_CODE === 4)
+        this.addMarker(this.searchInterList)
+      } else {
+        this.delMarker()
+      }
+    }
+  }
+  // addMarker = (interList) => {
+  //   if (this.map) {
+  //     this.infowindow += 1
+  //     interList.forEach((item) => {
+  //       const el = document.createElement('div')
+  //       el.id = `marker${item.ID}`
+  //       if (item.SIGNAL_SYSTEM_CODE === 4 || item.SIGNAL_SYSTEM_CODE === 3) {
+  //         const sysIcon = item.CONTROL_STATE === 10 && item.SIGNAL_SYSTEM_CODE === 4 ? OutlineH :
+  //           item.CONTROL_STATE !== 10 && item.SIGNAL_SYSTEM_CODE === 4 ? OnlineH :
+  //             item.CONTROL_STATE === 10 && item.SIGNAL_SYSTEM_CODE === 3 ? OutlineS :
+  //               item.CONTROL_STATE !== 10 && item.SIGNAL_SYSTEM_CODE === 3 ? OnlineS : null
+  //         el.style.background = `url(${sysIcon}) center center no-repeat`
+  //         el.style['background-size'] = '100% 100%'
+  //         el.style.width = '22px'
+  //         el.style.height = '22px'
+  //         new Promise((resolve) => {
+  //           resolve(this.props.getBasicInterInfo(item.ID))
+  //         }).then(() => {
+  //           const marker = new window.minemap.Marker(el, { offset: [-25, -25] }).setLngLat({ lng: item.LONGITUDE, lat: item.LATITUDE })
+  //             .setPopup(this.showInterInfo(item.LONGITUDE, item.LATITUDE, item.UNIT_NAME, item.SIGNAL_SYSTEM_CODE === 4 ? '海信' : '西门子', item.ID))
+  //             .addTo(this.map)
+  //           this.markers.push(marker)
+  //         })
+  //       }
+  //     })
+  //   }
+  // }
   // 删除坐标点
   delMarker = () => {
-    if (this.map && this.marker) {
-      this.marker.remove()
-      this.marker = null
+    if (this.map && this.markers.length) {
+      this.markers.forEach((item) => {
+        item.remove()
+      })
+      this.markers = []
     }
   }
   // 更新坐标点
@@ -292,43 +372,84 @@ class SecretTask extends PureComponent {
     }
   }
   // 自定义信息窗体
-  showInterInfo = (lng, lat, interName, singalSys, interId) => {
+  showCustomInfoWin = (interInfo, lng, lat) => {
     this.removeInterInfo()
-    const id = `monitor${interId}`
-    // <span id=${id} style="position:absolute;top:25px;right:25px;width:20px;height:20px;text-align:center;line-height:20px;font-size:16px;cursor:pointer;color:#49C2D5;">X</span>
-    const infoHtml = `
-      <div style="width:480px;height:260px;background:url(${InfoBg}) center center no-repeat;background-size:100% 100%;">
-        <div style="position:relative;height:50px;padding-top:13px;padding-left:20px;line-height:50px;font-size:15px;">
-          路口名称 ：${interName}
+    const runStatePic = `${requestUrl}/atms/imgs/stage/${interInfo.STAGE_IMAGE}`
+    const id = `monitor${interInfo.UNIT_ID}`
+    const el = document.createElement('div')
+    el.className = 'custom-popup-class' // custom-popup-class为自定义的css类名
+    const d1 = document.createElement('div')
+    d1.innerHTML = `
+      <div style="width:480px;height:260px;background:linear-gradient(to bottom, rgba(29, 64, 113, 0.9), rgba(21, 46, 83, 0.9));">
+        <div style="color:#60B5F1;position:relative;height:50px;padding-top:13px;padding-left:20px;line-height:50px;font-size:16px;">
+          路口名称 ：${interInfo.UNIT_NAME}
         </div>
         <div style="height:130px;display:flex;padding-top:20px;font-size:14px;">
-          <div style="flex:1;">
-            <p style="height:32px;line-height:32px;padding-left:40px">所属城区 ：${this.belongArea}</p>
-            <p style="height:32px;line-height:32px;padding-left:40px">信号系统 ：${singalSys}</p>
-            <p style="height:32px;line-height:32px;padding-left:40px">运行阶段 ：<img width="36px" height="36px" src="${this.runStatePic}" />${this.runText || ''}</p>
+          <div style="flex:1;color:#CED8E1;">
+            <p style="height:32px;line-height:32px;padding-left:40px"><span style="color:#599FE0">所属城区 ：</span>${interInfo.DISTRICT_NAME}</p>
+            <p style="height:32px;line-height:32px;padding-left:40px"><span style="color:#599FE0">信号系统 ：</span>${interInfo.SIGNALSYSTEM}</p>
+            <p style="height:32px;line-height:32px;padding-left:40px"><span style="color:#599FE0">运行阶段 ：</span><img width="36px" height="36px" src="${runStatePic}" />${interInfo.STAGE_CODE}</p>
           </div>
-          <div style="flex:1;">
-            <p style="height:32px;line-height:32px;padding-left:20px">控制状态 ：${this.controlState}</p>
-            <p style="height:32px;line-height:32px;padding-left:20px">信号机IP ：${this.singalIp}</p>
-            <p style="height:32px;line-height:32px;padding-left:20px">设备状态 ：${this.alarmState}</p>
+          <div style="flex:1;color:#CED8E1;">
+            <p style="height:32px;line-height:32px;padding-left:20px"><span style="color:#599FE0">控制状态 ：</span>${interInfo.CONTROLSTATE}</p>
+            <p style="height:32px;line-height:32px;padding-left:20px"><span style="color:#599FE0">信号机IP ：</span>${interInfo.SIGNAL_IP}</p>
+            <p style="height:32px;line-height:32px;padding-left:20px"><span style="color:#599FE0">设备状态 ：</span><span style="color:#168830;"></span>${interInfo.ALARMSTATE}</p>
           </div>
         </div>
         <div style="height:40px;display:flex;justify-content:center;align-items:center;">
-          <div id="${id}" style="width:80px;height:30px;margin:20px auto 0;background-color:#0F85FF;text-align:center;line-height:30px;border-radius:4px;cursor:pointer;">路口监控</div>
+          <div id="${id}" style="width:80px;color:#fff;height:30px;margin:20px auto 0;background-color:#0673B6;text-align:center;line-height:30px;border-radius:4px;cursor:pointer;">路口监控</div>
         </div>
       </div>
     `
-    this.popup = new window.minemap.Popup({ closeOnClick: true, closeButton: false, offset: [-15, -25] })
+    el.appendChild(d1)
+    this.popup = new window.minemap.Popup({ closeOnClick: false, closeButton: false, offset: [-1, -12] })
       .setLngLat([lng, lat])
-      .setHTML(infoHtml)
+      .setDOMContent(el)
       .addTo(this.map)
     if (document.getElementById(id)) {
       document.getElementById(id).addEventListener('click', () => {
-        window.open(`/interdetails?interid=${interId}`)
+        window.open(`/interdetails?interid=${interInfo.UNIT_ID}`)
       })
     }
-    return this.popup
   }
+  // 自定义信息窗体
+  // showInterInfo = (lng, lat, interName, singalSys, interId) => {
+  //   this.removeInterInfo()
+  //   const id = `monitor${interId}`
+  //   // <span id=${id} style="position:absolute;top:25px;right:25px;width:20px;height:20px;text-align:center;line-height:20px;font-size:16px;cursor:pointer;color:#49C2D5;">X</span>
+  //   const infoHtml = `
+  //     <div style="width:480px;height:260px;background:url(${InfoBg}) center center no-repeat;background-size:100% 100%;">
+  //       <div style="position:relative;height:50px;padding-top:13px;padding-left:20px;line-height:50px;font-size:15px;">
+  //         路口名称 ：${interName}
+  //       </div>
+  //       <div style="height:130px;display:flex;padding-top:20px;font-size:14px;">
+  //         <div style="flex:1;">
+  //           <p style="height:32px;line-height:32px;padding-left:40px">所属城区 ：${this.belongArea}</p>
+  //           <p style="height:32px;line-height:32px;padding-left:40px">信号系统 ：${singalSys}</p>
+  //           <p style="height:32px;line-height:32px;padding-left:40px">运行阶段 ：<img width="36px" height="36px" src="${this.runStatePic}" />${this.runText || ''}</p>
+  //         </div>
+  //         <div style="flex:1;">
+  //           <p style="height:32px;line-height:32px;padding-left:20px">控制状态 ：${this.controlState}</p>
+  //           <p style="height:32px;line-height:32px;padding-left:20px">信号机IP ：${this.singalIp}</p>
+  //           <p style="height:32px;line-height:32px;padding-left:20px">设备状态 ：${this.alarmState}</p>
+  //         </div>
+  //       </div>
+  //       <div style="height:40px;display:flex;justify-content:center;align-items:center;">
+  //         <div id="${id}" style="width:80px;height:30px;margin:20px auto 0;background-color:#0F85FF;text-align:center;line-height:30px;border-radius:4px;cursor:pointer;">路口监控</div>
+  //       </div>
+  //     </div>
+  //   `
+  //   this.popup = new window.minemap.Popup({ closeOnClick: true, closeButton: false, offset: [-15, -25] })
+  //     .setLngLat([lng, lat])
+  //     .setHTML(infoHtml)
+  //     .addTo(this.map)
+  //   if (document.getElementById(id)) {
+  //     document.getElementById(id).addEventListener('click', () => {
+  //       window.open(`/interdetails?interid=${interId}`)
+  //     })
+  //   }
+  //   return this.popup
+  // }
   hanleSelectInter = (e) => {
     const interId = e.currentTarget.getAttribute('interid')
     const marker = document.getElementById('marker' + interId)
@@ -368,7 +489,6 @@ class SecretTask extends PureComponent {
     }, 200)
   }
   hanleSelectInters = (e) => {
-    debugger
     const interId = e.currentTarget.getAttribute('interid')
     this.setState({
       unitId: interId,
@@ -572,11 +692,19 @@ class SecretTask extends PureComponent {
     return (
       <div id="mapContainer" className={styles.secretTaskWrapper}>
         {/* <Header {...this.props} /> */}
-        <div className={styles.interSysBox}>
+        {/* <div className={styles.interSysBox}>
           <div style={{ color: '#08FBED' }}>系统点位分布类型：</div>
           <div className={styles.systemPoint}>
             <div><span className={styles.upIconBox}><i /><b /></span>海信系统</div>
             <div><span className={styles.squareBox} />西门子</div>
+            <div><span className={styles.circleBox} />泰尔文特</div> 
+          </div>
+        </div> */}
+        <div className={styles.interSysBox}>
+          <div style={{ color: '#08FBED' }}>系统点位分布类型：</div>
+          <div className={styles.systemPoint}>
+            <div><Checkbox defaultChecked onChange={this.showHisense} />海信系统</div>
+            <div><Checkbox defaultChecked onChange={this.CentralControl} />中控</div>
             {/* <div><span className={styles.circleBox} />泰尔文特</div> */}
           </div>
         </div>
@@ -621,11 +749,17 @@ class SecretTask extends PureComponent {
           </div>
           <div className={styles.treeBox}>
             {/* <CustomTree visibleShowLeft={this.visibleShowLeft} vipRouteList={vipRouteList} getChildInfo={this.getChildInfo} hanleSelectInter={this.hanleSelectInter} /> */}
-            <CustomInterTree
+            {/* <CustomInterTree
               {...this.props}
               getSelectTreeId={this.getSelectTreeId}
               getSelectChildId={this.getSelectChildId}
               visibleShowLeft={this.visibleShowLeft}
+            /> */}
+            <CustomInterTree
+              {...this.props}
+              visibleShowLeft={this.visibleShowLeft}
+              getSelectTreeId={this.getSelectTreeId}
+              getSelectChildId={this.getSelectChildId}
             />
           </div>
           {
@@ -807,6 +941,8 @@ const mapDisPatchToProps = (dispatch) => {
     getBasicInterInfo: bindActionCreators(getBasicInterInfo, dispatch),
     getVipRoute: bindActionCreators(getVipRoute, dispatch),
     getVipRouteChild: bindActionCreators(getVipRouteChild, dispatch),
+    getLoadPlanTree: bindActionCreators(getLoadPlanTree, dispatch),
+    getLoadChildTree: bindActionCreators(getLoadChildTree, dispatch),
     getAddUnitsIfram: bindActionCreators(getAddUnitsIfram, dispatch),
     getDeleteUnitFram: bindActionCreators(getDeleteUnitFram, dispatch),
     getDeleteVipRoad: bindActionCreators(getDeleteVipRoad, dispatch),
