@@ -71,7 +71,10 @@ class Header extends React.Component {
         {
           pathname === '/home' ?
             <div className={styles.goBack} onClick={this.handleLogout}>退出登录</div> :
-            <div className={styles.goBack} onClick={this.handleGoBack}>返回首页</div>
+            <div className={styles.goBack} style={{ display:'flex', justifyContent:'center', alignItems:'center'}}>
+              <div onClick={this.handleGoBack}>返回首页</div>
+              <div style={{margin:'0 10px'}} onClick={this.handleLogout}>退出登录</div>
+            </div>
         }
         <Nav {...this.props} />
       </div>

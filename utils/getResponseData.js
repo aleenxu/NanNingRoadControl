@@ -23,7 +23,7 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use((response) => {
   if (response.data.code === -10) {
     localStorage.clear()
-    window.location.href = 'http://10.11.56.10:62000/gytocc/yjzh/login.jsp?lastURL=%2Fgytocc%2Firest%2Fview%2Fmain%2Fentrance'
+    window.location.href = 'http://localhost:11181/login'
   }
   return response
 }, error => (Promise.reject(error)))

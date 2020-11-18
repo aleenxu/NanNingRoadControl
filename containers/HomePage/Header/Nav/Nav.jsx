@@ -11,12 +11,13 @@ class EvaNav extends React.PureComponent {
     this.navItems = [
       { name: '首页', path: '/home' },
       { name: '全局监控', path: '/monitoring' },
-      { name: '步进管理', path: '' },
+      { name: '步进管理', path: '/steppingManage' },
       { name: '协调监控', path: '',
       children: [
         { name: '特勤任务', path: '/secretTask' },
-        { name: '干线协调', path: '' },
-        { name: '区域协调', path: '' },
+        { name: '干线协调', path: '/trunkLineCoordinate' },
+        { name: '干线监控', path: '/trunkLineMonitoring' },
+        { name: '区域协调', path: '/areaCoordinate' },
       ],
     },
     ]
@@ -37,7 +38,7 @@ class EvaNav extends React.PureComponent {
         name: '综合管理',
         path: '',
         children: [
-          { name: '路口管理', path: '' },
+          { name: '路口管理', path: '/InterManagement' },
           { name: '区域管理', path: '/RegiolManagement' },
           { name: '子区管理', path: '/RegiolManagementChild' },
           { name: '路线管理', path: '' },
@@ -51,20 +52,14 @@ class EvaNav extends React.PureComponent {
         name: '系统维护',
         path: '',
         children: [
-          { name: '用户操作日志', path: '' },
-          { name: '系统故障日志', path: '' },
-          { name: '信号控制记录', path: '' },
-          { name: '用户管理', path: '' },
-          { name: '用户组管理', path: '' },
-          { name: '角色管理', path: '' },
+          { name: '用户操作日志', path: '/useractionlog' },
+          { name: '系统故障日志', path: '/systemfaultlog' },
+          { name: '信号控制记录', path: '/signalcontrolrecord' },
+          { name: '用户管理', path: '/trafficsystem' },
+          { name: '用户组管理', path: '/usergroup' },
+          { name: '角色管理', path: '/jurisdiction' },
         ],
       },
-    ]
-    this.childItems = [
-      { name: '首页', path: '/signalhome' },
-      { name: '全局监控', path: '/globalmonitor' },
-      { name: '路口优化', path: '/optimize' },
-      { name: '配时管理', path: '/timanagement' },
     ]
   }
   componentDidMount = () => { }

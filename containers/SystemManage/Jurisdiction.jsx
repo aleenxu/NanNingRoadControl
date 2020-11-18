@@ -6,7 +6,7 @@ import Nav from './Nav/Nav'
 import roadStyles from './Roadtraffic.scss'
 import styles from './TrafficSystem.scss'
 import getResponseDatas from '../../utils/getResponseData'
-import SystemNav from './SystemNav/SystenNav'
+// import SystemNav from './SystemNav/SystenNav'
 
 const { confirm } = Modal
 const { Option } = Select
@@ -382,7 +382,7 @@ class Jurisdiction extends React.Component {
             </div>
           </div> : null}
         {/* <Nav /> */}
-        <SystemNav />
+        {/* <SystemNav /> */}
       </div>
     )
   }
