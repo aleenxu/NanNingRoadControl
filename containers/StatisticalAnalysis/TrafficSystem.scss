@@ -123,6 +123,7 @@ $ft_color: #62bbff;
       flex: 2;
       display: flex;
       padding: 0 25px;
+      background-color: #2b5391;
       .listHeaderTd {
         flex: 1;
         display: flex;
@@ -145,7 +146,7 @@ $ft_color: #62bbff;
       flex-direction: column;
     }
     .listItems {
-      flex: 1;
+      height: calc(100% / 10);
       color: #ffffff;
       font-size: 14px;
       display: flex;
@@ -156,7 +157,7 @@ $ft_color: #62bbff;
       }
       .listTd {
         &:nth-child(1) {
-          max-width: 150px; 
+          max-width: 150px;
         }
         flex: 1;
         display: flex;
