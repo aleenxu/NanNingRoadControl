@@ -69,7 +69,7 @@ class Login extends React.Component {
     return (
       <div className={styles.loginWrapper}>
         <div className={styles.loginBox}>
-          <h1 className={styles.loginTitle}>南宁市智能交通信号控制综合平台</h1>
+          <h1 className={styles.loginTitle}>交通信号控制管理平台</h1>
           <div className={styles.usermsgBox}>
             <div className={styles.welcome} />
             <div className={styles.userInput}>

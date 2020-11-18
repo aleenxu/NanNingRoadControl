@@ -765,7 +765,7 @@ class SecretTask extends PureComponent {
           {
             visible ?
               <ul style={{ top: `${visibleTop - 100}px` }} onContextMenu={this.noShow} className={styles.contextMenu}>
-                <li onClick={() => { this.lookRoadLine(vipId) }}>查看</li>
+                <li onClick={() => { this.lookRoadLine(vipId) }}>编辑</li>
                 <li onClick={() => { this.delRoadLine(vipId) }}>删除</li>
               </ul> : null
           }
