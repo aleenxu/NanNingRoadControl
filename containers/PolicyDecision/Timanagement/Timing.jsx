@@ -396,7 +396,7 @@ class Timing extends Component {
               </div>
               <div className={styles.mountingTbody}>
                 {
-                  TimingList && TimingList.map(item => (
+                  TimingList && TimingList.map(item => ( 
                     <div key={item.ID} className={styles.mountingTr}>
                       <div className={styles.mountingTd}><span><Icon type="plus" /></span></div>
                       <div className={styles.mountingTd}>{item.UNIT_NAME}</div>
