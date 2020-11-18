@@ -58,12 +58,17 @@ $ft_color: #62bbff;
     background: #1a3054;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    // justify-content: space-between;
     padding-left: 10px;
     border-bottom: 4px solid #0C1B42;
     > span {
       padding-right: 6px;
       color: #62bbff;
+    }
+    .spansBo{
+      position: absolute;
+      right: 30px;
+      display: flex;
     }
     .spans {
       width: 70px;

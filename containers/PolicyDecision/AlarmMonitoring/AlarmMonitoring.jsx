@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { Pagination, Button, Input, Icon, Select, message } from 'antd'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import styles from './Timing.scss'
+import styles from './AlarmMonitoring.scss'
 // import Nav from '../Header/Nav/Nav'
 import { getLoadPlanTree, getInterList } from '../../../actions/data'
 import { gettimgetTimingInfo, gettimcode, gettimingInfoByExcel, getlcflgss, gettimvalidate, gettimsaveOrUpdateForm } from '../../../actions/management'
 
-class Timing extends Component {
+class AlarmMonitoring extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -159,13 +159,13 @@ class Timing extends Component {
     this.props.gettimgetTimingInfo(`curPage=${page}&districtId=${this.changeRegionValue}&keyword=${this.changeFontValue}&pageSize=${pageSize}&signalType=${this.changeSignalValue}&unitId=${this.changeIntctionValue}`)
   }
   selectListroad = (id) => { // 申请方案弹窗
-    this.ids = id
-    this.setState({
-      showEditTiming: true,
-    })
+    // this.ids = id
+    // this.setState({
+    //   showEditTiming: true,
+    // })
   }
   crossingSee = (id) => { // 页面跳转到页面监视页面
-    window.open(`/interdetails?interid=${id}`)
+    // window.open(`/interdetails?interid=${id}`)
   }
   // 协调相位号
   changecoordinated = (id) => {
@@ -376,11 +376,23 @@ class Timing extends Component {
                     <Option value={item.C_CODE} key={item.C_CODE}>{item.CODE_NAME}</Option>)}
               </Select>
             </div>
+            <div>
+              <span>设备类型</span>
+              <Select
+                onChange={this.changeIntersection}
+              >
+                <Option value={0} key="124ssswwwas">全部</Option>
+                {
+                  roadList && roadList.map(item =>
+                    <Option value={item.ID} key={item.ID}>{item.UNIT_NAME}</Option>)}
+              </Select>
+            </div>
             <div />
           </div>
           <div className={styles.goExcal}>
             <span>统计结果</span>
-            <div style={{ display: 'flex' }}>
+            
+            <div className={styles.spansBo}>
               <span className={styles.spans} onClick={this.btnSearth}>查询</span>
               <span className={styles.spans} onClick={this.exportTable}>导出表格</span>
             </div>
@@ -411,8 +423,8 @@ class Timing extends Component {
                       <div className={styles.mountingTd}>{item.UNITTYPE}</div>
                       <div className={styles.mountingTd}>{item.USER_GROUP_NAME}</div>
                       <div className={styles.mountingTd}>
-                        <span className={styles.deviceMsg} onClick={() => this.selectListroad(item.ID)}>申请方案</span>
-                        <span className={styles.deviceMsg} onClick={() => this.crossingSee(item.ID)}>路口监视</span>
+                        <span className={styles.deviceMsg} onClick={() => this.selectListroad(item.ID)}>修改</span>
+                        <span className={styles.deviceMsg} onClick={() => this.crossingSee(item.ID)}>删除</span>
                       </div>
                     </div>
                   ))
@@ -554,4 +566,4 @@ const mapDisPatchToProps = dispatch => ({
   gettimvalidate: bindActionCreators(gettimvalidate, dispatch),
   gettimsaveOrUpdateForm: bindActionCreators(gettimsaveOrUpdateForm, dispatch),
 })
-export default connect(mapStateToProps, mapDisPatchToProps)(Timing)
+export default connect(mapStateToProps, mapDisPatchToProps)(AlarmMonitoring)

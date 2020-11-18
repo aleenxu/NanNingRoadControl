@@ -571,12 +571,12 @@ class GreenWaveMonitor extends React.Component {
                 <div className={styles.addInterWrapper}>
                   <div className={styles.checkedInter}>
                     <div className={styles.title}>
-                      添加路口<span className={styles.closeIcon} onClick={this.handleHideAddInter}><Icon type="close" /></span>
+                      添加路线<span className={styles.closeIcon} onClick={this.handleHideAddInter}><Icon type="close" /></span>
                     </div>
                     <div className={styles.addInter}>
                       <Select
                         showSearch
-                        placeholder="请选择路口或查询"
+                        placeholder="请选择路线或查询"
                         defaultActiveFirstOption={false}
                         showArrow
                         filterOption
