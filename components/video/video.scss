@@ -1,0 +1,12 @@
+.VideoAppBox{
+    position: relative;
+    width: 483px;
+    height: 292px;
+    // background-color: #021027;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .ant-btn:nth-child(2){
+        margin-left: 14px;
+    }
+  }

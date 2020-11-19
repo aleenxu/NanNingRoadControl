@@ -7,6 +7,8 @@ import upLeftDownRight from "../imgs/04.png"
 import upLeftUp from "../imgs/11.png"
 import rightUpLeftDown from "../imgs/02.png"
 import { Button, Switch } from "antd";
+//引入视频
+import Video from '../../../../components/video/video'
 import { SearchOutlined, CompassOutlined } from "@ant-design/icons";
 import styles from './ChangePop.scss'
 class ChangePop extends PureComponent {
@@ -21,6 +23,9 @@ class ChangePop extends PureComponent {
       modeMainSStyle:true,
        //向北 按钮
       modeMainNStyle:false,
+      //视频
+      url: [{ url: "rtmp://58.200.131.2:1935/livetv/cctv2", name: "东", id: "my_E"  }, { url: "rtmp://58.200.131.2:1935/livetv/cetv2", name: "西", id: "my_W" , displayStyle:true }],
+      arl: [{ url: "rtmp://58.200.131.2:1935/livetv/cctv13", name: "南", id: 'my_S'  }, { url: "rtmp://58.200.131.2:1935/livetv/startv", name: "北", id: "my_N" , displayStyle:true }],
     }
   }
   componentDidMount = () => {
@@ -51,27 +56,23 @@ class ChangePop extends PureComponent {
           <div className={styles.modeMainDirection}>
             <div className={styles.modeMainEWMode}>
               {/* 东西走向 */}
-              <div className={styles.modeMainEWBtn}>
+              <Video url={this.state.url} showB={true}></Video>
+              {/* <div className={styles.modeMainEWBtn}>
                 <Button className={styles.modeShowStyle}>东</Button>
                 <Button className={styles.modeShowStyle}>西</Button>
               </div>
               <div className={styles.modeMainEWVideo}>
-                <video src="*" style={{ width: "100%", height: "100%" }} controls>
-                  <source src="*" type="video/mp4"></source>
-                </video>
-              </div>
+              </div> */}
             </div>
             <div className={styles.modeMainSNMode}>
               {/* 南北走向 */}
-              <div className={styles.modeMainSNBtn}>
+              <Video url={this.state.arl} showB={true}></Video>
+              {/* <div className={styles.modeMainSNBtn}>
                 <Button className={styles.modeShowStyle}>南</Button>
                 <Button className={styles.modeShowStyle}>北</Button>
               </div>
               <div className={styles.modeMainSNVideo}>
-                <video style={{ width: "100%", height: "100%" }} controls>
-                  <source src="*" type="video/mp4"></source>
-                </video>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

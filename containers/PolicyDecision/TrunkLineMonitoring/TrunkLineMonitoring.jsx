@@ -8,6 +8,10 @@ import ChangePopLayer from './ChangePop/ChangePop'
 import { Icon, Input, message, DatePicker, Select, Modal, Checkbox } from 'antd'
 import { getBasicInterInfo, getInterList } from '../../../actions/data'
 import requestUrl from '../../../utils/getRequestBaseUrl'
+const lineData = [
+  [106.64421073808603,26.622065520419326],
+  [106.64947945833899,26.62210782706751]
+] 
 class TrunkLineMonitoring extends PureComponent {
   constructor(props) {
     super(props)
@@ -30,7 +34,7 @@ class TrunkLineMonitoring extends PureComponent {
   componentDidUpdate = (prevState) => {
     const { interList, loadPlanloadchildsr } = this.props.data
     if (prevState.data !== this.props.data) {
-      console.log(this.props.data)
+      // console.log(this.props.data)
     }
     if (prevState.data.loadPlanloadchildsr !== loadPlanloadchildsr) {
       this.getloadPlanLoads(loadPlanloadchildsr)
@@ -39,14 +43,43 @@ class TrunkLineMonitoring extends PureComponent {
       this.getInterList(interList)
     }
   }
+  drawLine = (lineData, lineId, lineColor, lineWidth) => {
+    const degsArr = []; // 所有两点间的夹角度
+    if (this.map) {
+      this.map.addLayer({
+        "id": lineId ? lineId : 'demo1',
+        "type": "line",
+        "source": {
+          "type": "geojson",
+          "data": {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "LineString",
+              "coordinates": lineData
+            }
+          }
+        },
+        "layout": {
+          "line-join": "round",
+          "line-cap": "round"
+        },
+        "paint": {
+          "line-color": lineColor ? lineColor : 'yellow',
+          "line-width": lineWidth ? lineWidth : 6
+        }
+      });
+    }
+  }
   ChangePop = () => {
     this.setState({
       changeFlag: !this.state.changeFlag
     })
   }
   handleShowInterConf = (roadName) => {
-    console.log('当前路的名字：',roadName)
+    // console.log('当前路的名字：',roadName)
     this.setState({ roadName })
+    this.drawLine(lineData)
   }
   // 路口列表
   getInterList = (interList) => {
@@ -277,7 +310,8 @@ delMarker = () => {
   renderMineMap = () => {
     const map = new window.minemap.Map(mineMapConf)
     this.map = map
-    this.map.on('click', () => {
+    this.map.on('click', (event) => {
+      console.log('地图触发点：',event.lngLat.lng,",",event.lngLat.lat)
       if (this.popup) {
         this.removeInterInfo()
       }

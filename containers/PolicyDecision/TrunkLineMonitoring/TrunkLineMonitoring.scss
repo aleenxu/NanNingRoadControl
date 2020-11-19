@@ -9,7 +9,7 @@ $ft_color: #60b5f1;
     width: 360px;
     height: 100%;
     padding: 10px 0 0 30px;
-    z-index: 9;
+    z-index: 8;
     position: absolute;
     left: 0;
     top: 0;
@@ -200,7 +200,7 @@ $ft_color: #60b5f1;
   }
 }
 .interSysBox {
-  z-index: 9;
+  z-index: 8;
   position: fixed;
   bottom: 5px;
   right: 10px;
@@ -298,4 +298,5 @@ $ft_color: #60b5f1;
   right:20px;
   top:120px;
   z-index: 11;
+  user-select: none;
 }
