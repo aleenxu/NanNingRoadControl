@@ -13,11 +13,13 @@ class TrunkLineMonitoring extends PureComponent {
     this.state = {
       interTree: null,
       interList: null,
+      roadName: '',
     }
     this.searchInterList = []
     this.markers = []
     this.zhongkong = true
     this.haixin = true
+    this.confItems = ['北京路','中华北路','宝山北路','枣山路','解放路','花冠路','大营路','市南路','兴关路']
   }
   componentDidMount = () => {
     this.renderMineMap()
@@ -34,6 +36,10 @@ class TrunkLineMonitoring extends PureComponent {
     if (prevState.data.interList !== interList) {
       this.getInterList(interList)
     }
+  }
+  handleShowInterConf = (roadName) => {
+    console.log('当前路的名字：',roadName)
+    this.setState({ roadName })
   }
   // 路口列表
   getInterList = (interList) => {
@@ -272,6 +278,7 @@ delMarker = () => {
     this.addMarker(this.state.interList)
   }
   render() {
+    const { roadName } = this.state
     const { Option } = Select
     return (
       <div className={publicStyles.monitorWrapper} id="mapContainer" style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
@@ -295,10 +302,17 @@ delMarker = () => {
               </span>
             </div>
             <div className={styles.interTree}>
-              {
+              <ul className={styles.confUl}>
+                {
+                  this.confItems.map(item => (
+                    <li className={roadName === item ? `${styles.confLi} ${styles.currentHover}` : styles.confLi} key={item} onClick={() => this.handleShowInterConf(item)}>{item}<span className={styles.innterBorder} /></li>
+                  ))
+                }
+              </ul>
+              {/* {
                 this.state.interTree &&
                 <CustomTree treeData={this.state.interTree} keys={this.state.expendskey} getCurrentId={this.getCurrentId} getchildArea={this.getchildArea} />
-              }
+              } */}
             </div>
           </div>
         </div>

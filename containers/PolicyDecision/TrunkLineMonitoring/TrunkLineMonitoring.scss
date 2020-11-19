@@ -20,6 +20,7 @@ $ft_color: #60b5f1;
     background: $bg-color;
     .interSearch {
       display: flex;
+      
       :global(.ant-select-selection) {
         width: 100px;
         background-color: rgba(28, 64, 114, 0.8);
@@ -58,6 +59,32 @@ $ft_color: #60b5f1;
       }
     }
     .interTree {
+      .confUl {
+        padding-top: 10px;
+        .confLi {
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 15px;
+            color: #61A4FF;
+            cursor: pointer;
+            &:hover {
+                background: linear-gradient(90deg, rgba(52, 92, 167, 0.02), rgba(16, 68, 175, 0.99), rgba(52, 92, 167, 0));
+            }
+            .innterBorder {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, rgba(42, 52, 240, 0), rgba(32, 93, 197, 0.99), rgba(42, 52, 240, 0));
+            }
+        }
+        .currentHover {
+          background: linear-gradient(90deg, rgba(52, 92, 167, 0.02), rgba(16, 68, 175, 0.99), rgba(52, 92, 167, 0));
+      }
+      }
       height: calc(100% - 40px);
       overflow-y: auto;
     }

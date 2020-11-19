@@ -2,7 +2,7 @@ $ft_color: #62bbff;
 .syetem_bg {
   background: #1a3054;
   width: calc(100% - 70px);
-  height: calc(100% - 220px);
+  height: calc(100% - 190px);
   position: absolute;
   top: 150px;
   left: 35px;
@@ -93,68 +93,50 @@ $ft_color: #62bbff;
     }
   }
   .listBox {
-    height: calc(100% - 40px);
+    height: calc(100% - 20px);
     .listItems {
       color: #ffffff;
       font-size: 14px;
       display: flex;
-      padding: 0 25px;
-      height: calc((100% - 40px) / 11);
+      padding:10px 25px;
       margin-bottom: 4px;
-      &:nth-child(odd) {
+      &:nth-child(2n) {
         background-color: #1b3864;
       }
       &:nth-child(1) {
         font-size: 15px;
-        color: $ft_color;
         background-color: #2b5391;
+        color: $ft_color;
       }
       .listTd {
         flex: 1;
         display: flex;
-        height: 100%;
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        flex-wrap: wrap;
         &:last-child {
           flex: 1.4;
         }
-        .roadName {
-          max-width: 100%;
+        img{
+          width: 40px;
+          height: 40px;
           display: inline-block;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          word-break: break-all;
+          margin: 0 10px 10px 0;
         }
-        .icon {
-          margin-right: 5px;
-        }
-        .updateName {
-          color: #2ad2f0;
-          width: 30%;
-          padding: 3px 0;
-          text-align: center;
-          cursor: pointer;
-          margin: 0 5px;
-        }
-        .spantName {
-          color: #d46909;
-          width: 100%;
-          padding: 3px 0;
-          cursor: pointer;
-          text-align: center;
-          &:hover {
-            color: #1890ff;
+        s{
+          padding:3px 25px;
+          margin:0 5px;
+          color: #fff;
+          background:green;
+          text-decoration: none;
+          &:hover{
+            cursor: pointer;
+            text-decoration: underline;
           }
         }
-        .delectName {
-          color: #2ad2f0;
-          width: 30%;
-          padding: 3px 0;
-          cursor: pointer;
-          text-align: center;
-          margin: 0 5px;
+        s:nth-child(1){
+          background:red;
         }
       }
     }
