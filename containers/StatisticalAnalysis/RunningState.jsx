@@ -99,6 +99,9 @@ class RunningState extends React.Component {
         {/* 地图 */}
         <div id="mapContainer" className={styles.mapContainer} >
           <div className={styles.syetem_bg}>
+          <div className={styles.syetem_title}>
+              运行状态
+            </div>
             <div className={styles.syetem_top}>
               <div className={`${styles.syetem_item} `}><span className={styles.item}>状态类型</span>
                 <div className={styles.inSle}>

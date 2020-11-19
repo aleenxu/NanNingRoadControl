@@ -26,6 +26,7 @@ $ft_color: #62bbff;
   top: 150px;
   left: 35px;
 }
+
 .syetem_top {
   width: 100%;
   height: 50px;
@@ -118,18 +119,38 @@ $ft_color: #62bbff;
     margin-left: 50px;
   }
 }
+.syetem_title {
+  height: 35px;
+  background: #0d1b42;
+  color: #0784bc;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  text-indent: 20px;
+  font-weight: 600;
+}
 .syetem_buttom {
   width: 100%;
-  height: calc(100% - 100px);
-
+  height: calc(100% - 135px);
+  display: flex;
+  flex-direction: column;
+  .ListTitle {
+    height: 60px;
+    color: #4a97de;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    text-indent: 20px;
+    font-weight: 600;
+  }
   .listBox {
-    height: 100%;
+    // height: calc(100% - 95px);
+    flex: 1;
     display: flex;
     flex-direction: column;
     .listHeader {
-      flex: 2;
+      flex: 1.5;
       display: flex;
-      padding: 0 25px;
       background-color: #2b5391;
       .listHeaderTd {
         flex: 1;
@@ -147,6 +168,12 @@ $ft_color: #62bbff;
           align-items: center;
           height: 100%;
         }
+        .listTd {
+          background: #33619f;
+        }
+      }
+      .listHeaderTd + .listHeaderTd {
+        border-left: 1px solid #0c1b42;
       }
     }
     .listMain {
@@ -159,7 +186,6 @@ $ft_color: #62bbff;
       color: #ffffff;
       font-size: 14px;
       display: flex;
-      padding: 0 25px;
       margin-bottom: 4px;
       &:nth-child(odd) {
         background-color: #1b3864;

@@ -99,6 +99,9 @@ class LinkFlow extends React.Component {
         {/* 地图 */}
         <div id="mapContainer" className={styles.mapContainer} >
           <div className={styles.syetem_bg}>
+            <div className={styles.syetem_title}>
+              路段流量
+            </div>
             <div className={styles.syetem_top}>
               <div className={`${styles.syetem_item} `}><span className={styles.item}>开始路口</span>
                 <div className={styles.inSle}>
@@ -173,6 +176,9 @@ class LinkFlow extends React.Component {
               <i className={styles.line} />
             </div>
             <div className={styles.syetem_buttom}>
+              <div className={styles.ListTitle}>
+                江北大道-北大路路口（电信）-东葛路-望园路路口（电信） 2020-11-02~2020-11-03 流量
+              </div>
               <div className={styles.listBox}>
                 {RadioValue === '2' && <TrafficCharts />}
                 {RadioValue === '1' &&

@@ -99,6 +99,9 @@ class RouteTraffic extends React.Component {
         {/* 地图 */}
         <div id="mapContainer" className={styles.mapContainer} >
           <div className={styles.syetem_bg}>
+            <div className={styles.syetem_title}>
+              路线流量
+            </div>
             <div className={styles.syetem_top}>
               <div className={`${styles.syetem_item} `}><span className={styles.item}>统计路口</span>
                 <div className={styles.inSle}>
@@ -153,6 +156,9 @@ class RouteTraffic extends React.Component {
               <i className={styles.line} />
             </div>
             <div className={styles.syetem_buttom}>
+              <div className={styles.ListTitle}>
+                古城路 路线流量统计日用表
+              </div>
               <div className={styles.listBox}>
                 {RadioValue === '2' && <TrafficCharts />}
                 {RadioValue === '1' &&
@@ -181,7 +187,7 @@ class RouteTraffic extends React.Component {
                 {RadioValue === '1' &&
                   <div className={styles.listMain}>
                     {
-                      [ 1, 2, 3, 4, 5, 6, 7, 8].map((item) => {
+                      [1, 2, 3, 4, 5, 6, 7, 8].map((item) => {
                         return (
                           <div className={styles.listItems} key={item}>
                             <div className={styles.listTd} ><span className={styles.roadName}>2020-0{item}-01</span></div>

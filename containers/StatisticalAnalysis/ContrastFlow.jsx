@@ -99,6 +99,9 @@ class ContrastFlow extends React.Component {
         {/* 地图 */}
         <div id="mapContainer" className={styles.mapContainer} >
           <div className={styles.syetem_bg}>
+            <div className={styles.syetem_title}>
+              流量对比
+            </div>
             <div className={styles.syetem_top}>
               <div className={`${styles.syetem_item} `}><span className={styles.item}>统计类型</span>
                 <div className={styles.inSle}>
@@ -166,6 +169,9 @@ class ContrastFlow extends React.Component {
               <i className={styles.line} />
             </div>
             <div className={styles.syetem_buttom}>
+              <div className={styles.ListTitle}>
+                流量、占有率分析表
+              </div>
               <div className={styles.listBox}>
                 {RadioValue === '2' && <TrafficCharts />}
                 {RadioValue === '1' &&

@@ -100,9 +100,12 @@ class Timing extends Component {
     })
   }
   getTimingInfo = (getTimingInfo) => {
+    const data = [[30, "东葛路-古城路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:55"], [31, "东葛路-园湖路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:55"], [32, "东葛路-安湖路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-11 10:34:23"], [28, "东葛路-广园路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:56"], [29, "东葛路-思贤路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:56"], [66, "东葛路-新民路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:55"], [27, "东葛路-望园路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:55"], [5170, "东葛路-滨湖路路口（电信）", "青秀区", "泰尔文特", "脱机、断线", "2020/10/12 16:48:55"], [5208, "东葛路-茅桥路路口（电信）", "青秀区", "泰尔文特", "脱机、断线", "2020/10/12 16:48:54"], [35, "东葛路-葛村路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:55"], [5346, "东葛路-长湖路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:56"], [34, "东葛路-鲤湾路路口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:55"], [5540, "东葛路中医一附院停车场出入口（电信）", "青秀区", "海信", "脱机、断线", "2020-10-12 16:48:56"], [5224, "中山路-七星路路口（电信）", "青秀区", "泰尔文特", "脱机、断线", "2020/10/12 16:48:54"], [5271, "中新路-中泰路路口（电信）", "青秀区", "泰尔文特", "脱机、断线", "2020/10/12 16:48:53"]]
     this.setState({
-      TimingList: getTimingInfo.list,
-      pageNumber: getTimingInfo.page,
+      // TimingList: getTimingInfo.list,
+      // pageNumber: getTimingInfo.page,
+      TimingList: data,
+      pageNumber: 1,
     }, () => {
       this.setState({
         nums: 1,
@@ -340,7 +343,7 @@ class Timing extends Component {
       <div className={styles.timingWrapper}>
         {/* <Nav {...this.props} /> */}
         <div className={styles.timingcontainer}>
-          <h3>配时管理</h3>
+          <h3>时钟管理</h3>
           <div className={styles.searchBox}>
             <div><span>关键字</span><Input onChange={this.changeFont} placeholder="" /></div>
             <div><span>所属区域</span>
@@ -390,8 +393,9 @@ class Timing extends Component {
             <div />
           </div>
           <div className={styles.goExcal}>
-            <span>统计结果</span>
-            
+            <span>校时服务器时间 : 2020-01-01 12:00</span>
+            <span>上次统一校时时间 : 2020-06-01 10:50</span>
+            <span className={styles.spans} onClick={this.btnSearth}>整体校时</span>
             <div className={styles.spansBo}>
               <span className={styles.spans} onClick={this.btnSearth}>查询</span>
               <span className={styles.spans} onClick={this.exportTable}>导出表格</span>
@@ -404,27 +408,23 @@ class Timing extends Component {
                 <div className={styles.mountingTh}>路口名称</div>
                 <div className={styles.mountingTh}>所属区域</div>
                 <div className={styles.mountingTh}>信号控制系统</div>
-                <div className={styles.mountingTh}>方案数</div>
-                <div className={styles.mountingTh}>当前方案</div>
-                <div className={styles.mountingTh}>路口类型</div>
-                <div className={styles.mountingTh}>管理单位</div>
+                <div className={styles.mountingTh}>信号机状态</div>
+                <div className={styles.mountingTh}>信号机时间</div>
                 <div className={styles.mountingTh}>操作</div>
               </div>
               <div className={styles.mountingTbody}>
                 {
                   TimingList && TimingList.map(item => (
-                    <div key={item.ID} className={styles.mountingTr}>
-                      <div className={styles.mountingTd}><span><Icon type="plus" /></span></div>
-                      <div className={styles.mountingTd}>{item.UNIT_NAME}</div>
-                      <div className={styles.mountingTd}>{item.DISTRICT_NAME}</div>
-                      <div className={styles.mountingTd}>{item.SIGNALSYSTEMCODE}</div>
-                      <div className={styles.mountingTd}>{item.CFGPLANSIZE}</div>
-                      <div className={styles.mountingTd}>{item.PLAN_ID}</div>
-                      <div className={styles.mountingTd}>{item.UNITTYPE}</div>
-                      <div className={styles.mountingTd}>{item.USER_GROUP_NAME}</div>
+                    <div key={item} className={styles.mountingTr}>
+                      {
+                        item.map((its) => {
+                          return <div key={its} className={styles.mountingTd}>{its}</div>
+                        })
+                      }
                       <div className={styles.mountingTd}>
-                        <span className={styles.deviceMsg} onClick={() => this.selectListroad(item.ID)}>修改</span>
-                        <span className={styles.deviceMsg} onClick={() => this.crossingSee(item.ID)}>删除</span>
+                        <span className={styles.deviceMsg} >校时</span>
+                        {/* <span className={styles.deviceMsg} onClick={() => this.selectListroad(item.ID)}>修改</span>
+                        <span className={styles.deviceMsg} onClick={() => this.crossingSee(item.ID)}>删除</span> */}
                       </div>
                     </div>
                   ))
