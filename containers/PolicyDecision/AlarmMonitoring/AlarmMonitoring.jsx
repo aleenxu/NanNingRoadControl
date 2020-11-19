@@ -100,9 +100,12 @@ class AlarmMonitoring extends Component {
     })
   }
   getTimingInfo = (getTimingInfo) => {
+    const data = [["青秀区", "凤岭南-会展路路口（电信）", 1, "45.6.245.190", "运行故障 ", 1602481984000, "信号机异常故障"], ["青秀区", "长湖路-广园路路口（电信）", 4, "45.6.249.123", "信号机离线", 1602468562000, "信号机离线"], ["兴宁区", "人民路-友爱路路口（电信）", 1, "45.6.247.151", "运行故障 ", 1602440927000, "信号机异常故障"], ["西乡塘区", "江北大道-西宁路路口（电信）", 1, "45.6.230.187", "信号机离线", 1602387424000, "信号机离线 "], ["青秀区", "双拥路-锦春路口（电信）", 1, "45.6.243.79", "信号机离线", 1602382295000, "信号机离线"], ["良庆区", "庆林路-良辉街路口（铁电）", 1, "45.6.226.172", "运行故障 ", 1602307160000, "信号机异常故障"], ["兴宁区", "清厢快速路辅道陈东村路口北侧", 4, "45.6.138.153", "信号机离线", 1601892194000, "信号机离线"], ["青秀区", "植物路303医院过街（铁电）", 1, "45.6.219.222", "信号机离线", 1601353405000, "信号机离线 "], ["青秀区", "青秀路-中马路路口（电信）", 1, "45.6.243.74", "信号机离线", 1600623703000, "信号机离线 "], ["兴宁区", "南梧路交警四大队（电信）", 1, "45.6.247.63", "信号机离线", 1600308782000, "信号机离线"]]
     this.setState({
-      TimingList: getTimingInfo.list,
-      pageNumber: getTimingInfo.page,
+      // TimingList: getTimingInfo.list,
+      // pageNumber: getTimingInfo.page,
+      TimingList: data,
+      pageNumber: 1,
     }, () => {
       this.setState({
         nums: 1,
@@ -340,10 +343,9 @@ class AlarmMonitoring extends Component {
       <div className={styles.timingWrapper}>
         {/* <Nav {...this.props} /> */}
         <div className={styles.timingcontainer}>
-          <h3>配时管理</h3>
+          <h3>报警监视</h3>
           <div className={styles.searchBox}>
-            <div><span>关键字</span><Input onChange={this.changeFont} placeholder="" /></div>
-            <div><span>所属区域</span>
+            <div><span>监视区域</span>
               <Select
                 onChange={this.changeRegion}
               >
@@ -355,7 +357,6 @@ class AlarmMonitoring extends Component {
               {/* <Input onChange={this.changeRegion} placeholder="" /> */}
             </div>
             <div>
-              <span>所属路口</span>
               <Select
                 onChange={this.changeIntersection}
               >
@@ -366,7 +367,7 @@ class AlarmMonitoring extends Component {
               </Select>
             </div>
             <div>
-              <span>信号机控制系统</span>
+              <span>故障类型</span>
               <Select
                 onChange={this.changeSignal}
               >
@@ -376,56 +377,40 @@ class AlarmMonitoring extends Component {
                     <Option value={item.C_CODE} key={item.C_CODE}>{item.CODE_NAME}</Option>)}
               </Select>
             </div>
-            <div>
-              <span>设备类型</span>
-              <Select
-                onChange={this.changeIntersection}
-              >
-                <Option value={0} key="124ssswwwas">全部</Option>
-                {
-                  roadList && roadList.map(item =>
-                    <Option value={item.ID} key={item.ID}>{item.UNIT_NAME}</Option>)}
-              </Select>
-            </div>
+            <div />
             <div />
           </div>
           <div className={styles.goExcal}>
-            <span>统计结果</span>
-            
             <div className={styles.spansBo}>
-              <span className={styles.spans} onClick={this.btnSearth}>查询</span>
-              <span className={styles.spans} onClick={this.exportTable}>导出表格</span>
+              <span className={styles.spans} >暂停监视</span>
+              {/* <span className={styles.spans} onClick={this.btnSearth}>查询</span>
+              <span className={styles.spans} onClick={this.exportTable}>导出表格</span> */}
             </div>
           </div>
           <div className={styles.mountingManage}>
             <div className={styles.mountingTable}>
               <div className={styles.mountingThead}>
-                <div className={styles.mountingTh} />
+                <div className={styles.mountingTh}>区域名称</div>
                 <div className={styles.mountingTh}>路口名称</div>
-                <div className={styles.mountingTh}>所属区域</div>
-                <div className={styles.mountingTh}>信号控制系统</div>
-                <div className={styles.mountingTh}>方案数</div>
-                <div className={styles.mountingTh}>当前方案</div>
-                <div className={styles.mountingTh}>路口类型</div>
-                <div className={styles.mountingTh}>管理单位</div>
-                <div className={styles.mountingTh}>操作</div>
+                <div className={styles.mountingTh}>信号机编号</div>
+                <div className={styles.mountingTh}>信号机IP</div>
+                <div className={styles.mountingTh}>故障名称</div>
+                <div className={styles.mountingTh}>故障时间</div>
+                <div className={styles.mountingTh}>故障描述</div>
               </div>
               <div className={styles.mountingTbody}>
                 {
                   TimingList && TimingList.map(item => (
-                    <div key={item.ID} className={styles.mountingTr}>
-                      <div className={styles.mountingTd}><span><Icon type="plus" /></span></div>
-                      <div className={styles.mountingTd}>{item.UNIT_NAME}</div>
-                      <div className={styles.mountingTd}>{item.DISTRICT_NAME}</div>
-                      <div className={styles.mountingTd}>{item.SIGNALSYSTEMCODE}</div>
-                      <div className={styles.mountingTd}>{item.CFGPLANSIZE}</div>
-                      <div className={styles.mountingTd}>{item.PLAN_ID}</div>
-                      <div className={styles.mountingTd}>{item.UNITTYPE}</div>
-                      <div className={styles.mountingTd}>{item.USER_GROUP_NAME}</div>
-                      <div className={styles.mountingTd}>
+                    <div key={item} className={styles.mountingTr}>
+                      {
+                        item.map((its) => {
+                          return <div key={its} className={styles.mountingTd}>{its}</div>
+                        })
+                      }
+                      {/* <div className={styles.mountingTd}>
                         <span className={styles.deviceMsg} onClick={() => this.selectListroad(item.ID)}>修改</span>
                         <span className={styles.deviceMsg} onClick={() => this.crossingSee(item.ID)}>删除</span>
-                      </div>
+                      </div> */}
                     </div>
                   ))
                 }

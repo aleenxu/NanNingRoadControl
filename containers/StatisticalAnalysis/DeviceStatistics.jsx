@@ -12,7 +12,7 @@ class DeviceStatistics extends React.Component {
     super(props)
     this.state = {
       totalCount: 1,
-      listDatas: [['测试1', 0, 0, 0, 0], ['武鸣区', 1, 8, 0, 0], ['西乡塘区', 56, 362, 0, 54], ['ces1001', 1, 0, 0, 0], ['测试2', 1, 0, 0, 0], ['鲲鹏测试区', 1, 8, 0, 0], ['江南区', 43, 214, 0, 39], ['兴宁区', 71, 293, 0, 55], ['邕宁区', 44, 223, 0, 37], ['良庆区', 81, 434, 0, 225], ['青秀区', 159, 923, 12, 222], ['测试数据', 0, 0, 0, 0]],
+      listDatas: [['西乡塘区', 56, 362, 0, 54], ['ces1001', 1, 0, 0, 0], ['测试2', 1, 0, 0, 0], ['鲲鹏测试区', 1, 8, 0, 0], ['江南区', 43, 214, 0, 39], ['兴宁区', 71, 293, 0, 55], ['邕宁区', 44, 223, 0, 37], ['良庆区', 81, 434, 0, 225], ['青秀区', 159, 923, 12, 222], ['测试数据', 0, 0, 0, 0]],
       current: 1,
       ManagementStart: '2019-01-01 00:00:00',
       ManagementUnit: this.formatDate(new Date() * 1),
@@ -105,6 +105,9 @@ class DeviceStatistics extends React.Component {
         {/* 地图 */}
         <div id="mapContainer" className={styles.mapContainer} >
           <div className={styles.syetem_bg}>
+            <div className={styles.syetem_title}>
+              设备统计
+            </div>
             <div className={styles.syetem_top}>
               <div className={`${styles.syetem_item} `}><span className={styles.item}>统计类型</span>
                 <div className={styles.inSle}>

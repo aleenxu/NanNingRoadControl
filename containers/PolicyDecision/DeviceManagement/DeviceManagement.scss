@@ -22,7 +22,7 @@ $ft_color: #62bbff;
     height: 50px;
     display: flex;
     padding-left: 10px;
-    border-bottom: 4px solid #0C1B42;
+    border-bottom: 4px solid #0c1b42;
     > div {
       flex: 1;
       display: flex;
@@ -60,12 +60,12 @@ $ft_color: #62bbff;
     align-items: center;
     // justify-content: space-between;
     padding-left: 10px;
-    border-bottom: 4px solid #0C1B42;
+    border-bottom: 4px solid #0c1b42;
     > span {
       padding-right: 6px;
       color: #62bbff;
     }
-    .spansBo{
+    .spansBo {
       position: absolute;
       right: 30px;
       display: flex;
@@ -82,6 +82,26 @@ $ft_color: #62bbff;
       color: #62bbff;
       margin: 0 10px;
       background-color: rgba(79, 104, 237, 0.4);
+    }
+    .goExcalItem {
+      display: flex;
+      margin-right: 20px;
+      align-items: center;
+      > span {
+        padding-right: 20px;
+        color: $ft_color;
+      }
+      :global(.ant-select-selection) {
+        width: 230px;
+        height: 32px;
+        color: #62bbff;
+        border: 1px solid #62bbff;
+        background: #1a3054;
+        color: #62bbff;
+      }
+      path {
+        color: #62bbff;
+      }
     }
   }
   .mountingManage {
@@ -407,12 +427,12 @@ $ft_color: #62bbff;
   :global(.ant-select-selection--single) {
     color: #62bbff;
     background-color: #021035;
-    border: 1px solid  #62bbff;
+    border: 1px solid #62bbff;
   }
-  :global(.ant-pagination-options-quick-jumper input){
+  :global(.ant-pagination-options-quick-jumper input) {
     color: #62bbff;
     background-color: #021035;
-    border: 1px solid  #62bbff;
+    border: 1px solid #62bbff;
   }
   :global(path) {
     color: #62bbff;
