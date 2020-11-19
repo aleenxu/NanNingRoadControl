@@ -56,7 +56,7 @@ class ChangePop extends PureComponent {
           <div className={styles.modeMainDirection}>
             <div className={styles.modeMainEWMode}>
               {/* 东西走向 */}
-              <Video url={this.state.url} showB={true}></Video>
+              <Video url={this.state.url} showB={true} destroyOnClose="true"></Video>
               {/* <div className={styles.modeMainEWBtn}>
                 <Button className={styles.modeShowStyle}>东</Button>
                 <Button className={styles.modeShowStyle}>西</Button>
@@ -66,7 +66,7 @@ class ChangePop extends PureComponent {
             </div>
             <div className={styles.modeMainSNMode}>
               {/* 南北走向 */}
-              <Video url={this.state.arl} showB={true}></Video>
+              <Video url={this.state.arl} showB={true} destroyOnClose="true"></Video>
               {/* <div className={styles.modeMainSNBtn}>
                 <Button className={styles.modeShowStyle}>南</Button>
                 <Button className={styles.modeShowStyle}>北</Button>

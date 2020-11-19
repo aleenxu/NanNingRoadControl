@@ -5,6 +5,7 @@ import mineMapConf from '../../../utils/minemapConf'
 import publicStyles from './../Monitoring/Monitoring.scss'
 import styles from './TrunkLineMonitoring.scss'
 import ChangePopLayer from './ChangePop/ChangePop'
+import videoPic from './imgs/cerame.png'
 import { Icon, Input, message, DatePicker, Select, Modal, Checkbox } from 'antd'
 import { getBasicInterInfo, getInterList } from '../../../actions/data'
 import requestUrl from '../../../utils/getRequestBaseUrl'
@@ -43,6 +44,12 @@ class TrunkLineMonitoring extends PureComponent {
       this.getInterList(interList)
     }
   }
+  // 计算起始与终点之间的中心点 > 用于重置地图中心点
+  returnCenterLnglat = (startPoint, endPoint) => {
+    const lng = startPoint[0] + (Math.abs(startPoint[0] - endPoint[0]) / 2)
+    const lat = startPoint[1] + (Math.abs(startPoint[1] - endPoint[1]) / 2)
+    return [lng, lat]
+  }
   drawLine = (lineData, lineId, lineColor, lineWidth) => {
     const degsArr = []; // 所有两点间的夹角度
     if (this.map) {
@@ -69,6 +76,9 @@ class TrunkLineMonitoring extends PureComponent {
           "line-width": lineWidth ? lineWidth : 6
         }
       });
+      this.map.setCenter(this.returnCenterLnglat(lineData[0],lineData[lineData.length - 1]))
+      this.map.setZoom(18)
+      this.addPoint(lineData)
     }
   }
   ChangePop = () => {
@@ -79,7 +89,8 @@ class TrunkLineMonitoring extends PureComponent {
   handleShowInterConf = (roadName) => {
     // console.log('当前路的名字：',roadName)
     this.setState({ roadName })
-    this.drawLine(lineData)
+    // this.drawLine(lineData)
+    this.addPoint(lineData)
   }
   // 路口列表
   getInterList = (interList) => {
@@ -91,39 +102,50 @@ class TrunkLineMonitoring extends PureComponent {
       this.addMarker(interList)
     })
   }
-  // 添加坐标点
-  // addMarker = (interList) => {
-  //   if (this.map) {
-  //     this.infowindow += 1
-  //     interList && interList.forEach((item) => {
-  //       const el = document.createElement('div')
-  //       el.id = `marker${item.ID}`
-  //       if (item.SIGNAL_SYSTEM_CODE === 4 || item.SIGNAL_SYSTEM_CODE === 3) {
-  //         const sysIcon = item.CONTROL_STATE === 10 && item.SIGNAL_SYSTEM_CODE === 4 ? '#ff0000' :
-  //           item.CONTROL_STATE !== 10 && item.SIGNAL_SYSTEM_CODE === 4 ? '#00E500' :
-  //             item.CONTROL_STATE === 10 && item.SIGNAL_SYSTEM_CODE === 3 ? '#ff0000' :
-  //               item.CONTROL_STATE !== 10 && item.SIGNAL_SYSTEM_CODE === 3 ? '#00E500' : null
-  //         el.style.backgroundColor = sysIcon
-  //         // el.style['background-size'] = '100% 100%'
-  //         el.style.width = '20px'
-  //         el.style.height = '20px'
-  //         el.style.borderRadius = '50%'
-  //         el.style.boxShadow = `0 0 20px ${sysIcon}`
-  //         el.addEventListener('click', (e) => {
-  //           e.stopPropagation()
-  //           this.props.getBasicInterInfo(item.ID).then((res) => {
-  //             const { code, data } = res.data
-  //             if (code === 200) {
-  //               this.showCustomInfoWin(data, item.LONGITUDE, item.LATITUDE)
-  //             }
-  //           })
-  //         })
-  //         const marker = new window.minemap.Marker(el, { offset: [-10, -10] }).setLngLat({ lng: item.LONGITUDE, lat: item.LATITUDE }).addTo(this.map)
-  //         this.markers.push(marker)
-  //       }
-  //     })
-  //   }
-  // }
+  // 绘制线时添加的光点与video图标
+  addPointMarkers = (interList) => {
+    debugger
+    if (this.map) {
+      this.infowindow += 1
+      // interList && interList.forEach((item) => {
+        const elParents = document.createElement('div')
+        elParents.style.width = '80px'
+        elParents.style.height = '80px'
+        elParents.style.position = 'relative'
+        elParents.style.backgroundColor = 'yellow'
+
+        // const elVideo = document.createElement('div')
+        // elVideo.style.width = '25px'
+        // elVideo.style.height = '25px'
+        // elVideo.style.cursor = 'pointer'
+        // elVideo.style.position = 'relative'
+        // elVideo.style.top = '-25px'
+        // elVideo.style.background = `url(${videoPic})`
+        
+        // const elAnimation = document.createElement('div')
+        // elAnimation.setAttribute('class','animationS')
+        // const el = document.createElement('div')
+        // el.style.width = '40px'
+        // el.style.height = '20px'
+        // el.style.borderRadius = '50%'
+        // el.style.backgroundColor = 'rgba(34,245,248)'
+        // el.style.cursor = 'pointer'
+        // el.style.position = 'absolute'
+        // el.style.left = '0'
+        // el.style.top = '0'
+        // el.addEventListener('click', () => {
+        //   this.addInfoWindow([item[0], item[1]])
+        // })
+        // elVideo.addEventListener('click', () => {
+        //   console.log('我是视频')
+        // })
+        // elParent.appendChild(elAnimation)
+        // elParent.appendChild(el)
+        // elParent.appendChild(elVideo)
+        new window.minemap.Marker(elParents).setLngLat({lng:106.58705108583739,lat:26.60052786078909}).addTo(this.map)
+      // })
+    }
+  }
 // 添加坐标点
 addMarker = (interList) => {
   if (this.map) {
@@ -151,6 +173,7 @@ addMarker = (interList) => {
             }
           })
         })
+        debugger
         const marker = new window.minemap.Marker(el, { offset: [-10, -10] }).setLngLat({ lng: item.LONGITUDE, lat: item.LATITUDE }).addTo(this.map)
         this.markers.push(marker)
       }

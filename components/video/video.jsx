@@ -47,9 +47,13 @@ class VideoApp extends Component{
           this.player.load();
           this.player.play();
   }
-componentWillUnmount = () => {
-  this.player.pause()
-}
+  componentWillUnmount = () =>{
+    const myVideoElem = document.getElementById(this.props.url[0].id);
+    if(myVideoElem){
+        const player = videojs(this.props.url[0].id);
+        player.dispose();
+    }
+  }
   render(){ 
       let li = {
       }
