@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import mineMapConf from '../../../utils/minemapConf'
 import publicStyles from './../Monitoring/Monitoring.scss'
 import styles from './TrunkLineMonitoring.scss'
+import ChangePopLayer from './ChangePop/ChangePop'
 import { Icon, Input, message, DatePicker, Select, Modal, Checkbox } from 'antd'
 import { getBasicInterInfo, getInterList } from '../../../actions/data'
 import requestUrl from '../../../utils/getRequestBaseUrl'
@@ -14,6 +15,7 @@ class TrunkLineMonitoring extends PureComponent {
       interTree: null,
       interList: null,
       roadName: '',
+      changeFlag: null,
     }
     this.searchInterList = []
     this.markers = []
@@ -36,6 +38,11 @@ class TrunkLineMonitoring extends PureComponent {
     if (prevState.data.interList !== interList) {
       this.getInterList(interList)
     }
+  }
+  ChangePop = () => {
+    this.setState({
+      changeFlag: !this.state.changeFlag
+    })
   }
   handleShowInterConf = (roadName) => {
     console.log('当前路的名字：',roadName)
@@ -278,10 +285,14 @@ delMarker = () => {
     this.addMarker(this.state.interList)
   }
   render() {
-    const { roadName } = this.state
+    const { roadName, changeFlag } = this.state
     const { Option } = Select
     return (
       <div className={publicStyles.monitorWrapper} id="mapContainer" style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
+        <div className={styles.modeTab} onClick={this.ChangePop}>模式切换</div>
+        { changeFlag ? 
+          <ChangePopLayer /> : null
+        }
         <div className={styles.interSysBox}>
           <div style={{ color: '#08FBED' }}>系统点位分布类型：</div>
           <div className={styles.systemPoint}>
