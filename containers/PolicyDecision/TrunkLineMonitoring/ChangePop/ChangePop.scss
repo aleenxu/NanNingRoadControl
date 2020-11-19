@@ -1,0 +1,442 @@
+
+@font-face {
+  font-family: num;
+  src: url(./290.7218c42.woff) format("woff");
+  font-weight: 400;
+  color: #ffee00;
+  font-style: normal;
+  text-align: center;
+}
+.modeMainMonitorHome{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url(../imgs/sysbg.png) center center no-repeat;
+  background-size: cover;
+  z-index: 10;
+  font-family: 'PingFang-SC-Regular';
+  .modeMainSlidMode{
+      width: 600px;
+      height: calc(100% - 110px);
+      position: absolute;
+      top: 90px;
+      left:70px;
+      background: rgba(17,52,115,.22);
+      .modeMainSlidHeadMode{
+          width: 100%;
+          height: 87px;
+          display: flex;
+          .modeMainIptHome{
+              flex: 5;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: relative;
+              .modeMainIpt{
+                  width: 230px;
+                  height: 36px;
+                  background: #0A255E;
+                  border: none;
+                  border-radius: 4px;
+                  margin-left: 5px;
+                  padding-left: 7px;
+                  outline: none;
+              }
+              .modeMainIptBox{
+                  width: 35px;
+                  background: #0A255E;
+                  position: absolute;
+                  right: 35px;
+                  top: 29px;
+                  color: skyblue;
+                  text-align: center;
+                  line-height: 30px;
+                  font-size: 18px;
+                  cursor: pointer;
+              }
+          }
+          .modeMainLengthHome{
+              display: flex;
+              flex: 3;
+              justify-content: center;
+              align-items: center;
+              .modeMainLength{
+                  font-size: 20px;
+                  font-weight: 700;
+              }
+              .modeMainLengthNum{
+                  font-size: 14px;
+                  color: #65D5FF;
+                  margin-left: 15px;
+                  font-weight: 700;
+              }
+              .modeMainLengthUnit{
+                  font-size: 25px;
+                  color: #65D5FF;
+              }
+              
+          }
+          .modeMainLabelHome{
+              display: flex;
+              flex: 2;
+              .modeMainLabel{
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  .modeMainLabelIcon{
+                      width: 25px;
+                      height: 25px;
+                      border-radius: 50%;
+                      font-size: 20px;
+                      color: #6D8EF7;
+                      text-align: center;
+                      line-height: 25px;
+                  }
+                  .modeMainLabelText{
+                      font-size: 20px;
+                      font-weight: 700;
+                      margin-left: 6px;
+                  }   
+              }
+          }
+      }
+      .modeMainDirection{
+          width: 100%;
+          height: calc(100% - 87px);
+          display: flex;
+          flex-direction: column;
+          .modeMainEWMode{
+              height: 50%;
+              margin-left: 30px;
+              .modeMainEWBtn{
+                  height: 50px;
+                  margin-top: 30px;
+                  .ant-btn{
+                      width: 67px;
+                       height: 41px;
+                       background: #010F46;
+                       border: 1px solid #4289E1;
+                       color: #515A8B;
+                       font-size: 20px;
+                       margin-left:15px;
+                       box-shadow:inset 0px 0px 2px 1px #4289E1;
+                  }
+                  .modeShowStyle{
+                    width: 66px;
+                    height: 40px;
+                    background: rgb(1, 15, 70);
+                    border: 1px solid rgb(66, 137, 225);
+                    color: rgb(81, 90, 139);
+                    font-size: 20px;
+                    box-shadow: rgb(66, 137, 225) 0px 0px 1.7px 1px inset;
+                    margin-right: 10px;
+                  }
+                  
+              }
+              .modeMainEWVideo{
+                  width: 483px;
+                  height: 292px;
+                  margin-left:15px;
+                  margin-top: 5px;
+              }
+          }   
+          .modeMainSNMode{
+              width: 100%;
+              height: 50%;
+              margin-left: 30px;
+              .modeMainSNBtn{
+                  height: 50px;
+                  margin-top: 30px;
+                  .ant-btn{
+                      width: 67px;
+                       height: 41px;
+                       background: #010F46;
+                       border: 1px solid #4289E1;
+                       color:#515A8B;
+                       font-size: 20px;
+                       margin-left:15px;
+                       box-shadow:inset 0px 0px 2px 1px #4289E1;
+                  }
+                  .modeShowStyle{
+                    width: 66px;
+                    height: 40px;
+                    background: rgb(1, 15, 70);
+                    border: 1px solid rgb(66, 137, 225);
+                    color: rgb(81, 90, 139);
+                    font-size: 20px;
+                    box-shadow: rgb(66, 137, 225) 0px 0px 1.7px 1px inset;
+                    margin-right: 10px;
+                  }
+              }
+              .modeMainSNVideo{
+                  width: 483px;
+                  height: 292px;
+                  // background: skyblue;
+                  margin-left:15px;
+                  margin-top: 5px;
+                  video{
+                      width: 100%;
+                      height: 100%;
+                  }
+              }
+          }
+      }
+  }
+  .modeMainContentMode{
+      width: calc(100% - 764px);
+      height: calc(100% - 90px);
+      position: absolute;
+      top: 90px;
+      right: 85px;
+      background: rgba(1,27,61, 0);
+      .modeMainMonitor{
+          width:100%;
+          height: 100px;
+          position: relative;
+          .modeMainMonitorContentSink{
+              position: absolute;
+              left: 220px;
+              top: -25px;
+              font-size: 27px;
+              color: #09A4E7;
+          }
+      }
+      .modeSwitchBtn{
+          width: 103px;
+          height: 28px;
+          position: absolute;
+          right: -58px;
+          top: 22px;
+      }
+      .modeMainMonitorContent{
+          width: 100%;
+          height: calc(100% - 120px);
+          display: flex;
+          overflow-x: auto;
+          .modeMainMonitorContentHome{
+              width: 166px;
+              display: flex;
+              position: relative;
+              .modeMainMonitorContentStrip{
+                  height: 174px;
+                  display: flex;
+                  flex-direction: column;
+                  position: absolute;
+                  top: 202px;
+                  left: 7px;
+              }
+              .modeMainMonitorContentLine{
+                  display: flex;
+                  flex-direction: column;
+                  position: absolute;
+                  top: 0px;
+                  left: 155px;
+                  .modeMainMonitorContentCross{
+                      width:30px;
+                      height: 165px;
+                      font-size: 21px;
+                      position: absolute;
+                      top: 0px;
+                      left: 7px;
+                      .modeMainMonitorContentCrossText{
+                          position: absolute;
+                          bottom: 0;
+                          left: 0;
+                          color: rgba(178,235,255, 1);
+                      }
+                  }
+                  .modeMainMonitorContentball{
+                      width: 46px;
+                      height: 46px;
+                      border-radius: 50%;
+                      background: red;
+                      position: absolute;
+                      left: -5px;
+                      top: 188px;
+                      background: url(../imgs/ballP.png) center no-repeat;
+                      background-size: 100% 100%;
+                  }
+                  .modeMainMonitorContentList{
+                      width: 168px;
+                      height: 493px;
+                      position: absolute;
+                      left: -60px;
+                      top: 240px;
+                      .modeMainMonitorContentListTop{
+                          height: 87px;
+                          background: url(../imgs/phaseBac.png) center no-repeat;
+                          background-size: 100% 100%;
+                          .autoOper{
+                              position: absolute;
+                              right: 10px;
+                              top: 16px;
+                              font-size: 16px;
+                              color: #4A62E7;
+                              font-weight: 700;
+                          }
+                          .switch{
+                              position: absolute;
+                              left: 30px;
+                              top: 50px;
+                          }
+                          .openHand{
+                              position: absolute;
+                              left: 88px;
+                              top: 50px;
+                              font-size: 16px;
+                          }
+                      }
+                      .modeMainMonitorContentListBottom{
+                          height: calc(100% - 87px);
+                          // border: 2px solid rgba(39,74,196,1);
+                          // box-shadow: inset 1px 1px 2px 2px rgba(39,74,196,1);
+                          background: rgba(16,36,139,.6);
+                          .modeMainMonitorContentListTable{
+                              width: 100%;
+                              height: 100%;
+                              border: 1px solid rgba(39,74,196,.3);
+                              display: flex;
+                              flex-wrap: wrap;
+                              .modeMainMonitorContentListImg{
+                                  width: 50%;
+                                  height: 65px;
+                                  border: 1px solid  rgba(39,74,196,1);
+                                  text-align: center;
+                                  line-height: 65px;
+                                  border-top: none;
+                                  img{
+                                      width: 64px;
+                                      height: 63px;
+                                  }
+                              }
+                              .modeMainMonitorContentListNum{
+                                  width: 50%;
+                                  height: 65px;
+                                  border: 1px solid  rgba(39,74,196,1);
+                                  border-top: none;
+                                  .contentListNum{
+                                      width:100%;
+                                      height: 100%;
+                                      display: flex;
+                                      justify-content: center;
+                                      align-items: center;
+                                      font-size: 40px;
+                                      font-family: num;
+                                      color:#48DFFF;
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+              .modeMainMonitorContentStripTwo{
+                  height: 174px;
+                  display: flex;
+                  flex-direction: column;
+              }
+              .modeMainMonitorContentLineTwo{
+                  display: flex;
+                  flex-direction: column;
+                  .modeMainMonitorContentCross{
+                      width:30px;
+                      height: 165px;
+                      font-size: 21px;
+                      position: absolute;
+                      top: 0;
+                      left: 7px;
+                      .modeMainMonitorContentCrossText{
+                          position: absolute;
+                          bottom: 0;
+                          left: 0;
+                          color: rgba(178,235,255, 1);
+                      }
+                  }
+                  //球
+                  .modeMainMonitorContentball{
+                      width: 46px;
+                      height: 46px;
+                      border-radius: 50%;
+                      background: red;
+                      position: absolute;
+                      left: -5px;
+                      top: 188px;
+                      background: url(../imgs/ballG.png) center no-repeat;
+                      background-size: 100% 100%;
+                  }
+                  .modeMainMonitorContentList{
+                      width: 168px;
+                      height: 493px;
+                      position: absolute;
+                      left: -60px;
+                      top: 240px;
+                      .modeMainMonitorContentListTop{
+                          height: 87px;
+                          background: url(../imgs/phaseBac.png) center no-repeat;
+                          background-size: 100% 100%;
+                          .autoOper{
+                              position: absolute;
+                              right: 10px;
+                              top: 16px;
+                              font-size: 16px;
+                              color: #4A62E7;
+                              font-weight: 700;
+                          }
+                          .switch{
+                              position: absolute;
+                              left: 30px;
+                              top: 50px;
+                          }
+                          .openHand{
+                              position: absolute;
+                              left: 88px;
+                              top: 50px;
+                              font-size: 16px;
+                          }
+                      }
+                      .modeMainMonitorContentListBottom{
+                          height: calc(100% - 87px);
+                          // border: 2px solid rgba(39,74,196,1);
+                          // box-shadow: inset 1px 1px 2px 2px rgba(39,74,196,1);
+                          background: rgba(16,36,139,.6);
+                          .modeMainMonitorContentListTable{
+                              width: 100%;
+                              height: 100%;
+                              border: 1px solid rgba(39,74,196,.3);
+                              display: flex;
+                              flex-wrap: wrap;
+                              .modeMainMonitorContentListImg{
+                                  width: 50%;
+                                  height: 65px;
+                                  border: 1px solid  rgba(39,74,196,1);
+                                  text-align: center;
+                                  line-height: 65px;
+                                  border-top: none;
+                                  img{
+                                      width: 64px;
+                                      height: 63px;
+                                  }
+                              }
+                              .modeMainMonitorContentListNum{
+                                  width: 50%;
+                                  height: 65px;
+                                  border: 1px solid  rgba(39,74,196,1);
+                                  border-top: none;
+                                  .contentListNum{
+                                      width:100%;
+                                      height: 100%;
+                                      display: flex;
+                                      justify-content: center;
+                                      align-items: center;
+                                      font: 40px num;
+                                      color:#48DFFF;
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+              
+          }
+      }
+  }
+}

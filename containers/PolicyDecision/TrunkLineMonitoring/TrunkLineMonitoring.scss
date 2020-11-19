@@ -285,3 +285,17 @@ $ft_color: #60b5f1;
     }
   }
 }
+.modeTab{
+  width: 100px;
+  text-align: center;
+  line-height: 28px;
+  background: url(./imgs/kuang.png) center center no-repeat;
+  background-size: 100% 100%;
+  color: #ccc;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  right:20px;
+  top:120px;
+  z-index: 11;
+}
