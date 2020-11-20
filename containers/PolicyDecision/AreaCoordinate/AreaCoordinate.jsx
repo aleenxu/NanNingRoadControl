@@ -21,7 +21,7 @@ class AreaCoordinate extends Component {
       position: 'fixed',
       right: '35px',
       top: '115px',
-      zIndex: 11,
+      zIndex: 2,
     }
   }
   componentDidMount() {
