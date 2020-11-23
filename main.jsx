@@ -288,15 +288,15 @@ reactDom.render(
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <PersistGate loading="null" persistor={persistore}>
-          <BrowserRouter basename="" history={BrowserHistory}>
+          <HashRouter basename="" history={BrowserHistory}>
             <Switch>
-              <Redirect exact from="/" to="/home" />
+              <Redirect exact from="/" to="/login" />
               <Route exact path="/login" component={Login} />
               <Route exact path="/interdetails" component={InterDetails} />
               <Route exact path="/redirect" component={RedirectCom} />
               <Route path="/" component={Parent} />
             </Switch>
-          </BrowserRouter>
+          </HashRouter>
         </PersistGate>
       </Provider>
     </ConfigProvider>

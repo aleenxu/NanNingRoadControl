@@ -337,7 +337,7 @@ class InterDetails extends React.PureComponent {
                       const picname = singalControler.STAGE_CODE === item.STAGENO ? item.STAGE_IMAGE : item.STAGE_IMAGE.replace('_ch.gif', '.gif')
                       return (
                         <div key={picname} className={styles.stagePic} style={{ cursor: 'pointer' }}>
-                          <img width="35px" height="35px" src={`http://10.11.57.101:20206/atms/comm/images/anniu/${picname}`} alt="" />
+                          <img width="35px" height="35px" src={`${this.processUrl}/atms/comm/images/anniu/${picname}`} alt="" />
                         </div>
                       )
                     }) : null

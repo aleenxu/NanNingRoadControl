@@ -14,10 +14,12 @@ if (singleToken) { // http:// 192.168.1.123:8089
   })
   $(document).ajaxSuccess((e, xhr) => {
     if (xhr.responseText === '-10') {
-      window.location.href = 'http://localhost:11181/login'
+      window.location.href = 'http://39.100.128.220:1521/'
+      // window.location.href = 'http://localhost:11181/login'
     }
   })
 } else {
-  window.location.href = 'http://localhost:11181/login'
+  window.location.href = 'http://39.100.128.220:1521/'
+  // window.location.href = 'http://localhost:11181/login'
 }
 

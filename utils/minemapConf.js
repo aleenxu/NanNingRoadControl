@@ -3,7 +3,8 @@
  */
 const styleUrl = process.env.NODE_ENV === 'development' ?
   '//222.85.218.31:60055/service/solu/style/id/4638' :
-  '//10.11.57.105:60050/service/solu/style/id/4638'
+  '//222.85.218.31:60055/service/solu/style/id/4638'
+  // '//10.11.57.105:60050/service/solu/style/id/4638'
 const mineMapConf = {
   container: 'mapContainer',
   style: styleUrl,

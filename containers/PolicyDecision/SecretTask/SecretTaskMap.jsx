@@ -361,7 +361,7 @@ class SecretTask extends PureComponent {
     this.alarmState = basicInterInfo.ALARMSTATE
     this.singalIp = basicInterInfo.SIGNAL_IP
     // this.runStatePic = `http://192.168.1.230:8080/atms/imgs/stage/${basicInterInfo.STAGE_IMAGE}`
-    this.runStatePic = `http://10.11.57.101:20206/atms/imgs/stage/${basicInterInfo.STAGE_IMAGE}`
+    this.runStatePic = `${requestUrl}/atms/imgs/stage/${basicInterInfo.STAGE_IMAGE}`
     this.runText = basicInterInfo.STAGE_CODE
   }
   // 关闭自定义信息窗体

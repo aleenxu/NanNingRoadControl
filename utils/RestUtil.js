@@ -17,7 +17,8 @@ function createInstance() {
         config.headers.Authorization = userInfo.token
         config.headers.singleToken = userInfo.singleToken
       } else {
-        window.location.href = 'http://localhost:11181/login'
+        // window.location.href = 'http://localhost:11181/login'
+        window.location.href = 'http://39.100.128.220:1521/'
       }
     }
     return config
@@ -30,7 +31,8 @@ function createInstance() {
     if (response.data.code === -10) {
       console.log(response)
       localStorage.clear()
-      window.location.href = 'http://localhost:11181/login'
+      // window.location.href = 'http://localhost:11181/login'
+      window.location.href = 'http://39.100.128.220:1521/'
     }
     return response
   }, error => (Promise.reject(error)))

@@ -23,7 +23,8 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use((response) => {
   if (response.data.code === -10) {
     localStorage.clear()
-    window.location.href = 'http://localhost:11181/login'
+    // window.location.href = 'http://localhost:11181/login'
+    window.location.href = 'http://39.100.128.220:1521/'
   }
   return response
 }, error => (Promise.reject(error)))
