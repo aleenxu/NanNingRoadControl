@@ -66,8 +66,9 @@ class EvaNav extends React.PureComponent {
   componentDidMount = () => { }
   handGosystem = (e) => {
     const paths = e.target.getAttribute('path')
-    console.log(paths);
-    this.props.history.push(paths)
+    if(paths !== ""){
+      this.props.history.push(paths)
+    }
   }
   handleShowDefaultNav = (item) => {
     if (item.children) {
