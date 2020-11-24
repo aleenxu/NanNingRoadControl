@@ -345,7 +345,7 @@ delMarker = () => {
       .addTo(this.map)
     if (document.getElementById(id)) {
       document.getElementById(id).addEventListener('click', () => {
-        window.open(`/interdetails?interid=${interInfo.UNIT_ID}`)
+        window.open(`/#/interdetails?interid=${interInfo.UNIT_ID}`)
       })
     }
   }

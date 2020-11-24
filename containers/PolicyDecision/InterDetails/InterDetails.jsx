@@ -270,7 +270,7 @@ class InterDetails extends React.PureComponent {
               {
                 sinaglInfo &&
                 <span className={styles.stageImgBox}>
-                  <img width="30px" height="30px" src={`${this.processUrl}/atms/comm/images/anniu/${sinaglInfo.STAGE_IMAGE}`} alt="" />
+                  <img width="30px" height="30px" src={`${this.processUrl}/atms/comm/images/anniu/${sinaglInfo.stage_image}`} alt="" />
                 </span>
               }&nbsp;
               {sinaglInfo ? sinaglInfo.STAGE_CODE : '--'}

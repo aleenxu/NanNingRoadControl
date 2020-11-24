@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Icon, Input, message } from 'antd'
 import styles from './SecretTask.scss'
-import Header from '../Header/Header'
+// import Header from '../Header/Header'
 import CustomTree from './CustomTree/CustomTree'
 import InfoBg from './img/Infobg.png'
 import { connect } from 'react-redux'
@@ -271,7 +271,7 @@ class SecretTask extends PureComponent {
     const { Search } = Input
     return (
       <div id="mapContainer" className={styles.secretTaskWrapper}>
-        <Header {...this.props} />
+        {/* <Header {...this.props} /> */}
         <div className={styles.interSysBox}>
           <div style={{ color: '#08FBED' }}>系统点位分布类型：</div>
           <div className={styles.systemPoint}>
