@@ -58,16 +58,105 @@ class SteppingManage extends PureComponent {
                     <div className={styles.listTd} >否</div>
                     <div className={styles.listTd} ></div>
                   </div>
-                  {
+                  <div className={styles.listItems}>
+                    <div className={styles.listTd} >三塘南路-水颜岭路路口（电信）	</div>
+                    <div className={styles.listTd} >
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17_ch.gif'} />
+                    </div>
+                    <div className={styles.listTd} >本地多时段</div>
+                    <div className={styles.listTd} >否</div>
+                    <div className={styles.listTd} >
+                      <s>锁定</s>
+                      <s>自动</s>
+                    </div>
+                  </div>
+                  <div className={styles.listItems}>
+                    <div className={styles.listTd} >X304-南宁港牛湾作业区1</div>
+                    <div className={styles.listTd} >
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17_ch.gif'} />
+                    </div>
+                    <div className={styles.listTd} >本地多时段</div>
+                    <div className={styles.listTd} >否</div>
+                    <div className={styles.listTd} >
+                      <s>锁定</s>
+                      <s>自动</s>
+                    </div>
+                  </div>
+                  <div className={styles.listItems}>
+                    <div className={styles.listTd} >三津大道-下津路路口（电信）</div>
+                    <div className={styles.listTd} >
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17_ch.gif'} />
+                    </div>
+                    <div className={styles.listTd} >本地多时段</div>
+                    <div className={styles.listTd} >否</div>
+                    <div className={styles.listTd} >
+                      <s>锁定</s>
+                      <s>自动</s>
+                    </div>
+                  </div>
+                  <div className={styles.listItems}>
+                    <div className={styles.listTd} >安吉大道-西津路路口（电信）	</div>
+                    <div className={styles.listTd} >
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17_ch.gif'} />
+                    </div>
+                    <div className={styles.listTd} >本地多时段</div>
+                    <div className={styles.listTd} >否</div>
+                    <div className={styles.listTd} >
+                      <s>锁定</s>
+                      <s>自动</s>
+                    </div>
+                  </div>
+                  <div className={styles.listItems}>
+                    <div className={styles.listTd} >中山路-七星路路口（电信）	</div>
+                    <div className={styles.listTd} >
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17_ch.gif'} />
+                    </div>
+                    <div className={styles.listTd} >本地多时段</div>
+                    <div className={styles.listTd} >否</div>
+                    <div className={styles.listTd} >
+                      <s>锁定</s>
+                      <s>自动</s>
+                    </div>
+                  </div>
+                  <div className={styles.listItems}>
+                    <div className={styles.listTd} >中华路-北大路路口（电信）</div>
+                    <div className={styles.listTd} >
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12_ch.gif'} />
+                      <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17_ch.gif'} />
+                    </div>
+                    <div className={styles.listTd} >本地多时段</div>
+                    <div className={styles.listTd} >否</div>
+                    <div className={styles.listTd} >
+                      <s>锁定</s>
+                      <s>自动</s>
+                    </div>
+                  </div>
+                  {/* {
                     [1,2,3,4,5,6,7,8,9].map(items => {
                       return <div key={'listItem'+items} className={styles.listItems}>
                                 <div className={styles.listTd} >三塘南路-水颜岭路路口（电信）	</div>
                                 <div className={styles.listTd} >
-                                  {
-                                    [1,2,3,4].map((item) => {
-                                      return <img key={'list'+item} src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
-                                    })
-                                  }
+                                  <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
+                                  <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18_ch.gif'} />
+                                  <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12_ch.gif'} />
+                                  <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17_ch.gif'} />
                                 </div>
                                 <div className={styles.listTd} >本地多时段</div>
                                 <div className={styles.listTd} >否</div>
@@ -77,7 +166,7 @@ class SteppingManage extends PureComponent {
                                 </div>
                               </div>
                     })
-                  }
+                  } */}
                 </div>
               </div>
             </div>

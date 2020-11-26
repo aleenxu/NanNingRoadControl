@@ -11,6 +11,8 @@ class CustomTree extends React.Component {
       visible: 0, // 右键菜单
       loadPlanTree: null,
       defaultChildren: null,
+      datasFlag: !this.props.datasFlag ? this.props.datasFlag : true,
+      flagDatas: this.props.flagDatas ?  this.props.flagDatas : []
     }
     this.defaultChildren = []
   }
@@ -27,8 +29,13 @@ class CustomTree extends React.Component {
     }
   }
   getPlanTree = (loadPlanTree) => {
-    this.defaultChildren = loadPlanTree.map(() => [])
-    this.setState({ loadPlanTree, defaultChildren: this.defaultChildren })
+    if(this.state.datasFlag !== undefined){
+      this.defaultChildren = this.state.flagDatas.map(() => [])
+      this.setState({ loadPlanTree: this.state.flagDatas, defaultChildren: this.defaultChildren })
+    } else {
+      this.defaultChildren = loadPlanTree.map(() => [])
+      this.setState({ loadPlanTree, defaultChildren: this.defaultChildren })
+    }
   }
   // 二级目录 路口
   getPlanChildTree = (loadChildTree) => {

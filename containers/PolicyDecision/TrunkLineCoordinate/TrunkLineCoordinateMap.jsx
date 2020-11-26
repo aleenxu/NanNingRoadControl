@@ -8,12 +8,14 @@ import styles from './TrunkLineCoordinate.scss'
 import { Icon, Input, message, DatePicker, Select, Modal, Checkbox } from 'antd'
 import CustomInterTree from '_C/CustomInterTree/CustomInterTree'
 import { getInterList, getBasicInterInfo, getVipRoute, getVipRouteChild, getLoadPlanTree, getLoadChildTree } from '../../../actions/data'
+import { getAddUnitsIfram } from '../../../actions/SecretTask'
 import requestUrl from '../../../utils/getRequestBaseUrl'
 class TrunkLineCoordinate extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
       interListHeight: 0,
+      interListHeights: 0,
       searchInterList: null,
       visible: false,
       visibleTop: 0,
@@ -64,12 +66,22 @@ class TrunkLineCoordinate extends PureComponent {
       roadCrossingFlag: true,
     })
   }
-  handleClose = () => {
-    this.setState({
-      secretTaskTop: null,
-    })
-
-  }
+  // 关闭
+  handleClose = ( flag, moudleName ) => {
+    if (!flag){
+      if ( moudleName === 'roadCrossingFlag') {
+        this.setState({
+          roadCrossingFlag: null,
+        })
+      } else {
+        this.setState({
+          secretTaskTop: null,
+          secretTaskLeft: null,
+          secretTaskRight: null,
+        })
+      }
+    }
+  } 
   hanleSelectInter = (e) => {
     const interId = e.currentTarget.getAttribute('interid')
     const marker = document.getElementById('marker' + interId)
@@ -92,6 +104,43 @@ class TrunkLineCoordinate extends PureComponent {
     const { value } = e.target
     this.setState({
       searchVal: value,
+    })
+    const searchInters = []
+    if (this.searchTimer) {
+      clearTimeout(this.searchTimer)
+      this.searchTimer = null
+    }
+    this.searchTimer = setTimeout(() => {
+      this.searchInterList.forEach((item) => {
+        if (item.UNIT_NAME.indexOf(value) >= 0) {
+          searchInters.push(item)
+        }
+      })
+      this.setState({ searchInterList: searchInters })
+    }, 200)
+  }
+  hanleSelectInters = (e) => {
+    const interId = e.currentTarget.getAttribute('interid')
+    this.setState({
+      unitId: interId,
+    })
+    this.searchInputBox.value = e.target.innerText
+  }
+  handleSearchInterFocuss = () => {
+    this.setState({ interListHeights: 200 })
+  }
+  handleSearchInputChanges = (e) => {
+    const { value } = e.target
+    this.setState({
+      searchVals: value,
+    }, () => {
+      this.searchInterList.forEach((item) => {
+        if (item.UNIT_NAME === value) {
+          this.setState({
+            unitId: item.UNIT_ID,
+          })
+        }
+      })
     })
     const searchInters = []
     if (this.searchTimer) {
@@ -381,6 +430,32 @@ class TrunkLineCoordinate extends PureComponent {
   //     })
   //   }
   // }
+  // 添加路口
+  getAddUnitsIfram = () => {
+    this.setState({
+      roadCrossingFlag: true,
+    })
+  }
+  // 查看路线
+  lookRoadLine = (vipId) => {
+    // 静态假数据如下：
+    this.setState({
+      secretTaskTop: true
+    })
+  }
+  // 删除路线
+  delRoadLine = (vipId) => {
+    const _this = this
+    Modal.confirm({
+      title: '确认要删除干线协调：( xxx ) ?',
+      cancelText: '取消',
+      okText: '确认',
+      onOk() {
+        message.info('删除成功！')
+      },
+      onCancel() { },
+    })
+  }
   // 初始化地图
   renderMineMap = () => {
     const map = new window.minemap.Map(mineMapConf)
@@ -393,7 +468,7 @@ class TrunkLineCoordinate extends PureComponent {
     this.addMarker(this.state.interList)
   }
   render() {
-    const { interMonitorLeft, interListHeight, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, secretTaskLeft, secretTaskRight } = this.state
+    const { interMonitorLeft, interListHeight, interListHeights, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, secretTaskLeft, secretTaskRight } = this.state
     const { Search } = Input
     return (
       <div className={publicStyles.monitorWrapper} id="mapContainer" style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
@@ -470,6 +545,63 @@ class TrunkLineCoordinate extends PureComponent {
             </div>
           </div> : null
         }
+        <div className={styles.interMonitorBox} style={{ left: `${interMonitorLeft}px` }}>
+          <span className={styles.hideIcon} onClick={this.handleShowInterMonitor}>
+            {interMonitorLeft > 0 ? <Icon type="backward" /> : <Icon type="forward" />}
+          </span>
+          <div className={styles.title}>协调路线查询</div>
+          <div className={styles.searchBox}>
+          <input
+                className={styles.searchInput}
+                onClick={this.handleSearchInterFocus}
+                onChange={this.handleSearchInputChange}
+                type="text"
+                placeholder="请输入你要搜索的路口 / 路线"
+                ref={(input) => { this.searchInputBox = input }}
+                style={{ width: '100%' }}
+              />
+              <Icon className={styles.searchIcon} type="search" onClick={() => {this.props.getVipRoute('', searchVal)}} />
+          </div>
+          <div className={styles.interList} style={{ maxHeight: `${interListHeight}px`, overflowY: 'auto' }}>
+            <div>
+              {
+                searchInterList &&
+                searchInterList.map(item => (
+                  <div
+                    className={styles.interItem}
+                    key={item.ID}
+                    interid={item.ID}
+                    lng={item.LONGITUDE}
+                    lat={item.LATITUDE}
+                    onClick={this.hanleSelectInter}
+                  >{item.UNIT_NAME}
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+          <div className={styles.addtask}>
+            <span onClick={this.quicklySecretTask}>新建协调路线</span>
+          </div>
+          <div className={styles.treeBox} style={{height:'calc(100% - 200px)', overflowY:'auto'}}>
+            {/* <CustomTree visibleShowLeft={this.visibleShowLeft} vipRouteList={vipRouteList} getChildInfo={this.getChildInfo} hanleSelectInter={this.hanleSelectInter} /> */}
+            <CustomInterTree
+              {...this.props}
+              datasFlag={false}
+              flagDatas={[{"ID":8,"NAME":"凤凰-云景三路口协调"},{"ID":25,"NAME":"滨湖长湖等三个路口协调"},{"ID":99,"NAME":"长湖茶花园-长湖滨湖协调"}]}
+              visibleShowLeft={this.visibleShowLeft}
+              getSelectTreeId={this.getSelectTreeId}
+              getSelectChildId={this.getSelectChildId}
+            />
+          </div>
+          {
+            visible ?
+              <ul style={{ top: `${visibleTop - 100}px` }} onContextMenu={this.noShow} className={styles.contextMenu}>
+                <li onClick={() => { this.lookRoadLine() }}>编辑</li>
+                <li onClick={() => { this.delRoadLine() }}>删除</li>
+              </ul> : null
+          }
+        </div>
         {
           roadCrossingFlag ?
           <div className={styles.MaskBox}>
@@ -510,62 +642,6 @@ class TrunkLineCoordinate extends PureComponent {
             </div>
           </div> : null
         }
-        <div className={styles.interMonitorBox} style={{ left: `${interMonitorLeft}px` }}>
-          <span className={styles.hideIcon} onClick={this.handleShowInterMonitor}>
-            {interMonitorLeft > 0 ? <Icon type="backward" /> : <Icon type="forward" />}
-          </span>
-          <div className={styles.title}>协调路线查询</div>
-          <div className={styles.searchBox}>
-          <input
-                className={styles.searchInput}
-                onClick={this.handleSearchInterFocus}
-                onChange={this.handleSearchInputChange}
-                type="text"
-                placeholder="请输入你要搜索的路口 / 路线"
-                ref={(input) => { this.searchInputBox = input }}
-                style={{ width: '100%' }}
-              />
-              <Icon className={styles.searchIcon} type="search" onClick={() => {this.props.getVipRoute('', searchVal)}} />
-          </div>
-          <div className={styles.interList} style={{ maxHeight: `${interListHeight}px`, overflowY: 'auto' }}>
-            <div>
-              {
-                searchInterList &&
-                searchInterList.map(item => (
-                  <div
-                    className={styles.interItem}
-                    key={item.ID}
-                    interid={item.ID}
-                    lng={item.LONGITUDE}
-                    lat={item.LATITUDE}
-                    onClick={this.hanleSelectInter}
-                  >{item.UNIT_NAME}
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-          <div className={styles.addtask}>
-            <span onClick={this.quicklySecretTask}>新建协调路线</span>
-          </div>
-          <div className={styles.treeBox}>
-            {/* <CustomTree visibleShowLeft={this.visibleShowLeft} vipRouteList={vipRouteList} getChildInfo={this.getChildInfo} hanleSelectInter={this.hanleSelectInter} /> */}
-            <CustomInterTree
-              {...this.props}
-              visibleShowLeft={this.visibleShowLeft}
-              getSelectTreeId={this.getSelectTreeId}
-              getSelectChildId={this.getSelectChildId}
-            />
-          </div>
-          {
-            visible ?
-              <ul style={{ top: `${visibleTop - 100}px` }} onContextMenu={this.noShow} className={styles.contextMenu}>
-                <li onClick={() => { this.lookRoadLine(vipId) }}>编辑</li>
-                <li onClick={() => { this.delRoadLine(vipId) }}>删除</li>
-              </ul> : null
-          }
-        </div>
-
       </div>
     )
   }
@@ -578,6 +654,7 @@ const mapStateToProps = (state) => {
 }
 const mapDisPatchToProps = (dispatch) => {
   return {
+    getAddUnitsIfram: bindActionCreators(getAddUnitsIfram, dispatch),
     getInterList: bindActionCreators(getInterList, dispatch),
     getLoadPlanTree: bindActionCreators(getLoadPlanTree, dispatch),
     getLoadChildTree: bindActionCreators(getLoadChildTree, dispatch),

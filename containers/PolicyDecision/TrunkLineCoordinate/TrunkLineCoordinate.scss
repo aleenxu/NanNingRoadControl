@@ -1,3 +1,9 @@
+:global(.ant-modal-content) {
+  background-color: #343a52!important;
+  :global(.ant-modal-confirm-body .ant-modal-confirm-title){
+    color:#fff;
+  }
+}
 // 遮罩层// 浮层效果
 .MaskBox {
   width: 100%;
@@ -40,6 +46,75 @@
     top:-40px;
     right:10px;
   }
+}
+.roadCrossing{
+  width: 300px;
+  height: 60px;
+  position: absolute; 
+  left: 50%; 
+  top:50%; 
+  transform: translate(-50%, -50%);
+  .Close{
+    top:10px;
+    right:10px;
+  }
+}
+.crossingCon{
+  background:linear-gradient(rgba(0,9,40,.9), rgba(0,0,0,.8));
+  padding:35px 0 10px;
+  .searchBox {
+    margin:0 50px 35px;
+    position: relative;
+    .searchInput {
+        width: 224px;
+        height: 32px;
+        padding-left: 5px;
+        background-color: rgba(6,56,90, .8);
+        border: 1px solid #063657;
+        border-radius: 4px;
+        outline: none;
+        color: #F1F1FB;
+    }
+    .searchIcon {
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        font-size: 18px;
+        color: #07BDFB;
+        cursor: pointer;
+    }
+  }
+  .btnRoadCrossing{
+    line-height:20px;
+    font-style: normal;
+    background:#1086ff;
+    width:80px;
+    margin:15px auto;
+    text-align:center;
+    cursor:pointer;
+  }
+    .interList {
+      position: absolute;
+      top: 106px;
+      left: 48px;
+      right: 48px;
+      border-radius: 4px;
+      background-color: rgba(0,0,0, .4);
+      transition: all .2s;
+      overflow-y: hidden;
+      z-index: 99;
+      .interItem {
+        height: 30px;
+        padding-left: 10px;
+        font-size: 14px;
+        line-height: 30px;
+        transition: all .2s;
+        cursor: pointer;
+        &:hover {
+          background-color: #06234F;
+        }
+      }
+    }
 }
 .Close {
   position: absolute;

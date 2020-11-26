@@ -638,8 +638,12 @@ class SecretTask extends PureComponent {
   }
   // 查看路线
   lookRoadLine = (vipId) => {
-    this.props.getFindRoadByVipId(vipId)
-    this.props.getFindList(vipId)
+    // this.props.getFindRoadByVipId(vipId)
+    // this.props.getFindList(vipId)
+    // 静态假数据如下：
+    this.setState({
+      secretTaskTop: true
+    })
   }
   // 删除路口
   getDeleteUnitFram = (vipId, unitId) => {
@@ -674,8 +678,9 @@ class SecretTask extends PureComponent {
       cancelText: '取消',
       okText: '确认',
       onOk() {
-        _this.props.data.vip_delRoadSucess = ''
-        _this.props.getDeleteVipRoad(vipId)
+        // _this.props.data.vip_delRoadSucess = ''
+        // _this.props.getDeleteVipRoad(vipId)
+        message.info('删除成功！')
       },
       onCancel() { },
     })
@@ -757,6 +762,8 @@ class SecretTask extends PureComponent {
             /> */}
             <CustomInterTree
               {...this.props}
+              datasFlag={false}
+              flagDatas={[{"ID":10,"NAME":"三津大道"},{"ID":50,"NAME":"中华路"},{"ID":80,"NAME":"X-304"}]}
               visibleShowLeft={this.visibleShowLeft}
               getSelectTreeId={this.getSelectTreeId}
               getSelectChildId={this.getSelectChildId}
@@ -765,11 +772,12 @@ class SecretTask extends PureComponent {
           {
             visible ?
               <ul style={{ top: `${visibleTop - 100}px` }} onContextMenu={this.noShow} className={styles.contextMenu}>
-                <li onClick={() => { this.lookRoadLine(vipId) }}>编辑</li>
-                <li onClick={() => { this.delRoadLine(vipId) }}>删除</li>
+                <li onClick={() => { this.lookRoadLine() }}>编辑</li>
+                <li onClick={() => { this.delRoadLine() }}>删除</li>
               </ul> : null
           }
         </div>
+        {/* // 静态假数据如下： */}
         {!!secretTaskTop ?
           <div className={styles.MaskBox}>
             <div className={styles.secretTaskBox}>
@@ -779,7 +787,122 @@ class SecretTask extends PureComponent {
                   <div className={styles.formBox}><span>勤务名称：</span><Input style={{width: '100px'}} value={secretTaskName} onChange={(e) => {this.handleChange(e, 'secretTaskName')}} placeholder="请输入勤务名称" /></div>
                   <div className={styles.formBox}><span>备注描述：</span><Input onChange={this.changeRegion} value={secretTaskDetail} onChange={(e) => {this.handleChange(e, 'secretTaskDetail')}} placeholder="请输入备注描述" /></div>
                   <div className={styles.formBox} style={{flex:0.05}}></div>
-                  {/* <div className={styles.formBox}><span>计划时间：</span>
+                </div>
+                <div className={styles.conLeft}>
+                  <div className={styles.titleSmall}>勤务路口<em onClick={this.getAddUnitsIfram}>添加路口</em></div>
+                  <div id="conLeftBox" className={styles.conLeftBox}>
+                    <div className={styles.leftItem}>
+                      <div className={styles.itemTit}>{" XXX大道 通远路中路( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram(vipId, 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemCon}>
+                        <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
+                          <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
+                          <div className={styles.typeStatus}>{'脱机断线'}</div>
+                            <img style={{position:'absolute', width:'4.5px', height: '25px', top:'30px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northz_21.gif'} />
+                            <img style={{position:'absolute', width:'5.5px', height: '25px', top:'145px', left:'105px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southz_21.gif'} />
+                            <img style={{position:'absolute', width:'10px', height: '20px', top:'150px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southleft_21.gif'} />
+                            <img style={{position:'absolute', width:'9px', height: '20px', top:'30px', left:'95px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northleft_21.gif'} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'92.5px', left:'140px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastz_21.gif'} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'103.5px', left:'32.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westz_21.gif'} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'92.5px', left:'34px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westleft_21.gif'} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'97px', left:'145px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastleft_21.gif'} />
+                        </div>
+                        <div className={styles.imgBox} style={{maxHeight:'200px',overflowY:'auto' }}>
+                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} /><b>南北直行</b></div>
+                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18.gif'} /><b>南北左转</b></div>
+                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12.gif'} /><b>东西直行</b></div>
+                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17.gif'} /><b>东西左转</b></div>
+                        </div>
+                      </div>
+                      <div className={styles.formBox}><span>预设勤务阶段：</span>
+                        <Select defaultValue={'0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                          <Option value='0'>南北直行</Option>
+                          <Option value='1'>南北左转</Option>
+                          <Option value='2'>东西直行</Option>
+                          <Option value='3'>东西左转</Option>
+                        </Select>
+                        <em onClick={()=>{
+                          this.getSaveUnitRunStage(vipId, item.id, this.state['selectStateArr'][ind])
+                          }}>保&nbsp;&nbsp;存</em>
+                      </div>
+                    </div>
+                    <div className={styles.leftItem}>
+                      <div className={styles.itemTit}>{" XXX大道 新科路( IP:192.168.1.22  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram(vipId, 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemCon}>
+                        <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
+                          <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
+                          <div className={styles.typeStatus}>{'脱机断线'}</div>
+                            <img style={{position:'absolute', width:'4.5px', height: '25px', top:'30px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northz_21.gif'} />
+                            <img style={{position:'absolute', width:'5.5px', height: '25px', top:'145px', left:'105px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southz_21.gif'} />
+                            <img style={{position:'absolute', width:'10px', height: '20px', top:'150px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southleft_21.gif'} />
+                            <img style={{position:'absolute', width:'9px', height: '20px', top:'30px', left:'95px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northleft_21.gif'} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'92.5px', left:'140px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastz_21.gif'} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'103.5px', left:'32.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westz_21.gif'} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'92.5px', left:'34px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westleft_21.gif'} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'97px', left:'145px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastleft_21.gif'} />
+                        </div>
+                        <div className={styles.imgBox} style={{maxHeight:'200px',overflowY:'auto' }}>
+                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} /><b>南北直行</b></div>
+                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18.gif'} /><b>南北左转</b></div>
+                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17.gif'} /><b>东西左转</b></div>
+                        </div>
+                      </div>
+                      <div className={styles.formBox}><span>预设勤务阶段：</span>
+                        <Select defaultValue={'0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                          <Option value='0'>南北直行</Option>
+                          <Option value='1'>南北左转</Option>
+                          <Option value='3'>东西左转</Option>
+                        </Select>
+                        <em onClick={()=>{
+                          this.getSaveUnitRunStage(vipId, item.id, this.state['selectStateArr'][ind])
+                          }}>保&nbsp;&nbsp;存</em>
+                      </div>
+                    </div>
+                  </div>
+                    
+                  </div>
+                <div className={styles.conRight}>
+                  <div className={styles.titleSmall}>勤务路线<em>一键勤务</em><em className={styles.saveLine} onClick={() => {this.getSaveVipRoad(vipId, secretTaskName, secretTaskDetail)}}>保存路线</em></div>
+                  <div className={styles.itemTit}>勤务路线路口列表</div>
+                  <div className={styles.itemCon}>
+                    <div className={classNames(styles.listItem, styles.listTit)}>
+                      <s>序号</s>
+                      <s>路口名称</s>
+                      <s>勤务阶段</s>
+                      <s>勤务状态</s>
+                      <s>操作</s>
+                    </div>
+                    <div className={styles.conRightBox}>
+                      <div className={styles.listItem}>
+                        <s>1</s>
+                        <s><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />1</s>
+                        <s>勤务阶段1</s>
+                        <s>勤务状态1</s>
+                        <s><span>锁定</span></s>
+                      </div>
+                      <div className={styles.listItem}>
+                        <s>1</s>
+                        <s><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18_ch.gif'} />2</s>
+                        <s>勤务阶段2</s>
+                        <s>勤务状态2</s>
+                        <s><span>取消</span></s>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> : null
+        }
+        {/* {!!secretTaskTop ?
+          <div className={styles.MaskBox}>
+            <div className={styles.secretTaskBox}>
+              <div className={styles.title}>特勤任务 <Icon className={styles.Close} type='close' onClick={() => {this.handleClose(false)}} /></div>
+              <div className={styles.secretTaskCon}>
+                <div className={styles.conTop}>
+                  <div className={styles.formBox}><span>勤务名称：</span><Input style={{width: '100px'}} value={secretTaskName} onChange={(e) => {this.handleChange(e, 'secretTaskName')}} placeholder="请输入勤务名称" /></div>
+                  <div className={styles.formBox}><span>备注描述：</span><Input onChange={this.changeRegion} value={secretTaskDetail} onChange={(e) => {this.handleChange(e, 'secretTaskDetail')}} placeholder="请输入备注描述" /></div>
+                  <div className={styles.formBox} style={{flex:0.05}}></div>
+                  <div className={styles.formBox}><span>计划时间：</span>
                     <DatePicker
                       disabledDate={this.disabledStartDate}
                       showTime
@@ -800,7 +923,7 @@ class SecretTask extends PureComponent {
                       open={endOpen}
                       onOpenChange={this.handleEndOpenChange}
                     />
-                  </div> */}
+                  </div> 
                 </div>
                 <div className={styles.conLeft}>
                   <div className={styles.titleSmall}>勤务路口<em onClick={this.getAddUnitsIfram}>添加路口</em></div>
@@ -885,7 +1008,7 @@ class SecretTask extends PureComponent {
               </div>
             </div>
           </div> : null
-        }
+        } */}
         {
           roadCrossingFlag ?
           <div className={styles.MaskBox}>
