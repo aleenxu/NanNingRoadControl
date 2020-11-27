@@ -16,6 +16,8 @@ class TrunkLineCoordinate extends PureComponent {
     this.state = {
       interListHeight: 0,
       interListHeights: 0,
+      itemOneFlag: true, // 临时变量
+      itemTwoFlag: false, // 临时变量
       searchInterList: null,
       visible: false,
       visibleTop: 0,
@@ -436,11 +438,50 @@ class TrunkLineCoordinate extends PureComponent {
       roadCrossingFlag: true,
     })
   }
+  AddUnitsIframBtn = (vipId, unitId) => {
+    // this.props.data.vip_addSucess = ''
+    // this.setState({
+    //   secretTaskLeftOld: this.state.secretTaskLeft,
+    //   secretTaskLeft: null,
+    // }, () => {
+    //   this.props.getAddUnitsIfram(vipId, unitId)
+    // })
+    if (!this.state.itemOneFlag || !this.state.itemTwoFlag ) {
+      !this.state.itemOneFlag ? this.setState({ itemOneFlag: true, roadCrossingFlag:null }) : this.setState({ itemTwoFlag: true, roadCrossingFlag:null })
+      message.info('添加成功！')
+    } else {
+      message.info('当前测试数据只有两条！')
+      this.setState({ roadCrossingFlag:null })
+    }
+  }
   // 查看路线
   lookRoadLine = (vipId) => {
     // 静态假数据如下：
     this.setState({
       secretTaskTop: true
+    })
+  }
+  // 删除路口
+  getDeleteUnitFram = (vipId, unitId) => {
+    const _this = this
+    Modal.confirm({
+      title: '确认要删除当前路口？',
+      cancelText: '取消',
+      okText: '确认',
+      onOk() {
+        // _this.props.data.vip_delSucess = ''
+        // _this.setState({
+        //   secretTaskLeft: null,
+        // }, () => {
+        //   _this.props.getDeleteUnitFram(vipId, unitId)
+        // })
+        _this.setState({
+          [vipId]: null
+        },() => {
+          message.info('删除成功！')
+        })
+      },
+      onCancel() { },
     })
   }
   // 删除路线
@@ -451,7 +492,7 @@ class TrunkLineCoordinate extends PureComponent {
       cancelText: '取消',
       okText: '确认',
       onOk() {
-        message.info('删除成功！')
+        // message.info('删除成功！')
       },
       onCancel() { },
     })
@@ -468,7 +509,7 @@ class TrunkLineCoordinate extends PureComponent {
     this.addMarker(this.state.interList)
   }
   render() {
-    const { interMonitorLeft, interListHeight, interListHeights, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, secretTaskLeft, secretTaskRight } = this.state
+    const { interMonitorLeft, interListHeight, interListHeights, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, itemOneFlag, itemTwoFlag } = this.state
     const { Search } = Input
     return (
       <div className={publicStyles.monitorWrapper} id="mapContainer" style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
@@ -487,60 +528,132 @@ class TrunkLineCoordinate extends PureComponent {
               <div className={styles.secretTaskCon}>
                 <div className={styles.conTop}>
                   <div className={styles.formBox}><span>干线名称：</span><Input value="" placeholder="请输入干线名称" /></div>
-                  <div className={styles.formBox} style={{flex: .3}}><span>干线总里程(米)：</span><Input type='number' value="" placeholder="请输入" /></div>
+                  <div className={styles.formBox} style={{flex: .4}}><span>干线总里程(米)：</span><Input type='number' value="" placeholder="请输入" /></div>
                   <div className={styles.formBox} style={{marginRight: '0'}}><span>备注描述：</span><Input value="" onChange={(e) => {this.handleChange(e, 'secretTaskDetail')}} placeholder="请输入备注描述" /></div>
+                  <div className={styles.titleSmall} style={{flex: .2, background:'unset'}}><em>保存</em></div>
                 </div>
-                <div className={styles.conLeft}>
+                <div className={styles.conRight} style={{width:'calc(100% - 56px)'}}>
                   <div className={styles.titleSmall}>干线路口<em onClick={this.getAddUnitsIfram}>添加路口</em></div>
-                  <div id="conLeftBox" className={styles.conLeftBox}>
-                    {
-                      secretTaskLeft && secretTaskLeft.map((item, ind) =>{
-                        return (
-                          <div key={'sLeft'+ind} className={styles.leftItem}>
-                            <div className={styles.itemTit}>{item.name + " " + " ( IP: " + item.IPString + " )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram(vipId, item.id)}} className={styles.Close} type='close' /></div>
-                            <div className={styles.itemCon}>
-                              <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
-                                <img className={styles.imgBgPic} src={this.imgBgUrl+item.imgName} title={!item.imgName ? '暂无图片' : ''} />
-                                <div className={styles.typeStatus}>{item.type ? item.type : '未知'}</div>
-                                {
-                                  item.imgs.length > 0 && item.imgs.map((imgsItem) => {
-                                    return <img key={'img' + imgsItem.ID} title={imgsItem.CANALIZATION_NAME} 
-                                    style={{position:'absolute', width:imgsItem.WIDTH/2 + 'px', height: imgsItem.HEIGHT/2+'px', 
-                                    top: imgsItem.P_TOP/2 + 'px', left: imgsItem.P_LEFT/2 + 'px'}} src={this.imgDirUrl + imgsItem.IMAGE_NAME} />
-                                  })
-                                }
-                              </div>
-                              <div className={styles.imgBox} style={{maxHeight:'200px',overflowY:'auto' }}>
-                              {
-                                item.unitStageList.length > 0 && item.unitStageList.map((infoItem) => {
-                                  const marginVal = item.unitStageList.length > 6 ? '2px' : ''
-                                  const imgName = item.unitRunStageNo === infoItem.STAGENO ? infoItem.STAGE_IMAGE : infoItem.STAGE_IMAGE.replace('_ch','')
-                                  return <div key={'info'+infoItem.STAGENO} style={{ marginRight: marginVal }} className={styles.dirItem}><img src={this.imgInfoUrl + imgName} /><b title={infoItem.STAGENAME}>{infoItem.STAGENAME}</b></div>
-                                })
-                              }
-                              </div>
-                            </div>
-                            <div className={styles.formBox}><span>预设勤务阶段：</span>
-                              <Select defaultValue={item.unitRunStageNo || item.unitRunStageNo === 0 ? item.unitRunStageNo : '0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
-                                <Option value='0'>请选择</Option>
-                                {
-                                  item.unitStageList.length > 0 && item.unitStageList.map((infoItem) => {
-                                    return <Option key={'infos'+infoItem.STAGENO} value={infoItem.STAGENO}>{infoItem.STAGENAME}</Option>
-                                  })
-                                }
+                  { itemOneFlag ?  
+                    <div className={styles.leftItem}>
+                      <div className={styles.itemTit}>{" XXX大道 通远路中路"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemOneFlag', 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemCon}>
+                        <div className={classNames(styles.listItem, styles.listTit)}>
+                          <s>时段</s>
+                          <s>方案号</s>
+                          <s>阶段链</s>
+                          <s>周期(秒)</s>
+                          <s>协调相位</s>
+                          <s>绝对相位差(秒)</s>
+                        </div>
+                        <div className={styles.conRightBox}>
+                          <div className={styles.listItem}>
+                            <s>00:00</s>
+                            <s>1</s>
+                            <s>
+                              <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
+                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw18_ch.gif'} />
+                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw12_ch.gif'} />
+                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw17_ch.gif'} />
+                            </s>
+                            <s>140</s>
+                            <s>
+                            <div className={styles.formBox}>
+                              <Select defaultValue={'0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                                <Option value='0'>南北直行</Option>
+                                <Option value='1'>南北左转</Option>
+                                <Option value='2'>东西直行</Option>
+                                <Option value='3'>东西左转</Option>
                               </Select>
-                              <em onClick={()=>{
-                                this.getSaveUnitRunStage(vipId, item.id, this.state['selectStateArr'][ind])
-                                }}>保&nbsp;&nbsp;存</em>
                             </div>
+                            </s>
+                            <s><div className={styles.formBox}><Input defaultValue="1" /></div></s>
                           </div>
-                        )
-                      })
-                    }
-                    {!secretTaskLeft && <div className={styles.PanelItemNone} style={{height:'127px', lineHeight:'127px'}}>暂无数据</div>}
-                  </div>
-                    
-                  </div>
+                          <div className={styles.listItem}>
+                            <s>00:00</s>
+                            <s>1</s>
+                            <s>
+                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw12_ch.gif'} />
+                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw17_ch.gif'} />
+                            </s>
+                            <s>140</s>
+                            <s>
+                            <div className={styles.formBox}>
+                              <Select defaultValue={'2'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                                <Option value='0'>南北直行</Option>
+                                <Option value='1'>南北左转</Option>
+                                <Option value='2'>东西直行</Option>
+                                <Option value='3'>东西左转</Option>
+                              </Select>
+                            </div>
+                            </s>
+                            <s><div className={styles.formBox}><Input defaultValue="1" /></div></s>
+                          </div>
+                        </div>
+                      </div>
+                    </div> : null
+                  }
+                  {
+                    itemTwoFlag ? 
+                    <div className={styles.leftItem}>
+                      <div className={styles.itemTit}>{" XXX大道 通远路中路"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemTwoFlag', 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemCon}>
+                        <div className={classNames(styles.listItem, styles.listTit)}>
+                          <s>时段</s>
+                          <s>方案号</s>
+                          <s>阶段链</s>
+                          <s>周期(秒)</s>
+                          <s>协调相位</s>
+                          <s>绝对相位差(秒)</s>
+                        </div>
+                        <div className={styles.conRightBox}>
+                          <div className={styles.listItem}>
+                            <s>00:00</s>
+                            <s>1</s>
+                            <s>
+                            <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
+                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw04_ch.gif'} />
+                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw03_ch.gif'} />
+                            </s>
+                            <s>140</s>
+                            <s>
+                            <div className={styles.formBox}>
+                              <Select defaultValue={'0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                                <Option value='0'>南北直行</Option>
+                                <Option value='1'>南左转</Option>
+                                <Option value='2'>西左转</Option>
+                              </Select>
+                            </div>
+                            </s>
+                            <s><div className={styles.formBox}><Input defaultValue="1" /></div></s>
+                          </div>
+                          <div className={styles.listItem}>
+                            <s>00:00</s>
+                            <s>1</s>
+                            <s><img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw11_ch.gif'} />
+                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw17_ch.gif'} />
+                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw10_ch.gif'} />
+                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw18_ch.gif'} />
+                            </s>
+                            <s>140</s>
+                            <s>
+                            <div className={styles.formBox}>
+                              <Select defaultValue={'2'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                                <Option value='0'>南北直行</Option>
+                                <Option value='1'>南北左转</Option>
+                                <Option value='2'>东西直行</Option>
+                                <Option value='3'>东西左转</Option>
+                              </Select>
+                            </div>
+                            </s>
+                            <s><div className={styles.formBox}><Input defaultValue="1" /></div></s>
+                          </div>
+                        </div>
+                      </div>
+                    </div> : null
+                  }
+                  { !itemOneFlag && !itemTwoFlag ? <div className={styles.PanelItemNone}>暂无数据</div> : null }
+                </div>
               </div>
             </div>
           </div> : null
@@ -637,7 +750,7 @@ class TrunkLineCoordinate extends PureComponent {
                       }
                     </div>
                   </div>
-                  <div className={styles.btnRoadCrossing} onClick={() => {this.AddUnitsIframBtn(vipId, unitId)}}>确认添加</div>
+                  <div className={styles.btnRoadCrossing} onClick={() => {this.AddUnitsIframBtn('', '')}}>确认添加</div>
                 </div>
             </div>
           </div> : null

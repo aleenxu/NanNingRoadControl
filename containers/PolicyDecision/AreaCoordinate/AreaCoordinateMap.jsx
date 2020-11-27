@@ -16,6 +16,8 @@ class AreaCoordinate extends PureComponent {
     this.state = {
       interListHeight: 0,
       interListHeights: 0,
+      itemOneFlag: true, // 临时变量 
+      itemTwoFlag: true, // 临时变量
       searchInterList: null,
       visible: false,
       visibleTop: 0,
@@ -168,6 +170,7 @@ class AreaCoordinate extends PureComponent {
     }
   }
   visibleShowLeft = (top, id, show) => { // 框的跳转与位置
+    console.log(top,id, '看看是啥？')
     this.roadId = id
     if (top || id) {
       this.setState({
@@ -429,6 +432,45 @@ class AreaCoordinate extends PureComponent {
       roadCrossingFlag: true,
     })
   }
+  AddUnitsIframBtn = (vipId, unitId) => {
+    // this.props.data.vip_addSucess = ''
+    // this.setState({
+    //   secretTaskLeftOld: this.state.secretTaskLeft,
+    //   secretTaskLeft: null,
+    // }, () => {
+    //   this.props.getAddUnitsIfram(vipId, unitId)
+    // })
+    if (!this.state.itemOneFlag || !this.state.itemTwoFlag ) {
+      !this.state.itemOneFlag ? this.setState({ itemOneFlag: true, roadCrossingFlag:null }) : this.setState({ itemTwoFlag: true, roadCrossingFlag:null })
+      message.info('添加成功！')
+    } else {
+      message.info('当前测试数据只有两条！')
+      this.setState({ roadCrossingFlag:null })
+    }
+  }
+  // 删除路口
+  getDeleteUnitFram = (vipId, unitId) => {
+    const _this = this
+    Modal.confirm({
+      title: '确认要删除当前路口？',
+      cancelText: '取消',
+      okText: '确认',
+      onOk() {
+        // _this.props.data.vip_delSucess = ''
+        // _this.setState({
+        //   secretTaskLeft: null,
+        // }, () => {
+        //   _this.props.getDeleteUnitFram(vipId, unitId)
+        // })
+        _this.setState({
+          [vipId]: null
+        },() => {
+          message.info('删除成功！')
+        })
+      },
+      onCancel() { },
+    })
+  }
   // 查看路线
   lookRoadLine = (vipId) => {
     // 静态假数据如下：
@@ -444,7 +486,7 @@ class AreaCoordinate extends PureComponent {
       cancelText: '取消',
       okText: '确认',
       onOk() {
-        message.info('删除成功！')
+        // message.info('删除成功！')
       },
       onCancel() { },
     })
@@ -461,7 +503,7 @@ class AreaCoordinate extends PureComponent {
     this.addMarker(this.state.interList)
   }
   render() {
-    const { interMonitorLeft, interListHeight, interListHeights, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, secretTaskLeft, secretTaskRight } = this.state
+    const { interMonitorLeft, interListHeight, interListHeights, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, itemOneFlag, itemTwoFlag } = this.state
     const { Search } = Input
     return (
       <div className={publicStyles.monitorWrapper} id="mapContainer" style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
@@ -483,54 +525,228 @@ class AreaCoordinate extends PureComponent {
                   <div className={styles.formBox} style={{marginRight: '0'}}><span>备注描述：</span><Input value="" onChange={(e) => {this.handleChange(e, 'secretTaskDetail')}} placeholder="请输入备注描述" /></div>
                   <div className={styles.titleSmall} style={{flex: .6, background:'unset'}}><em style={{right:'80px'}}>计算绿信比</em><em>保存</em></div>
                 </div>
-                <div className={styles.conLeft}>
+                <div className={styles.conLeft} style={{position:'relative'}}>
                   <div className={styles.titleSmall}>区域路口<em onClick={this.getAddUnitsIfram}>添加路口</em></div>
-                  <div id="conLeftBox" className={styles.conLeftBox}>
-                    {
-                      secretTaskLeft && secretTaskLeft.map((item, ind) =>{
-                        return (
-                          <div key={'sLeft'+ind} className={styles.leftItem}>
-                            <div className={styles.itemTit}>{item.name + " " + " ( IP: " + item.IPString + " )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram(vipId, item.id)}} className={styles.Close} type='close' /></div>
-                            <div className={styles.itemCon}>
-                              <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
-                                <img className={styles.imgBgPic} src={this.imgBgUrl+item.imgName} title={!item.imgName ? '暂无图片' : ''} />
-                                <div className={styles.typeStatus}>{item.type ? item.type : '未知'}</div>
-                                {
-                                  item.imgs.length > 0 && item.imgs.map((imgsItem) => {
-                                    return <img key={'img' + imgsItem.ID} title={imgsItem.CANALIZATION_NAME} 
-                                    style={{position:'absolute', width:imgsItem.WIDTH/2 + 'px', height: imgsItem.HEIGHT/2+'px', 
-                                    top: imgsItem.P_TOP/2 + 'px', left: imgsItem.P_LEFT/2 + 'px'}} src={this.imgDirUrl + imgsItem.IMAGE_NAME} />
-                                  })
-                                }
+                  <div className={styles.conTitle}>
+                    <div className={styles.formBox} style={{flex: .6}}><span>优化最大周期：</span><Input defaultValue="300" /></div>
+                    <div className={styles.formBox} style={{flex: .6}}><span>优化最小周期：</span><Input defaultValue="60" /></div>
+                    <div className={styles.formBox} style={{flex: .6}}><span>方案优化频率：</span><Input  defaultValue="1" /></div>
+                    <div className={styles.formBox} style={{flex: 1.2}}><span>执行时段：</span><Input  defaultValue="1" /><span style={{margin:'0 5px'}}>至</span><Input style={{marginRight:'14px'}} defaultValue="3" /></div>
+                  </div>
+                  <div id="conLeftBox" className={styles.conLeftBox} style={{ paddingTop:'40px'}}>
+                  {
+                    itemOneFlag ? 
+                    <div className={styles.leftItem}>
+                      <div className={styles.itemTit}>{" XXX大道 通远路中路( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemOneFlag', 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemCon}>
+                        <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
+                          <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
+                          <div className={styles.typeStatus}>{'脱机断线'}</div>
+                            <img style={{position:'absolute', width:'4.5px', height: '25px', top:'30px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northz_21.gif'} />
+                            <img style={{position:'absolute', width:'5.5px', height: '25px', top:'145px', left:'105px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southz_21.gif'} />
+                            <img style={{position:'absolute', width:'10px', height: '20px', top:'150px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southleft_21.gif'} />
+                            <img style={{position:'absolute', width:'9px', height: '20px', top:'30px', left:'95px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northleft_21.gif'} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'92.5px', left:'140px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastz_21.gif'} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'103.5px', left:'32.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westz_21.gif'} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'92.5px', left:'34px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westleft_21.gif'} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'97px', left:'145px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastleft_21.gif'} />
+                        </div>
+                        <div className={styles.imgBox} style={{maxHeight:'200px',overflowY:'auto' }}>
+                          <div className={styles.stageAndInput}>
+                            <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} /><b>南北直行</b></div>
+                            <div className={styles.stageInputBox}>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span>绿信比：</span>
+                                <Input defaultValue="0.03" />
+                                <i>%</i>
                               </div>
-                              <div className={styles.imgBox} style={{maxHeight:'200px',overflowY:'auto' }}>
-                              {
-                                item.unitStageList.length > 0 && item.unitStageList.map((infoItem) => {
-                                  const marginVal = item.unitStageList.length > 6 ? '2px' : ''
-                                  const imgName = item.unitRunStageNo === infoItem.STAGENO ? infoItem.STAGE_IMAGE : infoItem.STAGE_IMAGE.replace('_ch','')
-                                  return <div key={'info'+infoItem.STAGENO} style={{ marginRight: marginVal }} className={styles.dirItem}><img src={this.imgInfoUrl + imgName} /><b title={infoItem.STAGENAME}>{infoItem.STAGENAME}</b></div>
-                                })
-                              }
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span className={styles.marginBoth}>时&nbsp;间：</span>
+                                <Input defaultValue="30" />
+                                <i>秒</i>
                               </div>
                             </div>
-                            <div className={styles.formBox}><span>预设勤务阶段：</span>
-                              <Select defaultValue={item.unitRunStageNo || item.unitRunStageNo === 0 ? item.unitRunStageNo : '0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
-                                <Option value='0'>请选择</Option>
-                                {
-                                  item.unitStageList.length > 0 && item.unitStageList.map((infoItem) => {
-                                    return <Option key={'infos'+infoItem.STAGENO} value={infoItem.STAGENO}>{infoItem.STAGENAME}</Option>
-                                  })
-                                }
-                              </Select>
-                              <em onClick={()=>{
-                                this.getSaveUnitRunStage(vipId, item.id, this.state['selectStateArr'][ind])
-                                }}>保&nbsp;&nbsp;存</em>
+                          </div>  
+                          <div className={styles.stageAndInput}>
+                            <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18.gif'} /><b>南北左转</b></div>
+                            <div className={styles.stageInputBox}>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span>绿信比：</span>
+                                <Input defaultValue="0.03" />
+                                <i>%</i>
+                              </div>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span className={styles.marginBoth}>时&nbsp;间：</span>
+                                <Input defaultValue="30" />
+                                <i>秒</i>
+                              </div>
                             </div>
-                          </div>
-                        )
-                      })
-                    }
-                    {!secretTaskLeft && <div className={styles.PanelItemNone} style={{height:'127px', lineHeight:'127px'}}>暂无数据</div>}
+                          </div>  
+                          <div className={styles.stageAndInput}>
+                            <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12.gif'} /><b>东西直行</b></div>
+                            <div className={styles.stageInputBox}>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span>绿信比：</span>
+                                <Input defaultValue="0.03" />
+                                <i>%</i>
+                              </div>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span className={styles.marginBoth}>时&nbsp;间：</span>
+                                <Input defaultValue="30" />
+                                <i>秒</i>
+                              </div>
+                            </div>
+                          </div>  
+                          <div className={styles.stageAndInput}>
+                            <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17.gif'} /><b>东西左转</b></div>
+                            <div className={styles.stageInputBox}>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span>绿信比：</span>
+                                <Input defaultValue="0.03" />
+                                <i>%</i>
+                              </div>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span className={styles.marginBoth}>时&nbsp;间：</span>
+                                <Input defaultValue="30" />
+                                <i>秒</i>
+                              </div>
+                            </div>
+                          </div>  
+                        </div>
+                      </div>
+                      <div className={styles.formBox}>
+                        <span>协调相位差：</span>
+                        <Input style={{flex:.64}} defaultValue="16" />
+                        <span className={styles.marginBoth}>相对距离：</span>
+                        <Input defaultValue="500" />
+                        <span className={styles.marginBoth}>平均速度：</span>
+                        <Input defaultValue="30" />
+                      </div>
+                      <div className={styles.formBox}>
+                        <span style={{textAlign:'right', flex:.34}}>相 序：</span>
+                        <Select defaultValue={'0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                          <Option value='0'>方案1</Option>
+                          <Option value='1'>方案2</Option>
+                          <Option value='2'>方案3</Option>
+                          <Option value='3'>方案4</Option>
+                        </Select>
+                        <span className={styles.marginBoth}>协调相位：</span>
+                        <Select defaultValue={'0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                          <Option value='0'>相位1</Option>
+                          <Option value='1'>相位2</Option>
+                          <Option value='2'>相位3</Option>
+                          <Option value='3'>相位4</Option>
+                        </Select>
+                        <em style={{right:0}}>保&nbsp;&nbsp;存</em>
+                      </div>
+                    </div> : null }
+                  {
+                    itemTwoFlag ? 
+                    <div className={styles.leftItem}>
+                      <div className={styles.itemTit}>{" XXX大道 通远路中路( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemTwoFlag', 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemCon}>
+                        <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
+                          <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
+                          <div className={styles.typeStatus}>{'脱机断线'}</div>
+                            <img style={{position:'absolute', width:'4.5px', height: '25px', top:'30px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northz_21.gif'} />
+                            <img style={{position:'absolute', width:'5.5px', height: '25px', top:'145px', left:'105px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southz_21.gif'} />
+                            <img style={{position:'absolute', width:'10px', height: '20px', top:'150px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southleft_21.gif'} />
+                            <img style={{position:'absolute', width:'9px', height: '20px', top:'30px', left:'95px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northleft_21.gif'} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'92.5px', left:'140px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastz_21.gif'} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'103.5px', left:'32.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westz_21.gif'} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'92.5px', left:'34px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westleft_21.gif'} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'97px', left:'145px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastleft_21.gif'} />
+                        </div>
+                        <div className={styles.imgBox} style={{maxHeight:'200px',overflowY:'auto' }}>
+                          <div className={styles.stageAndInput}>
+                            <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} /><b>南北直行</b></div>
+                            <div className={styles.stageInputBox}>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span>绿信比：</span>
+                                <Input defaultValue="0.03" />
+                                <i>%</i>
+                              </div>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span className={styles.marginBoth}>时&nbsp;间：</span>
+                                <Input defaultValue="30" />
+                                <i>秒</i>
+                              </div>
+                            </div>
+                          </div>  
+                          <div className={styles.stageAndInput}>
+                            <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18.gif'} /><b>南北左转</b></div>
+                            <div className={styles.stageInputBox}>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span>绿信比：</span>
+                                <Input defaultValue="0.03" />
+                                <i>%</i>
+                              </div>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span className={styles.marginBoth}>时&nbsp;间：</span>
+                                <Input defaultValue="30" />
+                                <i>秒</i>
+                              </div>
+                            </div>
+                          </div>  
+                          <div className={styles.stageAndInput}>
+                            <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12.gif'} /><b>东西直行</b></div>
+                            <div className={styles.stageInputBox}>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span>绿信比：</span>
+                                <Input defaultValue="0.03" />
+                                <i>%</i>
+                              </div>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span className={styles.marginBoth}>时&nbsp;间：</span>
+                                <Input defaultValue="30" />
+                                <i>秒</i>
+                              </div>
+                            </div>
+                          </div>  
+                          <div className={styles.stageAndInput}>
+                            <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17.gif'} /><b>东西左转</b></div>
+                            <div className={styles.stageInputBox}>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span>绿信比：</span>
+                                <Input defaultValue="0.03" />
+                                <i>%</i>
+                              </div>
+                              <div className={styles.formBox} style={{flex:'unset'}}>
+                                <span className={styles.marginBoth}>时&nbsp;间：</span>
+                                <Input defaultValue="30" />
+                                <i>秒</i>
+                              </div>
+                            </div>
+                          </div>  
+                        </div>
+                      </div>
+                      <div className={styles.formBox}>
+                        <span>协调相位差：</span>
+                        <Input style={{flex:.64}} defaultValue="16" />
+                        <span className={styles.marginBoth}>相对距离：</span>
+                        <Input defaultValue="500" />
+                        <span className={styles.marginBoth}>平均速度：</span>
+                        <Input defaultValue="30" />
+                      </div>
+                      <div className={styles.formBox}>
+                        <span style={{textAlign:'right', flex:.34}}>相 序：</span>
+                        <Select defaultValue={'0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                          <Option value='0'>方案1</Option>
+                          <Option value='1'>方案2</Option>
+                          <Option value='2'>方案3</Option>
+                          <Option value='3'>方案4</Option>
+                        </Select>
+                        <span className={styles.marginBoth}>协调相位：</span>
+                        <Select defaultValue={'0'} onChange={(e) => {this.handleChange(e, 'selectStateArr', ind)}}>
+                          <Option value='0'>相位1</Option>
+                          <Option value='1'>相位2</Option>
+                          <Option value='2'>相位3</Option>
+                          <Option value='3'>相位4</Option>
+                        </Select>
+                        <em style={{right:0}}>保&nbsp;&nbsp;存</em>
+                      </div>
+                    </div> : null }
+                    {!itemOneFlag && !itemTwoFlag ? <div className={styles.PanelItemNone} style={{height:'127px', lineHeight:'127px'}}>暂无数据</div> : null }
                   </div>
                     
                   </div>
@@ -573,21 +789,21 @@ class AreaCoordinate extends PureComponent {
               }
             </div>
           </div>
-          <div className={styles.treeBox}>
-          <CustomInterTree
+          <div className={styles.treeBox}>          
+            <CustomInterTree
               {...this.props}
               datasFlag={false}
               flagDatas={[{"ID":11,"NAME":"星湖-古城-民族-园湖"},{"ID":55,"NAME":"测试区域协调"},{"ID":81,"NAME":"民族古城-民族朝阳"}]}
               visibleShowLeft={this.visibleShowLeft}
               getSelectTreeId={this.getSelectTreeId}
               getSelectChildId={this.getSelectChildId}
-            />
+            />          
           </div>
           {
             visible ?
               <ul style={{ top: `${visibleTop - 100}px` }} onContextMenu={this.noShow} className={styles.contextMenu}>
                 <li onClick={() => { this.lookRoadLine() }}>查看</li>
-                <li onClick={() => { this.delRoadLine() }}>删除</li>
+                <li onClick={() => { this.delRoadLine(this.roadId) }}>删除</li>
               </ul> : null
           }
         </div>
@@ -626,7 +842,8 @@ class AreaCoordinate extends PureComponent {
                       }
                     </div>
                   </div>
-                  <div className={styles.btnRoadCrossing} onClick={() => {this.AddUnitsIframBtn(vipId, unitId)}}>确认添加</div>
+                  <div className={styles.btnRoadCrossing} onClick={() => {this.AddUnitsIframBtn('', '')}}>确认添加</div>
+                  {/* <div className={styles.btnRoadCrossing} onClick={() => {this.AddUnitsIframBtn(vipId, unitId)}}>确认添加</div> */}
                 </div>
             </div>
           </div> : null

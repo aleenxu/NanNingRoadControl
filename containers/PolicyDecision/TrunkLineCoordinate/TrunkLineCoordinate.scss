@@ -4,6 +4,15 @@
     color:#fff;
   }
 }
+:global(.ant-select-dropdown-menu-item) {
+  color:white;
+  &:hover{
+    color:rgba(0, 0, 0, 0.65);
+  }
+}
+:global(.ant-select-dropdown-menu-item-selected) {
+  color:rgba(0, 0, 0, 0.65);
+}
 // 遮罩层// 浮层效果
 .MaskBox {
   width: 100%;
@@ -259,6 +268,46 @@
       .conLeft{
         width:calc(100% - 56px);
         border:rgba(0,255,255,.2) 1px solid;
+        .conTitle{
+          height:50px;
+          display: flex;
+          position: absolute;
+          padding:15px 0 15px 15px;
+          top:30px;
+          left:0;
+          right:0;
+          background: rgba(0, 9, 40, .9);
+          z-index: 2;
+          .formBox {
+            flex: 1;
+            display: flex;
+            margin-right: 20px;
+            align-items: center;
+            > span {
+              text-align: center;
+              color: #92d1db;
+              font-size: 14px;
+            }
+            input {
+              flex: 1;
+            }
+            :global(.ant-input) {
+              background-color: #06385b;
+              color: white;
+              outline: none;
+              border: none;
+            }
+            :global(.ant-calendar-picker-icon) {
+              color: white;
+            }
+            &:first-child{
+              flex:.5;
+            }
+            &:last-child{
+              flex:.8;
+            }
+          }
+        }
         .conLeftBox{
           display: flex;
           justify-content: flex-start;
@@ -266,8 +315,8 @@
           max-height:680px;
           overflow-y: auto;
           .leftItem{
-            width:48%;
-            margin:5px 5px 5px 10px;
+            width:48.5%;
+            margin:5px 1px 5px 12px;
             background: #03193e;
             border-radius: 5px;
             -webkit-border-radius: 5px;
@@ -299,6 +348,25 @@
                 justify-content: flex-start;
                 flex-wrap: wrap;
                 position:relative;
+                .stageAndInput{
+                  width:calc(100% - 5px);
+                  height:95px;
+                  border-bottom: 1px #06385b solid;
+                  margin-left:5px; 
+                  display:flex;
+                  justify-content:center; 
+                  align-items:flex-start;
+                  flex-wrap:nowrap;
+                  margin-bottom:5px;
+                  .stageInputBox{
+                    width:calc(100% - 70px);
+                    height:80px;
+                    display:flex;
+                    justify-content:center; 
+                    align-items:flex-start;
+                    flex-wrap:wrap;
+                  }
+                }
                 .imgBgPic{
                   width:200px;
                   height:200px;
@@ -344,6 +412,34 @@
                     height: 40px;
                   }
                 }
+                .formBox {
+                  flex: 1;
+                  display: flex;
+                  margin-right: 20px;
+                  align-items: center;
+                  position: relative;
+                  > span {
+                    text-align: center;
+                    color: #92d1db;
+                    font-size: 14px;
+                  }
+                  input {
+                    flex: 1;
+                  }
+                  >i {
+                    position: absolute;
+                    right:10px;
+                    top:3px;
+                    font-style: normal;
+                  }
+                  :global(.ant-input) {
+                    background-color: #06385b;
+                    color: white;
+                    padding-right:25px;
+                    outline: none;
+                    border: none;
+                  }
+                }
                 &:last-child{
                   flex:2;
                 }
@@ -360,6 +456,7 @@
                 color: #92d1db;
                 font-size: 14px;
               }
+              .marginBoth{margin:0 5px 0 8px;}
               > em{
                 line-height:20px;
                 font-style: normal;
@@ -387,6 +484,17 @@
               }
               :global(path) {
                 color: white;
+              }
+              :global(path) {
+                color: white;
+              }
+              :global(.ant-input) {
+                flex:.5;
+                height: 25px;
+                background-color: #06385b;
+                color: white;
+                outline: none;
+                border: none;
               }
             }
           }
@@ -419,6 +527,28 @@
             cursor: pointer;
           }
         }
+        .leftItem{
+          width:48.5%;
+          margin:5px 1px 5px 12px;
+          background: #03193e;
+          border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -o-border-radius: 5px;
+          .itemTit{
+            height:25px;
+            line-height:25px;
+            padding-left:20px;
+            font-size: 12px;
+            color:#36af2c;
+            position: relative;
+            .Close{
+              top:7px;
+              right: 8px;
+            }
+          }
+        }
         .itemCon{
           width:98%;
           margin:0 auto 3px;
@@ -438,10 +568,46 @@
               text-decoration: none;
               text-align: center;
               flex:1;
+              .formBox{
+                margin: 0 5px;
+                :global(.ant-select) {
+                  width: 100px;
+                  height: 25px;
+                }
+                :global(.ant-select-dropdown) {
+                  color:white;
+                }
+                :global(.ant-select-selection) {
+                  color: white;
+                  height: 25px;
+                  line-height: 25px;
+                  background-color: #023052;
+                  border: 1px solid #1d425f;
+                }
+                :global(.ant-select-selection--single .ant-select-selection__rendered) {
+                  color: white;
+                  height: 25px;
+                  line-height: 25px;
+                }
+                
+                :global(path) {
+                  color: white;
+                }
+                :global(.ant-input) {
+                  height: 25px;
+                  background-color: #06385b;
+                  color: white;
+                  outline: none;
+                  border: none;
+                }
+                :global(.ant-calendar-picker-icon) {
+                  color: white;
+                }
+              }
               >img{
                 width:40px;
                 height:40px;
-                margin-right:8px;
+                margin:0 5px 5px 0;
               }
               >span{
                 padding: 5px 15px;
@@ -453,7 +619,25 @@
                 -moz-border-radius: 4px;
                 -ms-border-radius: 4px;
                 -o-border-radius: 4px;
-}
+              }
+            }
+            s:nth-child(1){
+              flex: .5;
+            }
+            s:nth-child(2){
+              flex: .5;
+            }
+            s:nth-child(3){
+              flex: 1.5;
+            }
+            s:nth-child(4){
+              flex: .5;
+            }
+            s:nth-child(5){
+              flex: .8;
+            }
+            s:nth-child(6){
+              flex: .8;
             }
             &:nth-child(odd){
               background: #2d81ad;

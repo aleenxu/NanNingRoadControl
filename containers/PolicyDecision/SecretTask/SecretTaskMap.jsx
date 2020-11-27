@@ -30,6 +30,8 @@ class SecretTask extends PureComponent {
       searchInterList: null,
       interListHeight: 0,
       interListHeights: 0,
+      itemOneFlag: true, // 临时变量
+      itemTwoFlag: false, // 临时变量
       interMonitorLeft: 15,
       visible: false,
       visibleTop: 0,
@@ -598,13 +600,20 @@ class SecretTask extends PureComponent {
     })
   }
   AddUnitsIframBtn = (vipId, unitId) => {
-    this.props.data.vip_addSucess = ''
-    this.setState({
-      secretTaskLeftOld: this.state.secretTaskLeft,
-      secretTaskLeft: null,
-    }, () => {
-      this.props.getAddUnitsIfram(vipId, unitId)
-    })
+    // this.props.data.vip_addSucess = ''
+    // this.setState({
+    //   secretTaskLeftOld: this.state.secretTaskLeft,
+    //   secretTaskLeft: null,
+    // }, () => {
+    //   this.props.getAddUnitsIfram(vipId, unitId)
+    // })
+    if (!this.state.itemOneFlag || !this.state.itemTwoFlag ) {
+      !this.state.itemOneFlag ? this.setState({ itemOneFlag: true, roadCrossingFlag:null }) : this.setState({ itemTwoFlag: true, roadCrossingFlag:null })
+      message.info('添加成功！')
+    } else {
+      message.info('当前测试数据只有两条！')
+      this.setState({ roadCrossingFlag:null })
+    }
   }
   getSaveUnitRunStage = (vipId, unitId, stageNo) => {
     console.log(vipId, unitId, stageNo, 'adfasdf')
@@ -653,13 +662,17 @@ class SecretTask extends PureComponent {
       cancelText: '取消',
       okText: '确认',
       onOk() {
-        _this.props.data.vip_delSucess = ''
+        // _this.props.data.vip_delSucess = ''
+        // _this.setState({
+        //   secretTaskLeft: null,
+        // }, () => {
+        //   _this.props.getDeleteUnitFram(vipId, unitId)
+        // })
         _this.setState({
-          secretTaskLeft: null,
-        }, () => {
-          _this.props.getDeleteUnitFram(vipId, unitId)
-        })
-        
+          [vipId]: null
+        },() => {
+          message.info('删除成功！')
+        })        
       },
       onCancel() { },
     })
@@ -680,7 +693,7 @@ class SecretTask extends PureComponent {
       onOk() {
         // _this.props.data.vip_delRoadSucess = ''
         // _this.props.getDeleteVipRoad(vipId)
-        message.info('删除成功！')
+        // message.info('删除成功！')
       },
       onCancel() { },
     })
@@ -691,7 +704,7 @@ class SecretTask extends PureComponent {
       visible,
       visibleTop,
       interListHeight, interListHeights, searchInterList, searchVal, searchVals, secretTaskTop, secretTaskLeft, secretTaskRight, 
-      vipId, unitId, secretTaskDetail, secretTaskName, roadCrossingFlag,
+      vipId, unitId, secretTaskDetail, secretTaskName, roadCrossingFlag, itemOneFlag, itemTwoFlag
     } = this.state
     const { Search } = Input
     return (
@@ -791,8 +804,10 @@ class SecretTask extends PureComponent {
                 <div className={styles.conLeft}>
                   <div className={styles.titleSmall}>勤务路口<em onClick={this.getAddUnitsIfram}>添加路口</em></div>
                   <div id="conLeftBox" className={styles.conLeftBox}>
+                  {
+                    itemOneFlag ? 
                     <div className={styles.leftItem}>
-                      <div className={styles.itemTit}>{" XXX大道 通远路中路( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram(vipId, 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemTit}>{" XXX大道 通远路中路( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemOneFlag', 1)}} className={styles.Close} type='close' /></div>
                       <div className={styles.itemCon}>
                         <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
                           <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
@@ -824,9 +839,11 @@ class SecretTask extends PureComponent {
                           this.getSaveUnitRunStage(vipId, item.id, this.state['selectStateArr'][ind])
                           }}>保&nbsp;&nbsp;存</em>
                       </div>
-                    </div>
+                    </div> : null }
+                  {
+                    itemTwoFlag ? 
                     <div className={styles.leftItem}>
-                      <div className={styles.itemTit}>{" XXX大道 新科路( IP:192.168.1.22  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram(vipId, 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemTit}>{" XXX大道 新科路( IP:192.168.1.22  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemTwoFlag', 1)}} className={styles.Close} type='close' /></div>
                       <div className={styles.itemCon}>
                         <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
                           <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
@@ -856,7 +873,8 @@ class SecretTask extends PureComponent {
                           this.getSaveUnitRunStage(vipId, item.id, this.state['selectStateArr'][ind])
                           }}>保&nbsp;&nbsp;存</em>
                       </div>
-                    </div>
+                    </div> : null }
+                    { !itemOneFlag && !itemTwoFlag ? <div className={styles.PanelItemNone} style={{height:'166px', lineHeight:'166px'}}>暂无数据</div> : null }
                   </div>
                     
                   </div>
@@ -1044,7 +1062,8 @@ class SecretTask extends PureComponent {
                       }
                     </div>
                   </div>
-                  <div className={styles.btnRoadCrossing} onClick={() => {this.AddUnitsIframBtn(vipId, unitId)}}>确认添加</div>
+                  <div className={styles.btnRoadCrossing} onClick={() => {this.AddUnitsIframBtn('', '')}}>确认添加</div>
+                  {/* <div className={styles.btnRoadCrossing} onClick={() => {this.AddUnitsIframBtn(vipId, unitId)}}>确认添加</div> */}
                 </div>
             </div>
           </div> : null
