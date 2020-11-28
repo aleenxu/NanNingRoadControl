@@ -1,3 +1,12 @@
+input[type=number] {
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+  }
+
+  -moz-appearance: textfield;
+}
 :global(.ant-modal-content) {
   background-color: #343a52!important;
   :global(.ant-modal-confirm-body .ant-modal-confirm-title){

@@ -535,9 +535,9 @@ class TrunkLineCoordinate extends PureComponent {
               <div className={styles.title}>干线协调 <Icon className={styles.Close} type='close' onClick={() => {this.handleClose(false)}}  /></div>
               <div className={styles.secretTaskCon}>
                 <div className={styles.conTop}>
-                  <div className={styles.formBox}><span>干线名称：</span><Input value="" placeholder="请输入干线名称" /></div>
-                  <div className={styles.formBox} style={{flex: .4}}><span>干线总里程(米)：</span><Input type='number' value="" placeholder="请输入" /></div>
-                  <div className={styles.formBox} style={{marginRight: '0'}}><span>备注描述：</span><Input value="" onChange={(e) => {this.handleChange(e, 'secretTaskDetail')}} placeholder="请输入备注描述" /></div>
+                  <div className={styles.formBox}><span>干线名称：</span><Input defaultValue="" placeholder="请输入干线名称" /></div>
+                  <div className={styles.formBox} style={{flex: .4}}><span>干线总里程(米)：</span><Input type='number' defaultValue="" placeholder="请输入" /></div>
+                  <div className={styles.formBox} style={{marginRight: '0'}}><span>备注描述：</span><Input defaultValue="" onChange={(e) => {this.handleChange(e, 'secretTaskDetail')}} placeholder="请输入备注描述" /></div>
                   <div className={styles.titleSmall} style={{flex: .2, background:'unset'}}><em>保存</em></div>
                 </div>
                 <div className={styles.conRight} style={{width:'calc(100% - 56px)'}}>

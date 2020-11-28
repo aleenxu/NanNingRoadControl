@@ -529,8 +529,8 @@ class AreaCoordinate extends PureComponent {
               <div className={styles.title}>区域协调 <Icon className={styles.Close} type='close' onClick={() => {this.handleClose(false)}}  /></div>
               <div className={styles.secretTaskCon}>
                 <div className={styles.conTop}>
-                  <div className={styles.formBox}><span>区域名称：</span><Input value="" placeholder="请输入区域名称" /></div>
-                  <div className={styles.formBox} style={{marginRight: '0'}}><span>备注描述：</span><Input value="" onChange={(e) => {this.handleChange(e, 'secretTaskDetail')}} placeholder="请输入备注描述" /></div>
+                  <div className={styles.formBox}><span>区域名称：</span><Input defaultValue="" placeholder="请输入区域名称" /></div>
+                  <div className={styles.formBox} style={{marginRight: '0'}}><span>备注描述：</span><Input defaultValue="" onChange={(e) => {this.handleChange(e, 'secretTaskDetail')}} placeholder="请输入备注描述" /></div>
                   <div className={styles.titleSmall} style={{flex: .6, background:'unset'}}><em style={{right:'80px'}}>计算绿信比</em><em>保存</em></div>
                 </div>
                 <div className={styles.conLeft} style={{position:'relative'}}>
@@ -810,7 +810,7 @@ class AreaCoordinate extends PureComponent {
           {
             visible ?
               <ul style={{ top: `${visibleTop - 100}px` }} onContextMenu={this.noShow} className={styles.contextMenu}>
-                <li onClick={() => { this.lookRoadLine() }}>查看</li>
+                <li onClick={() => { this.lookRoadLine() }}>编辑</li>
                 <li onClick={() => { this.delRoadLine(this.roadId) }}>删除</li>
               </ul> : null
           }
