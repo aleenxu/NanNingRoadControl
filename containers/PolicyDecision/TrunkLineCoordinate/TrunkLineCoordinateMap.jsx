@@ -27,6 +27,7 @@ class TrunkLineCoordinate extends PureComponent {
       secretTaskLeft: null,
       secretTaskRight: null,
       interList: null,
+      flagDatas: [{"ID":8,"NAME":"凤凰-云景三路口协调"},{"ID":25,"NAME":"滨湖长湖等三个路口协调"},{"ID":99,"NAME":"长湖茶花园-长湖滨湖协调"}],
     }
     this.searchInterList = []
     this.markers = []
@@ -488,11 +489,18 @@ class TrunkLineCoordinate extends PureComponent {
   delRoadLine = (vipId) => {
     const _this = this
     Modal.confirm({
-      title: '确认要删除干线协调：( xxx ) ?',
+      title: '确认要删除区域协调：( xxx ) ?',
       cancelText: '取消',
       okText: '确认',
       onOk() {
-        // message.info('删除成功！')
+        const flagDatas = JSON.parse(JSON.stringify(_this.state.flagDatas))
+        const uls = $("ul").children()
+        uls.map((i, item) => {
+          if ($(item).attr("id") == vipId) {
+            $(item).remove()
+            message.info('删除成功！')
+          }
+        })
       },
       onCancel() { },
     })
@@ -509,7 +517,7 @@ class TrunkLineCoordinate extends PureComponent {
     this.addMarker(this.state.interList)
   }
   render() {
-    const { interMonitorLeft, interListHeight, interListHeights, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, itemOneFlag, itemTwoFlag } = this.state
+    const { interMonitorLeft, interListHeight, interListHeights, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, itemOneFlag, itemTwoFlag, flagDatas } = this.state
     const { Search } = Input
     return (
       <div className={publicStyles.monitorWrapper} id="mapContainer" style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
@@ -701,7 +709,7 @@ class TrunkLineCoordinate extends PureComponent {
             <CustomInterTree
               {...this.props}
               datasFlag={false}
-              flagDatas={[{"ID":8,"NAME":"凤凰-云景三路口协调"},{"ID":25,"NAME":"滨湖长湖等三个路口协调"},{"ID":99,"NAME":"长湖茶花园-长湖滨湖协调"}]}
+              flagDatas={flagDatas}
               visibleShowLeft={this.visibleShowLeft}
               getSelectTreeId={this.getSelectTreeId}
               getSelectChildId={this.getSelectChildId}
@@ -711,7 +719,7 @@ class TrunkLineCoordinate extends PureComponent {
             visible ?
               <ul style={{ top: `${visibleTop - 100}px` }} onContextMenu={this.noShow} className={styles.contextMenu}>
                 <li onClick={() => { this.lookRoadLine() }}>编辑</li>
-                <li onClick={() => { this.delRoadLine() }}>删除</li>
+                <li onClick={() => { this.delRoadLine(this.roadId) }}>删除</li>
               </ul> : null
           }
         </div>

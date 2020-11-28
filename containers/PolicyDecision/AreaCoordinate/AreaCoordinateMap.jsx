@@ -27,6 +27,7 @@ class AreaCoordinate extends PureComponent {
       secretTaskLeft: null,
       secretTaskRight: null,
       interList: null,
+      flagDatas: [{"ID":11,"NAME":"星湖-古城-民族-园湖"},{"ID":55,"NAME":"测试区域协调"},{"ID":81,"NAME":"民族古城-民族朝阳"}],
     }
     this.searchInterList = []
     this.markers = []
@@ -486,7 +487,14 @@ class AreaCoordinate extends PureComponent {
       cancelText: '取消',
       okText: '确认',
       onOk() {
-        // message.info('删除成功！')
+        const flagDatas = JSON.parse(JSON.stringify(_this.state.flagDatas))
+        const uls = $("ul").children()
+        uls.map((i, item) => {
+          if ($(item).attr("id") == vipId) {
+            $(item).remove()
+            message.info('删除成功！')
+          }
+        })
       },
       onCancel() { },
     })
@@ -503,7 +511,7 @@ class AreaCoordinate extends PureComponent {
     this.addMarker(this.state.interList)
   }
   render() {
-    const { interMonitorLeft, interListHeight, interListHeights, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, itemOneFlag, itemTwoFlag } = this.state
+    const { interMonitorLeft, interListHeight, interListHeights, searchInterList, visible, visibleTop, secretTaskTop, roadCrossingFlag, itemOneFlag, itemTwoFlag, flagDatas } = this.state
     const { Search } = Input
     return (
       <div className={publicStyles.monitorWrapper} id="mapContainer" style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
@@ -793,11 +801,11 @@ class AreaCoordinate extends PureComponent {
             <CustomInterTree
               {...this.props}
               datasFlag={false}
-              flagDatas={[{"ID":11,"NAME":"星湖-古城-民族-园湖"},{"ID":55,"NAME":"测试区域协调"},{"ID":81,"NAME":"民族古城-民族朝阳"}]}
+              flagDatas={flagDatas}
               visibleShowLeft={this.visibleShowLeft}
               getSelectTreeId={this.getSelectTreeId}
               getSelectChildId={this.getSelectChildId}
-            />          
+            />             
           </div>
           {
             visible ?

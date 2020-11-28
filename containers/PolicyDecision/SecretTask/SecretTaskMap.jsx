@@ -50,6 +50,7 @@ class SecretTask extends PureComponent {
       startValue: null,
       endValue: null,
       endOpen: false,
+      flagDatas: [{"ID":10,"NAME":"三津大道"},{"ID":50,"NAME":"中华路"},{"ID":80,"NAME":"X-304"}],
     }
     this.searchInterList = []
     this.markers = []
@@ -679,21 +680,20 @@ class SecretTask extends PureComponent {
   }
   // 删除路线
   delRoadLine = (vipId) => {
-    let roadLineName = ''
-    this.props.data.loadPlanTree.map((item) => {
-      if (item.ID === vipId) {
-        roadLineName = item.NAME
-      }
-    })
     const _this = this
     Modal.confirm({
-      title: '确认要删除勤务路线：( '+ roadLineName +' ) ?',
+      title: '确认要删除区域协调：( xxx ) ?',
       cancelText: '取消',
       okText: '确认',
       onOk() {
-        // _this.props.data.vip_delRoadSucess = ''
-        // _this.props.getDeleteVipRoad(vipId)
-        // message.info('删除成功！')
+        const flagDatas = JSON.parse(JSON.stringify(_this.state.flagDatas))
+        const uls = $("ul").children()
+        uls.map((i, item) => {
+          if ($(item).attr("id") == vipId) {
+            $(item).remove()
+            message.info('删除成功！')
+          }
+        })
       },
       onCancel() { },
     })
@@ -704,7 +704,7 @@ class SecretTask extends PureComponent {
       visible,
       visibleTop,
       interListHeight, interListHeights, searchInterList, searchVal, searchVals, secretTaskTop, secretTaskLeft, secretTaskRight, 
-      vipId, unitId, secretTaskDetail, secretTaskName, roadCrossingFlag, itemOneFlag, itemTwoFlag
+      vipId, unitId, secretTaskDetail, secretTaskName, roadCrossingFlag, itemOneFlag, itemTwoFlag, flagDatas
     } = this.state
     const { Search } = Input
     return (
@@ -776,7 +776,7 @@ class SecretTask extends PureComponent {
             <CustomInterTree
               {...this.props}
               datasFlag={false}
-              flagDatas={[{"ID":10,"NAME":"三津大道"},{"ID":50,"NAME":"中华路"},{"ID":80,"NAME":"X-304"}]}
+              flagDatas={flagDatas}
               visibleShowLeft={this.visibleShowLeft}
               getSelectTreeId={this.getSelectTreeId}
               getSelectChildId={this.getSelectChildId}
@@ -786,7 +786,7 @@ class SecretTask extends PureComponent {
             visible ?
               <ul style={{ top: `${visibleTop - 100}px` }} onContextMenu={this.noShow} className={styles.contextMenu}>
                 <li onClick={() => { this.lookRoadLine() }}>编辑</li>
-                <li onClick={() => { this.delRoadLine() }}>删除</li>
+                <li onClick={() => { this.delRoadLine(this.roadId) }}>删除</li>
               </ul> : null
           }
         </div>
