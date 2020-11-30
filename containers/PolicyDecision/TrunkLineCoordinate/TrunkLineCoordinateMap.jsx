@@ -544,7 +544,7 @@ class TrunkLineCoordinate extends PureComponent {
                   <div className={styles.titleSmall}>干线路口<em onClick={this.getAddUnitsIfram}>添加路口</em></div>
                   { itemOneFlag ?  
                     <div className={styles.leftItem}>
-                      <div className={styles.itemTit}>{" XXX大道 通远路中路"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemOneFlag', 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemTit}>{" 中山东路与富水中路交叉口"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemOneFlag', 1)}} className={styles.Close} type='close' /></div>
                       <div className={styles.itemCon}>
                         <div className={classNames(styles.listItem, styles.listTit)}>
                           <s>时段</s>
@@ -578,7 +578,7 @@ class TrunkLineCoordinate extends PureComponent {
                             <s><div className={styles.formBox}><Input defaultValue="1" /></div></s>
                           </div>
                           <div className={styles.listItem}>
-                            <s>00:00</s>
+                            <s>07:00</s>
                             <s>1</s>
                             <s>
                               <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw12_ch.gif'} />
@@ -604,7 +604,7 @@ class TrunkLineCoordinate extends PureComponent {
                   {
                     itemTwoFlag ? 
                     <div className={styles.leftItem}>
-                      <div className={styles.itemTit}>{" XXX大道 通远路中路"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemTwoFlag', 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemTit}>{" 中华中路与省府路交叉口"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemTwoFlag', 1)}} className={styles.Close} type='close' /></div>
                       <div className={styles.itemCon}>
                         <div className={classNames(styles.listItem, styles.listTit)}>
                           <s>时段</s>
@@ -636,7 +636,7 @@ class TrunkLineCoordinate extends PureComponent {
                             <s><div className={styles.formBox}><Input defaultValue="1" /></div></s>
                           </div>
                           <div className={styles.listItem}>
-                            <s>00:00</s>
+                            <s>07:00</s>
                             <s>1</s>
                             <s><img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw11_ch.gif'} />
                             <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw17_ch.gif'} />

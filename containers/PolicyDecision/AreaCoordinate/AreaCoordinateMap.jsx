@@ -545,7 +545,7 @@ class AreaCoordinate extends PureComponent {
                   {
                     itemOneFlag ? 
                     <div className={styles.leftItem}>
-                      <div className={styles.itemTit}>{" XXX大道 通远路中路( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemOneFlag', 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemTit}>{" 中山东路与富水中路交叉口( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemOneFlag', 1)}} className={styles.Close} type='close' /></div>
                       <div className={styles.itemCon}>
                         <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
                           <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
@@ -651,7 +651,7 @@ class AreaCoordinate extends PureComponent {
                   {
                     itemTwoFlag ? 
                     <div className={styles.leftItem}>
-                      <div className={styles.itemTit}>{" XXX大道 通远路中路( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemTwoFlag', 1)}} className={styles.Close} type='close' /></div>
+                      <div className={styles.itemTit}>{" 中华中路与省府路交叉口( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemTwoFlag', 1)}} className={styles.Close} type='close' /></div>
                       <div className={styles.itemCon}>
                         <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
                           <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
