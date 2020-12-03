@@ -31,7 +31,7 @@ class SecretTask extends PureComponent {
       interListHeight: 0,
       interListHeights: 0,
       itemOneFlag: true, // 临时变量
-      itemTwoFlag: false, // 临时变量
+      itemTwoFlag: true, // 临时变量
       interMonitorLeft: 15,
       visible: false,
       visibleTop: 0,
@@ -581,7 +581,6 @@ class SecretTask extends PureComponent {
         [name]: e.target.value,
       })
     } else {
-      debugger
       this.state[name][index] = e
     }
   }
@@ -810,22 +809,22 @@ class SecretTask extends PureComponent {
                       <div className={styles.itemTit}>{" 中山东路与富水中路交叉口( IP:192.168.1.88  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemOneFlag', 1)}} className={styles.Close} type='close' /></div>
                       <div className={styles.itemCon}>
                         <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
-                          <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
+                          <img className={styles.imgBgPic} src={require('../images/dzimg/11/1357.jpg')} />
                           <div className={styles.typeStatus}>{'脱机断线'}</div>
-                            <img style={{position:'absolute', width:'4.5px', height: '25px', top:'30px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northz_21.gif'} />
-                            <img style={{position:'absolute', width:'5.5px', height: '25px', top:'145px', left:'105px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southz_21.gif'} />
-                            <img style={{position:'absolute', width:'10px', height: '20px', top:'150px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southleft_21.gif'} />
-                            <img style={{position:'absolute', width:'9px', height: '20px', top:'30px', left:'95px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northleft_21.gif'} />
-                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'92.5px', left:'140px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastz_21.gif'} />
-                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'103.5px', left:'32.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westz_21.gif'} />
-                            <img style={{position:'absolute', width:'20px', height: '10px', top:'92.5px', left:'34px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westleft_21.gif'} />
-                            <img style={{position:'absolute', width:'20px', height: '10px', top:'97px', left:'145px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastleft_21.gif'} />
+                            <img style={{position:'absolute', width:'4.5px', height: '25px', top:'30px', left:'90.5px'}} src={require('../images/dzimg/2/northz_21.gif')} />
+                            <img style={{position:'absolute', width:'5.5px', height: '25px', top:'145px', left:'105px'}} src={require('../images/dzimg/2/southz_21.gif')} />
+                            <img style={{position:'absolute', width:'10px', height: '20px', top:'150px', left:'90.5px'}} src={require('../images/dzimg/2/southleft_21.gif')} />
+                            <img style={{position:'absolute', width:'9px', height: '20px', top:'30px', left:'95px'}} src={require('../images/dzimg/2/northleft_21.gif')} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'92.5px', left:'140px'}} src={require('../images/dzimg/2/eastz_21.gif')} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'103.5px', left:'32.5px'}} src={require('../images/dzimg/2/westz_21.gif')} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'92.5px', left:'34px'}} src={require('../images/dzimg/2/westleft_21.gif')} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'97px', left:'145px'}} src={require('../images/dzimg/2/eastleft_21.gif')} />
                         </div>
                         <div className={styles.imgBox} style={{maxHeight:'200px',overflowY:'auto' }}>
-                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} /><b>南北直行</b></div>
-                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18.gif'} /><b>南北左转</b></div>
-                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw12.gif'} /><b>东西直行</b></div>
-                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17.gif'} /><b>东西左转</b></div>
+                          <div className={styles.dirItem}><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw09_ch.gif'} /><b>南北直行</b></div>
+                          <div className={styles.dirItem}><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw18.gif'} /><b>南北左转</b></div>
+                          <div className={styles.dirItem}><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw12.gif'} /><b>东西直行</b></div>
+                          <div className={styles.dirItem}><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw17.gif'} /><b>东西左转</b></div>
                         </div>
                       </div>
                       <div className={styles.formBox}><span>预设勤务阶段：</span>
@@ -846,21 +845,21 @@ class SecretTask extends PureComponent {
                       <div className={styles.itemTit}>{" 中华中路与省府路交叉口( IP:192.168.1.22  )"}<Icon title="删除" onClick={()=>{this.getDeleteUnitFram('itemTwoFlag', 1)}} className={styles.Close} type='close' /></div>
                       <div className={styles.itemCon}>
                         <div className={styles.imgBox} style={{width:'200px',height:'200px'}}>
-                          <img className={styles.imgBgPic} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/11/1357.jpg'} />
+                          <img className={styles.imgBgPic} src={require('../images/dzimg/11/1357.jpg')} />
                           <div className={styles.typeStatus}>{'脱机断线'}</div>
-                            <img style={{position:'absolute', width:'4.5px', height: '25px', top:'30px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northz_21.gif'} />
-                            <img style={{position:'absolute', width:'5.5px', height: '25px', top:'145px', left:'105px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southz_21.gif'} />
-                            <img style={{position:'absolute', width:'10px', height: '20px', top:'150px', left:'90.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/southleft_21.gif'} />
-                            <img style={{position:'absolute', width:'9px', height: '20px', top:'30px', left:'95px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/northleft_21.gif'} />
-                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'92.5px', left:'140px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastz_21.gif'} />
-                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'103.5px', left:'32.5px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westz_21.gif'} />
-                            <img style={{position:'absolute', width:'20px', height: '10px', top:'92.5px', left:'34px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/westleft_21.gif'} />
-                            <img style={{position:'absolute', width:'20px', height: '10px', top:'97px', left:'145px'}} src={'http://124.70.43.68:8880/atms-web/resources/comm/dzimg/2/eastleft_21.gif'} />
+                            <img style={{position:'absolute', width:'4.5px', height: '25px', top:'30px', left:'90.5px'}} src={require('../images/dzimg/2/northz_21.gif')} />
+                            <img style={{position:'absolute', width:'5.5px', height: '25px', top:'145px', left:'105px'}} src={require('../images/dzimg/2/southz_21.gif')} />
+                            <img style={{position:'absolute', width:'10px', height: '20px', top:'150px', left:'90.5px'}} src={require('../images/dzimg/2/southleft_21.gif')} />
+                            <img style={{position:'absolute', width:'9px', height: '20px', top:'30px', left:'95px'}} src={require('../images/dzimg/2/northleft_21.gif')} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'92.5px', left:'140px'}} src={require('../images/dzimg/2/eastz_21.gif')} />
+                            <img style={{position:'absolute', width:'25px', height: '4.5px', top:'103.5px', left:'32.5px'}} src={require('../images/dzimg/2/westz_21.gif')} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'92.5px', left:'34px'}} src={require('../images/dzimg/2/westleft_21.gif')} />
+                            <img style={{position:'absolute', width:'20px', height: '10px', top:'97px', left:'145px'}} src={require('../images/dzimg/2/eastleft_21.gif')} />
                         </div>
                         <div className={styles.imgBox} style={{maxHeight:'200px',overflowY:'auto' }}>
-                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} /><b>南北直行</b></div>
-                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18.gif'} /><b>南北左转</b></div>
-                          <div className={styles.dirItem}><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw17.gif'} /><b>东西左转</b></div>
+                        <div className={styles.dirItem}><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw09_ch.gif'} /><b>南北直行</b></div>
+                          <div className={styles.dirItem}><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw18.gif'} /><b>南北左转</b></div>
+                          <div className={styles.dirItem}><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw12.gif'} /><b>东西直行</b></div>
                         </div>
                       </div>
                       <div className={styles.formBox}><span>预设勤务阶段：</span>
@@ -892,16 +891,16 @@ class SecretTask extends PureComponent {
                     <div className={styles.conRightBox}>
                       <div className={styles.listItem}>
                         <s>1</s>
-                        <s><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />1</s>
-                        <s>勤务阶段1</s>
-                        <s>勤务状态1</s>
+                        <s>中山东路与富水中路交叉口</s>
+                        <s><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw09_ch.gif'} />南北直行</s>
+                        <s>空闲</s>
                         <s><span>锁定</span></s>
                       </div>
                       <div className={styles.listItem}>
-                        <s>1</s>
-                        <s><img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw18_ch.gif'} />2</s>
-                        <s>勤务阶段2</s>
-                        <s>勤务状态2</s>
+                        <s>2</s>
+                        <s>中华中路与省府路交叉口</s>
+                        <s><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw09_ch.gif'} />南北直行</s>
+                        <s>已锁定</s>
                         <s><span>取消</span></s>
                       </div>
                     </div>

@@ -17,7 +17,7 @@ class TrunkLineCoordinate extends PureComponent {
       interListHeight: 0,
       interListHeights: 0,
       itemOneFlag: true, // 临时变量
-      itemTwoFlag: false, // 临时变量
+      itemTwoFlag: true, // 临时变量
       searchInterList: null,
       visible: false,
       visibleTop: 0,
@@ -559,10 +559,10 @@ class TrunkLineCoordinate extends PureComponent {
                             <s>00:00</s>
                             <s>1</s>
                             <s>
-                              <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
-                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw18_ch.gif'} />
-                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw12_ch.gif'} />
-                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw17_ch.gif'} />
+                              <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw09_ch.gif'} />
+                              <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw18.gif'} />
+                              <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw12.gif'} />
+                              <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw17.gif'} />
                             </s>
                             <s>140</s>
                             <s>
@@ -579,10 +579,10 @@ class TrunkLineCoordinate extends PureComponent {
                           </div>
                           <div className={styles.listItem}>
                             <s>07:00</s>
-                            <s>1</s>
+                            <s>2</s>
                             <s>
-                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw12_ch.gif'} />
-                              <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw17_ch.gif'} />
+                            <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw09_ch.gif'} />
+                              <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw18.gif'} />
                             </s>
                             <s>140</s>
                             <s>
@@ -619,9 +619,9 @@ class TrunkLineCoordinate extends PureComponent {
                             <s>00:00</s>
                             <s>1</s>
                             <s>
-                            <img src={'http://124.70.43.68:8880/atms-web/resources/comm/images/anniu/xw10_ch.gif'} />
-                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw04_ch.gif'} />
-                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw03_ch.gif'} />
+                            <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw09_ch.gif'} />
+                            <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw18.gif'} />
+                            <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw12.gif'} />
                             </s>
                             <s>140</s>
                             <s>
@@ -637,11 +637,11 @@ class TrunkLineCoordinate extends PureComponent {
                           </div>
                           <div className={styles.listItem}>
                             <s>07:00</s>
-                            <s>1</s>
-                            <s><img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw11_ch.gif'} />
-                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw17_ch.gif'} />
-                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw10_ch.gif'} />
-                            <img src={'http://124.70.43.68:8880/atms-web/resources/imgs/stage/xw18_ch.gif'} />
+                            <s>2</s>
+                            <s><img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw09_ch.gif'} />
+                              <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw18.gif'} />
+                              <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw12.gif'} />
+                              <img src={'http://39.100.128.220:7002/atms/comm/images/anniu/xw17.gif'} />
                             </s>
                             <s>140</s>
                             <s>
